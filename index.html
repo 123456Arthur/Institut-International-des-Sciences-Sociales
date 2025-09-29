@@ -580,18 +580,33 @@
 </style>
 
 <script>
-  const btnToggle = document.querySelector('.btn-toggle-images');
-  const imagesContainer = document.querySelector('.highlight-images-vertical');
+ const btnToggle = document.querySelector('.btn-toggle-images');
+const imagesContainer = document.querySelector('.highlight-images-vertical');
 
-  btnToggle.addEventListener('click', () => {
-    if (imagesContainer.style.maxHeight && imagesContainer.style.maxHeight !== '0px') {
-      imagesContainer.style.maxHeight = '0';
-      btnToggle.textContent = 'Savoir Plus';
-    } else {
-      imagesContainer.style.maxHeight = imagesContainer.scrollHeight + 'px';
-      btnToggle.textContent = 'Réduire';
-    }
-  });
+const maxHeightOpen = '1800px'; // Met une hauteur assez grande pour tes images ouvertes
+
+btnToggle.addEventListener('click', () => {
+  if (imagesContainer.style.maxHeight && imagesContainer.style.maxHeight !== '0px') {
+    imagesContainer.style.maxHeight = '0';
+    btnToggle.textContent = 'Savoir Plus';
+  } else {
+    imagesContainer.style.maxHeight = maxHeightOpen;
+    btnToggle.textContent = 'Réduire';
+  }
+});
+
+window.addEventListener('scroll', () => {
+  if (!imagesContainer.style.maxHeight || imagesContainer.style.maxHeight === '0px') return;
+
+  const rect = imagesContainer.getBoundingClientRect();
+  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+  if (rect.bottom < 0 || rect.top > windowHeight) {
+    imagesContainer.style.maxHeight = '0';
+    btnToggle.textContent = 'Savoir Plus';
+  }
+});
+
 </script>
 
 
@@ -849,4 +864,5 @@ window.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
 
