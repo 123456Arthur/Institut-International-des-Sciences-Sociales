@@ -484,7 +484,7 @@
 
   <div class="highlight-images-vertical" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
     <!-- Les  images de Modules -->
-    <img src="L1.jpg" alt="Image descriptive 1" class="highlight-img" />
+    <img src="L1.jpg"  alt="Image descriptive 1" class="highlight-img" />
     <img src="L2.jpg" alt="Image descriptive 2" class="highlight-img" />
     <img src="L2 suite .jpg" alt="Image descriptive 3" class="highlight-img" />
      <img src="L3 1.jpg" alt="Image descriptive 1" class="highlight-img" />
@@ -494,8 +494,8 @@
 </section>
 <style>
   .highlight-section-vertical {
-    max-width: 900px;
-    margin: 3rem auto;
+    max-width: 1000px;
+    margin: 4rem auto;
     padding: 2rem 3rem;
     background: linear-gradient(135deg, #155d63, #f9c51c);
     color: white;
@@ -504,6 +504,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     animation: pulseGlow 4s ease-in-out infinite;
     text-align: center;
+    
   }
   @keyframes pulseGlow {
     0%, 100% { box-shadow: 0 10px 36px rgba(249, 197, 28, 0.8); }
@@ -566,47 +567,21 @@
     filter: brightness(1.15);
     cursor: pointer;
   }
-  .highlight-images-vertical {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease;
-}
-
-.highlight-img-vertical {
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
 </style>
 
 <script>
- const btnToggle = document.querySelector('.btn-toggle-images');
-const imagesContainer = document.querySelector('.highlight-images-vertical');
+  const btnToggle = document.querySelector('.btn-toggle-images');
+  const imagesContainer = document.querySelector('.highlight-images-vertical');
 
-const maxHeightOpen = '1800px'; // Met une hauteur assez grande pour tes images ouvertes
-
-btnToggle.addEventListener('click', () => {
-  if (imagesContainer.style.maxHeight && imagesContainer.style.maxHeight !== '0px') {
-    imagesContainer.style.maxHeight = '0';
-    btnToggle.textContent = 'Savoir Plus';
-  } else {
-    imagesContainer.style.maxHeight = maxHeightOpen;
-    btnToggle.textContent = 'Réduire';
-  }
-});
-
-window.addEventListener('scroll', () => {
-  if (!imagesContainer.style.maxHeight || imagesContainer.style.maxHeight === '0px') return;
-
-  const rect = imagesContainer.getBoundingClientRect();
-  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-
-  if (rect.bottom < 0 || rect.top > windowHeight) {
-    imagesContainer.style.maxHeight = '0';
-    btnToggle.textContent = 'Savoir Plus';
-  }
-});
-
+  btnToggle.addEventListener('click', () => {
+    if (imagesContainer.style.maxHeight && imagesContainer.style.maxHeight !== '0px') {
+      imagesContainer.style.maxHeight = '0';
+      btnToggle.textContent = 'Savoir Plus';
+    } else {
+      imagesContainer.style.maxHeight = imagesContainer.scrollHeight + 'px';
+      btnToggle.textContent = 'Réduire';
+    }
+  });
 </script>
 
 
@@ -864,5 +839,3 @@ window.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
-
-
