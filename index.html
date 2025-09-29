@@ -566,6 +566,17 @@
     filter: brightness(1.15);
     cursor: pointer;
   }
+  .highlight-images-vertical {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.highlight-img-vertical {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
 </style>
 
 <script>
@@ -838,3 +849,4 @@ window.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
