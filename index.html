@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Institut ISS - Excellence & Innovation</title>
+
+<style>
+  /* Animation 3D survol carte (effet professionnel léger) */
+  .card {
+    transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s;
+  }
+  .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 24px rgba(10,35,66,0.12);
+  }
+  /* Animations stylisées */
+  .animated-bounce {
+    animation: bounce 1.2s;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    20% { transform: translateY(-18px); }
+    40% { transform: translateY(0); }
+    60% { transform: translateY(-8px); }
+    80% { transform: translateY(0); }
+  }
+
+  .animated-zoom {
+    animation: zoomIn 1s;
+  }
+  @keyframes zoomIn {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .animated-rotate {
+    animation: rotateIn 1.1s;
+  }
+  @keyframes rotateIn {
+    0% { transform: rotate(-180deg); opacity: 0; }
+    100% { transform: rotate(0); opacity: 1; }
+  }
+  #conferences .card img {
+  width: 100%;
+  max-width: 280px; /* Limite la largeur maximale pour homogénéiser les images */
+  height: auto;
+  object-fit: cover; /* Recadre l’image sans déformation */
+  border-radius: 10px; /* Angles arrondis pour un look moderne */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Ombre douce pour faire ressortir */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  margin: 0 auto 1rem auto; /* Centrer et espacer sous l'image */
+}
+
+#conferences .card:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+#conferences .card {
+  background: linear-gradient(120deg, #e3f0ff 0%, #cbe2fa 100%);
+  border-radius: 12px;
+  padding: 1rem 1.2rem 2rem;
+  box-shadow: 0 0 18px rgba(10, 35, 66, 0.10);
+  transition: background 0.5s ease, box-shadow 0.3s ease;
+}
+
+#conferences .card:hover {
+  background: linear-gradient(120deg, #155d63 0%, #1e3c72 100%);
+  color: white;
+  box-shadow: 0 8px 32px rgba(10, 35, 66, 0.18);
+}
+
+/* Centrer le contenu textuel et images dans chaque carte */
+#conferences .card h3, #conferences .card p {
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+
+
+  /* Palette de couleurs */
+  :root {
+    --bleu-primaire: #0a2342;
+    --bleu-vert-ocean: #155d63;
+    --or-excellence: #f9c51c;
+    --blanc: #fafafa;
+    --gris-clair: #f2f2f2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    /* Dégradé bleu animé pour effet captivant */
+    background: linear-gradient(120deg, #0a2342 0%, #155d63 40%, #1e3c72 70%, #fafafa 100%);
+    background-size: 200% 200%;
+    animation: gradientMove 8s ease-in-out infinite;
+  }
+  @keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* Hero Section */
+  .hero {
+    position: relative;
+    height: 80vh;
+    background: var(--bleu-primaire);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  .hero video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    filter: brightness(0.6);
+    z-index: 0;
+  }
+  .hero .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+  }
+  .hero h1 {
+    font-size: 3em;
+    margin-bottom: 0.5rem;
+  }
+  .hero p {
+    font-size: 1.3em;
+    margin-bottom: 1.5rem;
+  }
+  .btn-primary {
+    background: var(--or-excellence);
+    color: var(--bleu-primaire);
+    font-weight: bold;
+    padding: 0.8rem 1.8rem;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background 0.3s ease;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    background: #d9a919;
+  }
+  #student-life {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #f9f9f9; /* fond clair et doux */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  max-width: 600px;
+  margin: 2rem auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #0a2342; /* couleur bleue foncée cohérente */
+}
+
+#student-life h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #155d63; /* bleu-vert */
+  margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 3px rgba(21, 93, 99, 0.4);
+}
+
+#student-life h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 0.4rem 0 1rem 0;
+  color: #0a2342;
+  text-shadow: 2px 2px 5px rgba(10, 35, 66, 0.3);
+}
+
+#student-life h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: #155d63;
+}
+
+#student-life p {
+  font-size: 1.2rem;
+  margin: 0.3rem 0 0.8rem 0;
+  color: #333;
+}
+
+
+  /* Sections */
+  section {
+    padding: 3rem 1rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  section.section-light {
+    background: linear-gradient(90deg, #e3f0ff 0%, #cbe2fa 100%);
+  }
+  section.section-white {
+    background: linear-gradient(90deg, #fafafa 0%, #e3f0ff 100%);
+  }
+  section.section-dark {
+    background: linear-gradient(120deg, #0a2342 0%, #155d63 100%);
+    color: white;
+    text-align: center;
+  }
+
+  h2 {
+    color: var(--bleu-primaire);
+    font-weight: 700;
+    font-size: 2.2em;
+    margin-bottom: 1rem;
+  }
+
+  /* Cards interactive */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: linear-gradient(120deg, #e3f0ff 0%, #fafafa 100%);
+    border-radius: 8px;
+    padding: 1.5rem 1.2rem;
+    box-shadow: 0 0 18px rgba(10,35,66,0.10);
+    border: 1px solid #b3c6e0;
+    transition: background 0.5s;
+  }
+  .card:hover {
+    background: linear-gradient(120deg, #155d63 0%, #1e3c72 100%);
+    color: #fff;
+    box-shadow: 0 8px 32px rgba(10,35,66,0.18);
+    border-color: #155d63;
+  }
+  .card:hover h3,
+  .card:hover p,
+  .card:hover ul,
+  .card:hover li {
+    color: #fff !important;
+    text-shadow: 0 1px 6px rgba(10,35,66,0.18);
+  }
+  .card h3 {
+    color: var(--bleu-primaire);
+    margin-bottom: 0.4rem;
+  }
+  .card p {
+    font-weight: 600;
+    color: #555;
+  }
+  .btn-toggle {
+    background: var(--bleu-vert-ocean);
+    color: white;
+    border: none;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  .btn-toggle:hover {
+    background: #114d52;
+  }
+
+  .card-extra {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    margin-top: 0.7rem;
+  }
+  .card-extra ul {
+    list-style: disc;
+    padding-left: 1.2rem;
+    color: #333;
+  }
+
+  /* Écosystème */
+  .ecosystem-items {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .ecosystem-items > div {
+    flex: 1 1 280px;
+    padding: 1.2rem;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 0 12px rgb(0 0 0 / 0.1);
+  }
+  .ecosystem-items h4 {
+    color: var(--bleu-primaire);
+    margin-bottom: 0.6rem;
+  }
+
+  /* Galerie & carousel */
+  .gallery {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .gallery img {
+    width: 48%;
+    border-radius: 6px;
+  }
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+    padding: 1rem 0;
+    gap: 2rem;
+  }
+  .carousel img {
+    height: 60px;
+    filter: grayscale(50%);
+    transition: filter 0.3s ease;
+  }
+  .carousel img:hover {
+    filter: grayscale(0%);
+  }
+
+  /* Contact */
+  footer {
+    padding: 2rem 1rem;
+    background-color: var(--bleu-primaire);
+    text-align: center;
+    color: white;
+  }
+  footer img {
+    margin-top: 1rem;
+    width: 120px;
+  }
+
+  /* Animations fade-in on scroll */
+  [data-visible="false"] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  [data-visible="true"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media(max-width: 600px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+    .hero p {
+      font-size: 1rem;
+    }
+    .gallery img {
+      width: 100%;
+    }
+    .ecosystem-items {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <video autoplay muted loop playsinline>
+      <source src="PUB .mp4" type="video/mp4" />
+      Votre navigateur ne supporte pas la vidéo.
+    </video>
+   <audio id="monson" autoplay loop style="display:none">
+  <source src="audio/issaudio (online-audio-converter.com).mp3" type="audio/mpeg">
+  <source src="audio/issaudio (online-audio-converter.com).ogg" type="audio/ogg">
+</audio>
+  
+    <div class="hero-content">
+  <h1 class="animated-bounce">Institut ISS – Excellence & Innovation </h1>
+      <p>Intégrez notre pédagogie interdisciplinaire et plongez dans le monde professionnel, </p>
+      <a href="#contact" class="btn-primary">ICI CONSTRUIS TA VIE</a>
+    </div>
+  </header>
+
+  <!-- “Description  ?” -->
+  <section id="about" class="section-light" data-visible="false">
+  <h2 class="animated-zoom">C'EST QUOI ? 🤔</h2>
+    <p>
+      L’Institut ISS propose une formation moderne fondée sur la pédagogie inversée, l’approche par compétences et l’immersion progressive dans le monde du travail.
+      Encadrés par des mentors nationaux et internationaux, les étudiants développent des soft skills essentiels : synthèse, prise de décision, travail en équipe.
+    </p>
+  </section>
+
+  <!-- Nos 5 Mentions -->
+  <section id="mentions" class="section-white" data-visible="false">
+  <h2 class="animated-rotate">Nos 5 Mentions 🌟</h2>
+    <div class="cards">
+      <div class="card">
+  <h3>Management de Projet 💼</h3>
+  <p>Maîtrise méthodologie, objectifs SMART, créativité. ✨</p>
+        <button class="btn-toggle">Savoir Plus</button>
+        <div class="card-extra">
+          <ul>
+            <li>Méthodologie de projet</li>
+            <li>Objectifs SMART</li>
+            <li>Créativité & pensée critique</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+  <h3>HSET 🦺</h3>
+  <p>Spécialistes en gestion des risques, santé, environnement. 🌱</p>
+        <button class="btn-toggle">Savoir Plus</button>
+        <div class="card-extra">
+          <ul>
+            <li>Gestion des risques</li>
+            <li>Santé et sécurité au travail</li>
+            <li>Management environnemental</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+  <h3>Finance 💰</h3>
+  <p>Experts en gestion financière et analyse. 📊</p>
+        <button class="btn-toggle">Savoir Plus</button>
+        <div class="card-extra">
+          <ul>
+            <li>Analyse financière</li>
+            <li>Contrôle de gestion</li>
+            <li>Fiscalité</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+  <h3>Communication & Société 📢</h3>
+  <p> communication d'entreprise et sociale. 🗣️</p>
+        <button class="btn-toggle">Savoir Plus</button>
+        <div class="card-extra">
+          <ul>
+            <li>Techniques de communication</li>
+            <li>Relations publiques</li>
+            <li>Communication digitale</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+  <h3>Sciences Économiques 📈</h3>
+  <p>Analyse économique et gestion de projets de développement. 🌍</p>
+        <button class="btn-toggle">Savoir Plus</button>
+        <div class="card-extra">
+          <ul>
+            <li>Micro et macroéconomie</li>
+            <li>Droit des affaires</li>
+            <li>Statistiques & économétrie</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="l1-highlight" class="highlight-section-vertical">
+  <div class="highlight-content">
+    <h2>Plongez au cœur de l'excellence et de l'innovation</h2>
+    <p>
+      Découvrez un programme pensé pour vous immerger dans les réalités actuelles, développer vos compétences 
+      et nourrir votre curiosité. Chaque cours, chaque atelier, chaque rencontre est une étape vers votre réussite professionnelle et personnelle.
+    </p>
+    <p class="highlight-cta"><strong>Ne vous contentez pas du savoir, <em>viviez-le</em> pleinement avec nous !</strong></p>
+    <p><em>Explorez, innovez, inspirez-vous — votre avenir commence ici.</em></p>
+    <button class="btn-toggle-images">Savoir Plus</button>
+  </div>
+
+  <div class="highlight-images-vertical" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
+    <!-- Les  images de Modules -->
+    <img src="L1 VRAI.png"  alt="Image descriptive 1" class="highlight-img" />
+    <img src="L2.jpg" alt="Image descriptive 2" class="highlight-img" />
+    <img src="L2 suite .jpg" alt="Image descriptive 3" class="highlight-img" />
+     <img src="L3 1.jpg" alt="Image descriptive 1" class="highlight-img" />
+    <img src="L3 2.jpg" alt="Image descriptive 2" class="highlight-img" />
+    <img src="L3 3.jpg" alt="Image descriptive 3" class="highlight-img" />
+  </div>
+</section>
+<style>
+  .highlight-section-vertical {
+    max-width: 1000px;
+    margin: 4rem auto;
+    padding: 2rem 3rem;
+    background: linear-gradient(135deg, #155d63, #f9c51c);
+    color: white;
+    border-radius: 14px;
+    box-shadow: 0 10px 36px rgba(249, 197, 28, 0.8);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: pulseGlow 4s ease-in-out infinite;
+    text-align: center;
+    
+  }
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 10px 36px rgba(249, 197, 28, 0.8); }
+    50% { box-shadow: 0 10px 48px rgba(249, 197, 28, 1); }
+  }
+  .highlight-content h2 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    margin-bottom: 1.2rem;
+    text-shadow: 2px 2px 10px rgba(21, 93, 99, 0.7);
+  }
+  .highlight-content p {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+    text-shadow: 1px 1px 6px rgba(21, 93, 99, 0.5);
+  }
+  .highlight-cta {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #155d63;
+    background: #f9c51c;
+    padding: 0.8rem 1.5rem;
+    border-radius: 9px;
+    display: inline-block;
+    text-shadow: none;
+  }
+  .btn-toggle-images {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.6rem;
+    border-radius: 8px;
+    background-color: #155d63;
+    color: white;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+  }
+  .btn-toggle-images:hover {
+    background-color: #114247;
+  }
+  .highlight-images-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+  .highlight-img-vertical {
+    width: 90%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 10px 48px rgba(0, 0, 0, 0.55);
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: none;
+  }
+  
+  }
+</style>
+
+<script>
+  const btnToggle = document.querySelector('.btn-toggle-images');
+  const imagesContainer = document.querySelector('.highlight-images-vertical');
+
+  btnToggle.addEventListener('click', () => {
+    if (imagesContainer.style.maxHeight && imagesContainer.style.maxHeight !== '0px') {
+      imagesContainer.style.maxHeight = '0';
+      btnToggle.textContent = 'Savoir Plus';
+    } else {
+      imagesContainer.style.maxHeight = imagesContainer.scrollHeight + 'px';
+      btnToggle.textContent = 'Réduire';
+    }
+  });
+</script>
+
+
+
+  <!-- Notre Écosystème -->
+  <section id="ecosystem" class="section-light" data-visible="false">
+  <h2 class="animated-zoom">Notre Écosystème 🤝</h2>
+    <div class="ecosystem-items">
+      <div>
+  <h4>SFM </h4>
+        <p> Cours préparatif à distance pour l'organisation , sciences humaines, Vie professionnelle et Gestion de projet.</p>
+       <div style="text-align:center;">
+          <img src="Sfm.jpg" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
+        </div>
+      </div>
+      <div>
+  <h4>PAMF 👨‍💻</h4>
+        <p>Alternance et formation pro en conseiller clientèle, cadre commercial, agence et siège .</p>
+       <div style="text-align:center;">
+          <img src="PAMF.png" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
+        </div>
+      </div>
+       <div>
+  <h4>ISL 📈</h4>
+        <p>Formation des professionels afin de développer leur soft skills 
+          pour un renforcement des compétences .</p>
+       <div style="text-align:center;">
+          <img src="isl.jpg" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
+        </div>
+      </div>
+      <div>
+  <h4>IS-Studio 🎬</h4>
+        <p>Production audiovisuelle professionnelle à Antananarivo.</p>
+       <div style="text-align:center;">
+          <img src="Is studio.png" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
+        </div>
+      </div>
+      <div>
+  <h4>CO42 🏢</h4>
+        <p>Espace de coworking et organisation d'événements innovants.</p>
+        <div style="text-align:center;">
+          <img src="Co42.png" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
+        </div>
+      </div>
+      <div>
+  <h4>K4M 🧠</h4>
+        <p>Cabinet de consultation psychologique et développement humain.</p>
+        <div style="text-align:center;">
+          <img src="K4M.jpg" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
+        </div>
+      </div>
+    </div>
+     <div>
+  
+  </section>
+
+  <!-- Vie Étudiante -->
+  <section id="student-life" class="section-white" data-visible="false">
+    <h2 class="animated-bounce">Frais de scolarité  </h2>
+    <h1> 
+ <h3>
+  <p>500.000Ar *8 
+ </p>
+  <p> 800.000Ar*5 </p>
+  <p>  
+  soit boursier  de 4000 points</p>
+      </h3>
+    </h1>
+    
+  </section>
+
+  <!-- Clubs Étudiants -->
+  <section id="clubs" class="section-light" data-visible="false">
+    <h2 class="animated-zoom">Clubs Étudiants 🏆</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Club Art 🎨</h3>
+        <p>Ateliers de peinture, dessin, sculpture et expositions régulières.</p>
+         <div style="text-align:center;">
+          <img src="peinture.jpg" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
+        </div>
+      </div>
+      <div class="card">
+        <h3>Club Langues 🌍</h3>
+        <p>Pratique de l'anglais, du français, et d'autres langues avec des natifs.</p>
+         <div style="text-align:center;">
+ <img src="langue.jpg" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
+      </div>
+    </div>
+      <div class="card">
+        <h3>Club Musique 🎶</h3>
+        <p>Groupes de musique, initiation à divers instruments(guitare).</p>
+        <div style="text-align:center;">
+ <img src="musique.jpg" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
+        </div>
+        </div>
+      <div class="card">
+        <h3>Club Sport ⚽</h3>
+        <p>Football, basketball, et organisation de tournois inter-écoles.</p>
+        <div style="text-align:center;">
+  <img src="sport.jpg" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
+      </div>
+        </div>
+       <div class="card">
+        <h3>Euler Math Groupe 👨‍🏫</h3>
+        <p> Club entre jeune,brise glâce et conctact entre étudiant Math-financière,comptabilité,cours, apprentissage .</p>
+         <div style="text-align:center;">
+ <img src="Math.jpg" alt="is studio" style="height: 100px;  margin: bottom 1%;" />
+    </div>
+      </div>
+       <div class="card">
+        <h3>Malagasy chess game ♟</h3>
+        <p>Stratégie d'attaque,défense,mouvement des pions .</p>
+        <div style="text-align:center;">
+          <img src="echec.jpg" alt="is studio" style="height: 130px; margin: bottom 1%;" />
+        </div>
+    </div>
+    <div class="gallery">
+      <!-- Ajoutez d'autres images de clubs si disponible -->
+    </div>
+  </section>
+
+  <!-- Conférences Hebdomadaires -->
+  <section id="conferences" class="section-white" data-visible="false">
+    <h2 class="animated-rotate">Conférences Hebdomadaires 📅</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Lundi Management</h3>
+        <p>Conférences sur le leadership, la gestion de projet et l'entrepreneuriat.
+Un rendez-vous essentiel pour développer vos compétences, inspirer votre équipe et réussir vos projets avec assurance.</p>
+        <div style="text-align:center;">
+          <img src="Lundi.jpg" alt="is studio" style="height: 130px; margin: bottom 1%;" />
+        </div>
+      </div>
+      <div class="card">
+        <h3>Mardi de l'entreprise 💼💡</h3>
+        <p> Séance de partage sur entrepreneuriat, startup et PME.
+Un moment unique pour s’inspirer, échanger des idées et booster la croissance de votre projet entrepreneurial. </p>
+        <div style="text-align:center;">
+          <img src="Mardi.jpg" alt="is studio" style="height: 130px; margin: bottom 1%;" />
+        </div>
+      </div>
+       <div class="card">
+        <h3>Alarobia KAFE SERA ☕💬</h3>
+        <p> Bien plus qu’un café, un moment de partage,
+           d’intelligence collective et de rencontres authentiques pour dynamiser votre réseau professionnel. </p>
+           <div style="text-align:center;">
+          <img src="MERCREDI VRAI.png" alt="is studio" style="height: 130px; margin: bottom 1%;" />
+        </div>
+      </div>
+      <div class="card">
+        <h3>Thursday Roundtable</h3>
+        <p>Tables rondes sur l'actualité, l'innovation et les enjeux sociétaux.
+Un espace d’échanges enrichissants pour décrypter les défis d’aujourd’hui et imaginer les solutions de demain.</p>
+        <div style="text-align:center;">
+          <img src="Jeudi.jpg" alt="is studio" style="height: 130px; margin: bottom 1%;" />
+        </div>
+      </div>
+      <div class="card">
+        <h3>Friday Talk</h3>
+        <p> Invités inspirants, débats et échanges sur les parcours professionnels.
+Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des témoignages authentiques et riches d’expériences.</p>
+        <div style="text-align:center;">
+          <img src="Vendredi.jpg" alt="is studio" style="height: 130px; margin: bottom 1%;" />
+        </div>
+      </div>
+    </div>
+    <div class="gallery">
+      
+      <!-- Ajoutez d'autres images de conférences si disponible -->
+    </div>
+  </section>
+
+  <!-- Partenaires -->
+  <section id="partners" class="section-light" data-visible="false">
+  <h2 class="animated-rotate">Partenaires 🤝</h2>
+    <div class="carousel">
+      <div style="display: flex; gap: 2rem; align-items: center; justify-content: center; flex-wrap: wrap;">
+        <div style="text-align:center;">
+          <img src="PAMF.png" alt="PAMF" style="height:60px; margin-bottom:0.5rem;" />
+          <div>PAMF</div>
+        </div>
+        <div style="text-align:center;">
+          <img src="JCI.png" alt="JCI" style="height:60px; margin-bottom:0.5rem;" />
+          <div>JCI</div>
+        </div>
+        <div style="text-align:center;">
+          <img src="Alliance_française.png" alt="Alliance Française" style="height:60px; margin-bottom:0.5rem;" />
+          <div>Alliance Française</div>
+        </div>
+        <div style="text-align:center;">
+          <img src="ESP BIG.png" alt="ESP BIG" style="height:60px; margin-bottom:0.5rem;" />
+          <div>ESP BIG</div>
+        </div>
+          <div style="text-align:center;">
+          <img src="apmfc.png" alt="ESP BIG" style="height:60px; margin-bottom:0.5rem;" />
+          <div>APMFC</div>
+      </div>
+       <div style="text-align:center;">
+          <img src="isl.jpg" alt="ESP BIG" style="height:60px; margin-bottom:0.5rem;" />
+          <div>ISL</div>
+    </div>
+  </section>
+<footer id="contact" data-visible=""true> 
+   <h2 class="animated-zoom">Contact & Localisation </h2>
+    <p>
+      Adresse : Tsiadana, Antananarivo Pouce fitness 2éme Etage  <br />
+      Email :  <link rel="stylesheet" href="institutisscontact@gmail.com"> institutisscontact@gmail.com<br />
+      Téléphone :  +261 38 43 331 87
+    </p>
+    <img src="QR.jpg" alt="QR Code" />
+   </footer>
+  <!-- Contact & Localisation -->
+  
+
+<script>
+// Tentative d'activation automatique du son (certains navigateurs peuvent bloquer l'autoplay sans interaction)
+window.addEventListener('DOMContentLoaded', function() {
+  var audio = document.getElementById('monson');
+  if (audio) {
+    audio.volume = 0.7;
+    audio.play().catch(function(){});
+  }
+});
+  // Toggle “Savoir Plus” pour les cartes
+  document.querySelectorAll('.btn-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const extra = button.nextElementSibling;
+      if (extra.style.maxHeight && extra.style.maxHeight !== '0px') {
+        extra.style.maxHeight = '0';
+        button.textContent = 'Savoir Plus';
+      } else {
+        extra.style.maxHeight = extra.scrollHeight + 'px';
+        button.textContent = 'Réduire';
+      }
+    });
+  });
+
+  // Animation fade-in on scroll
+  const appearElems = document.querySelectorAll('section, .ecosystem-items > div, .card, .gallery, .carousel');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.setAttribute('data-visible', 'true');
+      } else {
+        entry.target.setAttribute('data-visible', 'false');
+      }
+    });
+  }, { threshold: 0.1 });
+  appearElems.forEach(el => {
+    el.setAttribute('data-visible', 'false');
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
