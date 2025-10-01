@@ -5,39 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Institut ISS - Excellence & Innovation</title>
 <script>
-  let essais = 0;
-  const motDePasseCorrect = "IISS-2025/278487!";
-  function verifierMotDePasse() {
-    const mdpSaisi = document.getElementById('mdp').value;
-    if(mdpSaisi === motDePasseCorrect) {
-      alert("Accès autorisé !");
-      // Montrer le contenu caché, masquer le formulaire
-      document.getElementById('form-mdp').style.display = 'none';
-      document.getElementById('contenu').style.display = 'block';
-    } else {
-      essais++;
-      alert("Mot de passe incorrect. Essai n°"+essais);
-      if(essais >= 3) {
-        alert("Nombre maximum d'essais atteint. Accès bloqué !");
-        document.getElementById('form-mdp').style.display = 'none';
-        // Vous pouvez aussi rediriger vers une autre page
-        // window.location.href = "accès-refuse.html";
-      }
-    }
-  }
-</script>
-</head>
-<body>
-  <div id="form-mdp">
-    <h2>Entrez le mot de passe</h2>
-    <input type="password" id="mdp" placeholder="Mot de passe" />
-    <button onclick="verifierMotDePasse()">Valider</button>
-  </div>
-
-  <div id="contenu" style="display:none;">
-    <h1>Contenu protégé</h1>
-    <p>Bienvenue sur cette page confidentielle.</p>
-<style>
   /* Animation 3D survol carte (effet professionnel léger) */
   .card {
     transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s;
@@ -867,6 +834,7 @@ window.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
