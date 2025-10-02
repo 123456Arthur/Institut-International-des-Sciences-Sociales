@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+<head> 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Institut ISS - Excellence & Innovation</title>
-
+<style>
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  </style>
 <style>
   /* Animation 3D survol carte (effet professionnel léger) */
   .card {
@@ -1092,8 +1099,29 @@ window.addEventListener('DOMContentLoaded', function() {
     observer.observe(el);
   });
 </script>
+        <script>
+// Code non obfusqué initial
+function protectSite() {
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('selectstart', e => e.preventDefault());
+  document.addEventListener('copy', e => e.preventDefault());
+  document.addEventListener('cut', e => e.preventDefault());
+  document.addEventListener('paste', e => e.preventDefault());
+}
+// Obfuscation simple manuelle (renommage)
+var _0x1234 = ["contextmenu", "selectstart", "copy", "cut", "paste", "addEventListener", "preventDefault"];
+(function() {
+  var _0xabcd = _0x1234;
+  document[_0xabcd[5]](_0xabcd[0], function(e) { e[_0xabcd[6]](); });
+  document[_0xabcd[5]](_0xabcd[1], function(e) { e[_0xabcd[6]](); });
+  document[_0xabcd[5]](_0xabcd[2], function(e) { e[_0xabcd[6]](); });
+  document[_0xabcd[5]](_0xabcd[3], function(e) { e[_0xabcd[6]](); });
+  document[_0xabcd[5]](_0xabcd[4], function(e) { e[_0xabcd[6]](); });
+})();
+</script>
 </body>
 </html>
+
 
 
 
