@@ -797,6 +797,171 @@ nav ul li a:focus {
   border-radius: 15px;
 }
 </style>
+       </style>
+<!-- Section Nos Valeurs -->
+<section id="valeurs" class=" fade-in" data-visible="false">
+  <div class="wave-bg">
+    <div class="waves"></div>
+  </div>
+  <div class="valeurs-content">
+  <h2 class="animated-zoom">Nos Valeurs 🌿</h2>
+  <div class="valeurs-grid">
+    <div class="valeur-box" style="--delay:0s">
+      <h3>  L'Autonomie 🧠</h3>
+      <p>Une quête constante d’indépendance et de savoir pour faire de chaque jour une victoire personnelle et un impact durable</p>
+    </div>
+    <div class="valeur-box" style="--delay:0.2s">
+      <h3>🤝 Collaboration  & leadership </h3>
+      <p>Une communauté solidaire fondée sur le respect mutuel et l’écoute constructive.</p>
+    </div>
+    <div class="valeur-box" style="--delay:0.4s">
+      <h3>⚖️ Intégrité & Responsabilité</h3>
+      <p>Une démarche authentique et responsable, fondée sur la transparence et la confiance.</p>
+    </div>
+    <div class="valeur-box" style="--delay:0.6s">
+      <h3>💡 Créativité & Innovation</h3>
+      <p>Un esprit curieux et audacieux qui ose inventer les solutions de demain.</p>
+    </div>
+  </div>
+  
+</section>
+<style>
+  #valeurs {
+  position: relative;
+  color: #fff;
+  overflow: hidden;
+}
+
+#valeurs::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("IISS logo.jpg") center/cover no-repeat;
+  filter: blur(6px) brightness(0.5); /* flou + atténuation */
+  z-index: -1;
+}
+
+  /* --- Section Nos Valeurs --- */
+#valeurs {
+  background: linear-gradient(135deg, #0a2342 0%, #155d63 100%);
+  color: #fafafa;
+  padding: 5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Lueur dynamique autour du titre */
+#valeurs h2 {
+  font-size: 2.8rem;
+  color: #f9c51c;
+  text-shadow: 0 0 18px rgba(249,197,28,0.8);
+  animation: titlePulse 3s ease-in-out infinite;
+}
+@keyframes titlePulse {
+  0%, 100% { text-shadow: 0 0 18px rgba(249,197,28,0.8); }
+  50% { text-shadow: 0 0 30px rgba(249,197,28,1); }
+}
+
+.valeurs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.valeur-box {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 20px rgba(10, 35, 66, 0.3);
+  transform: translateY(40px);
+  opacity: 0;
+  animation: fadeSlideUp 1s ease forwards;
+  animation-delay: var(--delay);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.valeur-box:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 10px 28px rgba(249,197,28,0.4);
+}
+
+.valeur-box h3 {
+  color: #f9c51c;
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.valeur-box p {
+  color: #e6e6e6;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+</style>
+  </section>
+<section id="formateurs" class="fade-in" data-visible="false">
+  <h2 class="animated-zoom">Nos Formateurs 🎓</h2>
+  <style>
+    .ecosystem-items {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Deux colonnes égales */
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+    }
+    .ecosystem-items > div {
+      background: #f9f9f9;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .ecosystem-items > div:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+    .ecosystem-items img {
+      height: 200px;
+      width: auto;
+      border-radius: 12px;
+      margin-bottom: 0.5rem;
+      object-fit: cover;
+    }
+    .ecosystem-items h4 {
+      margin-bottom: 0.3rem;
+      color: #0a2342;
+      font-weight: 700;
+    }
+    .ecosystem-items p {
+      font-style: italic;
+      color: #555;
+      margin: 0;
+    }
+    @media (max-width: 700px) {
+      .ecosystem-items {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+    }
+  </style>
   </section>
 <section id="formateurs" class="fade-in" data-visible="false">
   <h2 class="animated-zoom">Nos Formateurs 🎓</h2>
@@ -1336,4 +1501,5 @@ window.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
