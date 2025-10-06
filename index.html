@@ -4,11 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Institut ISS - Excellence & Innovation</title>
+<!-- Content Security Policy: adjust 'self' and allowed sources as needed on production -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self' data:; style-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline';">
 <head>
   <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
 </head>
-
-
 <style>
   :root {
   --bleu-primaire: #0a2342;
@@ -26,7 +26,7 @@ body {
 }
 
 header {
-  background-color: var(--bleu-primaire);
+  background-color: transparent; /* removed solid blue to improve aesthetics */
   color: var(--blanc);
   display: flex;
   justify-content: space-between;
@@ -99,7 +99,7 @@ nav ul li a:focus {
 @media (max-width: 768px) {
   nav ul {
     flex-direction: column;
-    background-color: var(--bleu-primaire);
+    background-color: transparent; /* remove blue mobile menu background */
     position: absolute;
     top: 55px;
     left: 0;
@@ -137,6 +137,10 @@ nav ul li a:focus {
 <body>
 <header>
   <div class="logo">Institut ISS</div>
+  <div class="header-icons" style="display:flex; gap:10px; align-items:center;">
+    <i class="fa-solid fa-satellite fa-animate-blue pulse" aria-hidden="true" title="Connecté"></i>
+    <i class="fa-solid fa-circle-nodes fa-animate-blue fa-rotate-tech" aria-hidden="true" title="Réseau"></i>
+  </div>
   <nav>
     <ul id="menu">
       <li><a href="#about">C’est quoi ?</a></li>
@@ -174,6 +178,196 @@ nav ul li a:focus {
       }
     });
   });
+</script>
+<script>
+  // Animate FA icons when they enter viewport
+  (function(){
+    const icons = document.querySelectorAll('.fa-animate-blue');
+    if('IntersectionObserver' in window){
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('pulse');
+            setTimeout(()=> entry.target.classList.remove('pulse'), 2200);
+          }
+        });
+      }, { threshold: 0.3 });
+      icons.forEach(i => io.observe(i));
+    }
+  })();
+</script>
+<script>
+  // Metaballs background for hero (advanced)
+  (function(){
+    const canvas = document.getElementById('heroCanvas');
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const off = document.createElement('canvas');
+    const offCtx = off.getContext('2d');
+    let w=0,h=0, balls=[];
+
+    function resize(){
+      w = canvas.width = canvas.clientWidth || canvas.offsetWidth;
+      h = canvas.height = canvas.clientHeight || canvas.offsetHeight;
+      off.width = w; off.height = h;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function rand(min,max){ return Math.random()*(max-min)+min; }
+
+    function createBalls(){
+      balls = [];
+      const count = Math.max(6, Math.min(18, Math.floor((w*h)/150000)));
+      for(let i=0;i<count;i++){
+        balls.push({
+          x: rand(0,w), y: rand(0,h),
+          r: rand(Math.max(30,w*0.03), Math.max(60,w*0.06)),
+          vx: rand(-0.6,0.6), vy: rand(-0.25,0.25)
+        });
+      }
+    }
+    createBalls();
+
+    // interactive attractor (mouse)
+    const mouse = {x: -9999, y: -9999, active: false};
+    canvas.addEventListener('mousemove', (e)=>{
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left; mouse.y = e.clientY - rect.top; mouse.active = true;
+    });
+    canvas.addEventListener('mouseleave', ()=>{ mouse.active = false; });
+
+    function step(){
+      offCtx.clearRect(0,0,w,h);
+      // draw balls to offscreen as soft circles
+      for(const b of balls){
+        b.x += b.vx; b.y += b.vy;
+        if(b.x < -b.r) b.x = w + b.r;
+        if(b.x > w + b.r) b.x = -b.r;
+        if(b.y < -b.r) b.y = h + b.r;
+        if(b.y > h + b.r) b.y = -b.r;
+
+        // attract to mouse when active
+        if(mouse.active){
+          const dx = mouse.x - b.x, dy = mouse.y - b.y;
+          const dist = Math.sqrt(dx*dx+dy*dy) || 1;
+          const force = Math.min(120, 8000 / (dist*dist));
+          b.vx += (dx/dist) * (force*0.00005);
+          b.vy += (dy/dist) * (force*0.00005);
+        }
+
+        offCtx.fillStyle = 'rgba(255,255,255,0.14)';
+        const g = offCtx.createRadialGradient(b.x,b.y, b.r*0.1, b.x,b.y, b.r);
+        g.addColorStop(0, 'rgba(255,255,255,0.95)');
+        g.addColorStop(0.3, 'rgba(120,182,255,0.5)');
+        g.addColorStop(1, 'rgba(0,0,0,0)');
+        offCtx.beginPath();
+        offCtx.fillStyle = g;
+        offCtx.arc(b.x,b.y,b.r,0,Math.PI*2);
+        offCtx.fill();
+      }
+
+      // threshold offscreen pixels to create metaball look
+      const img = offCtx.getImageData(0,0,w,h);
+      const data = img.data;
+      // simple threshold: combine alpha to create mask
+      for(let i=3;i<data.length;i+=4){
+        const alpha = data[i];
+        if(alpha > 18){ // tuned threshold
+          data[i-3] = 40; data[i-2] = 130; data[i-1] = 255; data[i] = 220; // bluish tone
+        } else {
+          data[i] = 0; // transparent
+        }
+      }
+      ctx.clearRect(0,0,w,h);
+      ctx.putImageData(img,0,0);
+
+      // overlay soft gradient to accent blue theme
+      ctx.globalCompositeOperation = 'lighter';
+      const grad = ctx.createLinearGradient(0,0,w,h);
+      grad.addColorStop(0,'rgba(15,146,255,0.06)');
+      grad.addColorStop(1,'rgba(21,93,99,0.06)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'source-over';
+
+      requestAnimationFrame(step);
+    }
+    step();
+    window.addEventListener('resize', ()=>{ createBalls(); });
+  })();
+
+  // Magnetic button effect
+  (function(){
+    const btn = document.querySelector('.btn-magnetic');
+    if(!btn) return;
+    btn.addEventListener('mousemove', e => {
+      const rect = btn.getBoundingClientRect();
+      const dx = e.clientX - (rect.left + rect.width/2);
+      const dy = e.clientY - (rect.top + rect.height/2);
+      btn.style.transform = `translate(${dx*0.06}px, ${dy*0.06}px) scale(1.02)`;
+    });
+    btn.addEventListener('mouseleave', ()=> btn.style.transform = '');
+  })();
+
+  // Basic anti-copy protections (client-side only, deterrent)
+  (function(){
+    // Disable right click
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    // Disable selection
+    document.addEventListener('selectstart', e => e.preventDefault());
+    // Disable common copy shortcuts
+    document.addEventListener('keydown', e => {
+      if((e.ctrlKey || e.metaKey) && ['c','s','u','a','p'].includes(e.key.toLowerCase())){
+        e.preventDefault();
+        return false;
+      }
+      // Disable F12 and Ctrl+Shift+I / J
+      if(e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.shiftKey && ['I','J'].includes(e.key.toUpperCase()))){
+        e.preventDefault();
+        return false;
+      }
+    });
+    // Watermark addition already via CSS; consider dynamically embedding small watermark into canvas images server-side for stronger protection.
+  })();
+</script>
+<!-- Lightbox HTML -->
+<div class="lightbox-overlay" id="lightbox">
+  <div class="lightbox-close" id="lightboxClose">✕</div>
+  <div class="lightbox-content">
+    <img src="" alt="Preview" id="lightboxImg" />
+  </div>
+</div>
+<script>
+  // Lightbox functionality for the first highlight image
+  (function(){
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const firstImg = document.querySelector('.highlight-images-vertical .highlight-img:first-of-type');
+
+    if(firstImg){
+      firstImg.style.cursor = 'zoom-in';
+      firstImg.addEventListener('click', () => {
+        lightboxImg.src = firstImg.src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+
+    function closeLightbox(){
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+      lightboxImg.src = '';
+    }
+
+    lightbox.addEventListener('click', (e) => {
+      if(e.target === lightbox || e.target === lightboxClose) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') closeLightbox();
+    });
+  })();
 </script>
 
 <style>
@@ -281,6 +475,120 @@ nav ul li a:focus {
     text-align: center;
     padding: 0 1rem;
   }
+  /* Hi-tech scanline overlay */
+  .hero .scanline {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 100% 6px;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.25;
+    animation: scanMove 6s linear infinite;
+  }
+  @keyframes scanMove { from { background-position-y: 0; } to { background-position-y: 6px; } }
+
+  /* Animated gradient overlay for hero text glow */
+  .hero .glow-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 20%, rgba(21,93,99,0.18), transparent 15%),
+                radial-gradient(ellipse at 80% 80%, rgba(9,35,66,0.18), transparent 20%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Particle canvas in hero (behind content) */
+  .hero-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Neon / Glitch style for hero h1 */
+  .hero-content h1 {
+    position: relative;
+    z-index: 3;
+    color: #eaf6ff;
+    font-weight: 900;
+    text-transform: none;
+    letter-spacing: 0.6px;
+  }
+  .neon {
+    color: #dff3ff;
+    text-shadow: 0 0 8px rgba(120,182,255,0.6), 0 0 24px rgba(15,146,255,0.25);
+  }
+  .glitch {
+    position: relative;
+  }
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%;
+    clip: rect(0, 9999px, 0, 0);
+  }
+  .glitch::before {
+    color: #9fd6ff; transform: translate(2px, -1px);
+    text-shadow: -2px 0 #0f92ff;
+    animation: glitchTop 2.5s infinite linear alternate-reverse;
+  }
+  .glitch::after {
+    color: #c6f0ff; transform: translate(-2px, 1px);
+    text-shadow: 2px 0 #155d63;
+    animation: glitchBottom 3s infinite linear alternate-reverse;
+  }
+  @keyframes glitchTop {
+    0% { clip: rect(0,9999px,8px,0); transform: translate(2px,-1px) skewX(-2deg); }
+    50%{ clip: rect(20px,9999px,40px,0); transform: translate(-2px,-2px) skewX(2deg); }
+    100%{ clip: rect(0,9999px,8px,0); transform: translate(2px,-1px) skewX(-2deg); }
+  }
+  @keyframes glitchBottom {
+    0% { clip: rect(60px,9999px,80px,0); transform: translate(-2px,1px) skewX(2deg);} 
+    50%{ clip: rect(10px,9999px,30px,0); transform: translate(1px,2px) skewX(-2deg);} 
+    100%{ clip: rect(60px,9999px,80px,0); transform: translate(-2px,1px) skewX(2deg);} 
+  }
+
+  /* Magnetic CTA button */
+  .btn-primary {
+    position: relative;
+    z-index: 3;
+    background: linear-gradient(90deg,#f9c51c,#eec32a);
+    box-shadow: 0 8px 24px rgba(9,35,66,0.18);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .btn-magnetic { transition: transform 0.18s ease; }
+
+  /* Watermark overlay for images */
+  .wm {
+    position: relative;
+    overflow: hidden;
+  }
+  .wm::after {
+    content: "Institut ISS";
+    position: absolute;
+    right: 8px; bottom: 8px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.28);
+    transform: rotate(-18deg);
+    pointer-events: none;
+  }
+
+  /* FontAwesome hi-tech animated icons */
+  .fa-animate-blue {
+    color: #78b6ff;
+    text-shadow: 0 4px 18px rgba(17,82,130,0.25);
+    transition: transform 0.45s cubic-bezier(.2,.9,.2,1), color 0.3s ease;
+  }
+  .fa-animate-blue.pulse {
+    animation: faPulse 2.4s infinite;
+  }
+  @keyframes faPulse { 0% { transform: scale(1); } 50% { transform: scale(1.08) rotate(-6deg); } 100% { transform: scale(1); } }
+
+  .fa-rotate-tech { animation: faRotate 8s linear infinite; }
+  @keyframes faRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
   .hero video {
     position: absolute;
     width: 100%;
@@ -533,10 +841,14 @@ nav ul li a:focus {
 </audio>
   
     <div class="hero-content">
-  <h1 class="animated-bounce">Institut ISS – Excellence & Innovation </h1>
+  <h1 class="animated-bounce neon glitch" data-text="Institut ISS – Excellence & Innovation">Institut ISS – Excellence & Innovation </h1>
       <p>Intégrez notre pédagogie interdisciplinaire et plongez dans le monde professionnel, </p>
-      <a href="#contact" class="btn-primary">ICI CONSTRUIS TA VIE</a>
+      <a href="#contact" class="btn-primary btn-magnetic">ICI CONSTRUIS TA VIE</a>
     </div>
+    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+    <!-- Hi-tech decorative SVG blob and overlays -->
+    <div class="glow-gradient"></div>
+    <div class="scanline" aria-hidden="true"></div>
   </header>
 
   <!-- “Description  ?” -->
@@ -625,8 +937,9 @@ nav ul li a:focus {
   </div>
 
   <div class="highlight-images-vertical" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
-    <!-- Les  images de Modules -->
-    <img src="L1 réel.jpg"  alt="Image descriptive 1" class="highlight-img" />
+  <!-- Les  images de Modules -->
+  <!-- Utiliser l'image 'L1 réel' pour que toutes les informations soient visibles -->
+  <img src="L1 réel.jpg"  alt="L1 réel" class="highlight-img" />
     <img src="L2.jpg" alt="Image descriptive 2" class="highlight-img" />
     <img src="L2 suite .jpg" alt="Image descriptive 3" class="highlight-img" />
      <img src="L3 1.jpg" alt="Image descriptive 1" class="highlight-img" />
@@ -694,14 +1007,73 @@ nav ul li a:focus {
     gap: 2rem;
     align-items: center;
   }
-  .highlight-img-vertical {
+  /* Styles pour les images de la section highlight */
+  .highlight-images-vertical .highlight-img {
     width: 90%;
     max-width: 600px;
     height: auto;
     border-radius: 14px;
-    box-shadow: 0 10px 48px rgba(0, 0, 0, 0.55);
-    transition: transform 0.3s ease, filter 0.3s ease;
-    filter: none;
+    box-shadow: 0 10px 48px rgba(0, 0, 0, 0.45);
+    transition: transform 0.3s ease, filter 0.3s ease, opacity 0.35s ease;
+    opacity: 1;
+    display: block;
+  }
+  .highlight-images-vertical .highlight-img:hover {
+    transform: translateY(-6px) scale(1.02);
+    filter: saturate(1.05) contrast(1.03);
+  }
+  /* Keep the FIRST image at its native size (no forced width/max-width)
+     This ensures the first photo in the "Plongez" section displays at
+     its intrinsic pixel dimensions while other images keep the responsive rules. */
+  .highlight-images-vertical .highlight-img:first-of-type {
+    width: auto;
+    max-width: none;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* Prevent it from overflowing horizontally on small screens by allowing the container
+       to scroll if needed. The container already centers items. */
+    max-height: none;
+    object-fit: contain; /* ensure the image is not cropped and all content is visible */
+  }
+  /* Lightbox / modal to view image at readable size */
+  .lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+  }
+  .lightbox-overlay.active {
+    display: flex;
+  }
+  .lightbox-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+  }
+  .lightbox-content img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 10000;
   }
 </style>
 <script>
@@ -1449,4 +1821,3 @@ window.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-
