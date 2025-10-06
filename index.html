@@ -4,6 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Institut ISS - Excellence & Innovation</title>
+<head>
+  <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
+</head>
+
+
 <style>
   :root {
   --bleu-primaire: #0a2342;
@@ -137,6 +142,7 @@ nav ul li a:focus {
       <li><a href="#about">C’est quoi ?</a></li>
       <li><a href="#mentions">Nos 5 Mentions</a></li>
       <li><a href="#ecosystem">Notre écosystème</a></li>
+      <li><a href="#valeurs">Nos Valeurs</a></li>
       <li><a href="#formateurs">Nos Formateurs</a></li>
       <li><a href="#student-life">Frais de scolarité</a></li>
       <li><a href="#conferences">Conférences Hebdomadaires</a></li>
@@ -149,7 +155,6 @@ nav ul li a:focus {
     <div></div>
   </div>
 </header>
-
 <script>
   const hamburger = document.getElementById('hamburger');
   const menu = document.getElementById('menu');
@@ -542,8 +547,6 @@ nav ul li a:focus {
       Encadrés par des mentors nationaux et internationaux, les étudiants développent des soft skills essentiels : synthèse, prise de décision, travail en équipe.
     </p>
   </section>
-
-  <!-- Nos 5 Mentions -->
   <section id="mentions" class="section-white" data-visible="false">
   <h2 class="animated-rotate">Nos 5 Mentions 🌟</h2>
     <div class="cards">
@@ -623,7 +626,7 @@ nav ul li a:focus {
 
   <div class="highlight-images-vertical" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
     <!-- Les  images de Modules -->
-    <img src="L1 réel.jpg"  alt="Image descriptive 1" class="highlight-img" />
+    <img src="L1 VRAI.png"  alt="Image descriptive 1" class="highlight-img" />
     <img src="L2.jpg" alt="Image descriptive 2" class="highlight-img" />
     <img src="L2 suite .jpg" alt="Image descriptive 3" class="highlight-img" />
      <img src="L3 1.jpg" alt="Image descriptive 1" class="highlight-img" />
@@ -797,7 +800,6 @@ nav ul li a:focus {
   border-radius: 15px;
 }
 </style>
-       </style>
 <!-- Section Nos Valeurs -->
 <section id="valeurs" class=" fade-in" data-visible="false">
   <div class="wave-bg">
@@ -911,57 +913,6 @@ nav ul li a:focus {
 }
 
 </style>
-  </section>
-<section id="formateurs" class="fade-in" data-visible="false">
-  <h2 class="animated-zoom">Nos Formateurs 🎓</h2>
-  <style>
-    .ecosystem-items {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Deux colonnes égales */
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-    }
-    .ecosystem-items > div {
-      background: #f9f9f9;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      padding: 1.5rem;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .ecosystem-items > div:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
-    .ecosystem-items img {
-      height: 200px;
-      width: auto;
-      border-radius: 12px;
-      margin-bottom: 0.5rem;
-      object-fit: cover;
-    }
-    .ecosystem-items h4 {
-      margin-bottom: 0.3rem;
-      color: #0a2342;
-      font-weight: 700;
-    }
-    .ecosystem-items p {
-      font-style: italic;
-      color: #555;
-      margin: 0;
-    }
-    @media (max-width: 700px) {
-      .ecosystem-items {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-      }
-    }
-  </style>
   </section>
 <section id="formateurs" class="fade-in" data-visible="false">
   <h2 class="animated-zoom">Nos Formateurs 🎓</h2>
@@ -1198,6 +1149,7 @@ nav ul li a:focus {
     </div>
   </div>
 </section>
+
 <section id="student-life" class="fade-in">
   <h2 class="animated-bounce">Frais de scolarité</h2>
   <div>
@@ -1320,9 +1272,7 @@ nav ul li a:focus {
     font-size: 1.15rem;
   }
 }
-
 </style>
- <!-- Clubs Étudiants -->
   <section id="clubs" class="section-light" data-visible="false">
     <h2 class="animated-zoom">Clubs Étudiants 🏆</h2>
     <div class="cards">
@@ -1330,49 +1280,47 @@ nav ul li a:focus {
         <h3>Club Art 🎨</h3>
         <p>Ateliers de peinture, dessin, sculpture et expositions régulières.</p>
          <div style="text-align:center;">
-          <img src="peinture.jpg" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
+          <img src="peinture.jpg" alt="is studio" style="height: 200px;  margin: bottom 0.7em;" />
         </div>
       </div>
       <div class="card">
         <h3>Club Langues 🌍</h3>
         <p>Pratique de l'anglais, du français, et d'autres langues avec des natifs.</p>
          <div style="text-align:center;">
- <img src="langue.jpg" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
+ <img src="langue.jpg" alt="is studio" style="height: 150px;  margin: bottom 0.7em;" />
       </div>
     </div>
       <div class="card">
         <h3>Club Musique 🎶</h3>
         <p>Groupes de musique, initiation à divers instruments(guitare).</p>
         <div style="text-align:center;">
- <img src="CLUB MUSIQUE .jpg" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
+ <img src="CLUB MUSIQUE .jpg" alt="is studio" style="height: 200px;  margin: bottom 0.7em;" />
         </div>
         </div>
       <div class="card">
         <h3>Club Sport ⚽</h3>
         <p>Football, basketball, et organisation de tournois inter-institut.</p>
         <div style="text-align:center;">
-  <img src="BASKET.jpg" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
+  <img src="BASKET.jpg" alt="is studio" style="height: 200px;  margin: bottom 0.7em;" />
       </div>
         </div>
        <div class="card">
         <h3>Euler Math Groupe 👨‍🏫</h3>
         <p> Club entre jeune,brise glâce et conctact entre étudiant Math-financière,comptabilité,cours, apprentissage .</p>
          <div style="text-align:center;">
- <img src="Math.jpg" alt="is studio" style="height: 100px;  margin: bottom 1%;" />
+ <img src="Math.jpg" alt="is studio" style="height: 200px;  margin: bottom 0.7em;" />
     </div>
       </div>
        <div class="card">
         <h3>Malagasy chess game ♟</h3>
         <p>Stratégie d'attaque,défense,mouvement des pions .</p>
         <div style="text-align:center;">
-          <img src="ECHEC VRAI .jpg" alt="is studio" style="height: 130px; margin: bottom 1%;" />
+          <img src="ECHEC VRAI.jpg" alt="is studio" style="height: 200px;  margin: bottom 0.7em;" />
         </div>
     </div>
     <div class="gallery">
-      <!-- Ajoutez d'autres images de clubs si disponible -->
     </div>
   </section>
-  <!-- Conférences Hebdomadaires -->
   <section id="conferences" class="section-white" data-visible="false">
     <h2 class="animated-rotate">Conférences Hebdomadaires 📅</h2>
     <div class="cards">
@@ -1501,6 +1449,3 @@ window.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-
-
-
