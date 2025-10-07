@@ -4,18 +4,19 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Institut ISS - Excellence & Innovation</title>
-<!-- Content Security Policy: adjust 'self' and allowed sources as needed on production -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self' data:; style-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline';">
 <head>
   <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
 </head>
 <style>
   :root {
-  --bleu-primaire: #0a2342;
-  --bleu-vert-ocean: #155d63;
+  --bleu-primaire: #21507a; 
+  --bleu-second: #4aa3ff; 
+  --bleu-vert-ocean: #72c3e6;
+  --bleu-deep: #0b2a44; 
   --or-excellence: #f9c51c;
-  --blanc: #fafafa;
-  --gris-clair: #f2f2f2;
+  --blanc: #fbfdff;
+  --gris-clair: #f4f7fa;
 }
 
 body {
@@ -26,7 +27,7 @@ body {
 }
 
 header {
-  background-color: transparent; /* removed solid blue to improve aesthetics */
+  background-color: transparent; 
   color: var(--blanc);
   display: flex;
   justify-content: space-between;
@@ -37,7 +38,8 @@ header {
 
 .logo {
   font-size: 1.8rem;
-  font-weight: bold;
+  font-weight: 700;
+  color: rgba(251,253,255,0.95);
 }
 
 nav ul {
@@ -45,11 +47,11 @@ nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 30px; /* Espacement entre items */
+  gap: 30px; 
 }
 
 nav ul li a {
-  color: var(--blanc);
+  color: rgba(251,253,255,0.95);
   text-decoration: none;
   font-weight: 600;
   font-size: 1.2rem;
@@ -99,7 +101,7 @@ nav ul li a:focus {
 @media (max-width: 768px) {
   nav ul {
     flex-direction: column;
-    background-color: transparent; /* remove blue mobile menu background */
+    background-color: transparent; 
     position: absolute;
     top: 55px;
     left: 0;
@@ -138,7 +140,7 @@ nav ul li a:focus {
 <header>
   <div class="logo">Institut ISS</div>
   <div class="header-icons" style="display:flex; gap:10px; align-items:center;">
-    <i class="fa-solid fa-satellite fa-animate-blue pulse" aria-hidden="true" title="Connecté"></i>
+    <i class="fa-solid fa-satellite fa-animate-blue" aria-hidden="true" title="Connecté"></i>
     <i class="fa-solid fa-circle-nodes fa-animate-blue fa-rotate-tech" aria-hidden="true" title="Réseau"></i>
   </div>
   <nav>
@@ -180,9 +182,34 @@ nav ul li a:focus {
   });
 </script>
 <script>
-  // Animate FA icons when they enter viewport
+  // Smooth scroll to anchors and close mobile menu if open
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e){
+      const href = this.getAttribute('href');
+      if(href && href.startsWith('#')){
+        const target = document.querySelector(href);
+        if(target){
+          e.preventDefault();
+          // close mobile menu if visible
+          const menu = document.getElementById('menu');
+          const hamburger = document.getElementById('hamburger');
+          if(menu.classList.contains('active')){
+            menu.classList.remove('active');
+            hamburger.classList.remove('open');
+            hamburger.setAttribute('aria-expanded','false');
+          }
+          const topOffset = 84; // approximate header height
+          const rect = target.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          window.scrollTo({ top: scrollTop + rect.top - topOffset, behavior: 'smooth' });
+        }
+      }
+    });
+  });
+</script>
+<script>
   (function(){
-    const icons = document.querySelectorAll('.fa-animate-blue');
+  const icons = document.querySelectorAll('.header-icons .fa-animate-blue');
     if('IntersectionObserver' in window){
       const io = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -197,7 +224,6 @@ nav ul li a:focus {
   })();
 </script>
 <script>
-  // Metaballs background for hero (advanced)
   (function(){
     const canvas = document.getElementById('heroCanvas');
     if(!canvas) return;
@@ -228,8 +254,6 @@ nav ul li a:focus {
       }
     }
     createBalls();
-
-    // interactive attractor (mouse)
     const mouse = {x: -9999, y: -9999, active: false};
     canvas.addEventListener('mousemove', (e)=>{
       const rect = canvas.getBoundingClientRect();
@@ -239,15 +263,12 @@ nav ul li a:focus {
 
     function step(){
       offCtx.clearRect(0,0,w,h);
-      // draw balls to offscreen as soft circles
       for(const b of balls){
         b.x += b.vx; b.y += b.vy;
         if(b.x < -b.r) b.x = w + b.r;
         if(b.x > w + b.r) b.x = -b.r;
         if(b.y < -b.r) b.y = h + b.r;
         if(b.y > h + b.r) b.y = -b.r;
-
-        // attract to mouse when active
         if(mouse.active){
           const dx = mouse.x - b.x, dy = mouse.y - b.y;
           const dist = Math.sqrt(dx*dx+dy*dy) || 1;
@@ -256,37 +277,32 @@ nav ul li a:focus {
           b.vy += (dy/dist) * (force*0.00005);
         }
 
-        offCtx.fillStyle = 'rgba(255,255,255,0.14)';
-        const g = offCtx.createRadialGradient(b.x,b.y, b.r*0.1, b.x,b.y, b.r);
-        g.addColorStop(0, 'rgba(255,255,255,0.95)');
-        g.addColorStop(0.3, 'rgba(120,182,255,0.5)');
-        g.addColorStop(1, 'rgba(0,0,0,0)');
+  offCtx.fillStyle = 'rgba(255,255,255,0.08)';
+  const g = offCtx.createRadialGradient(b.x,b.y, b.r*0.12, b.x,b.y, b.r);
+  g.addColorStop(0, 'rgba(250,255,255,0.85)');
+  g.addColorStop(0.3, 'rgba(74,163,255,0.28)');
+  g.addColorStop(1, 'rgba(0,0,0,0)');
         offCtx.beginPath();
         offCtx.fillStyle = g;
         offCtx.arc(b.x,b.y,b.r,0,Math.PI*2);
         offCtx.fill();
       }
-
-      // threshold offscreen pixels to create metaball look
       const img = offCtx.getImageData(0,0,w,h);
       const data = img.data;
-      // simple threshold: combine alpha to create mask
       for(let i=3;i<data.length;i+=4){
         const alpha = data[i];
-        if(alpha > 18){ // tuned threshold
-          data[i-3] = 40; data[i-2] = 130; data[i-1] = 255; data[i] = 220; // bluish tone
+        if(alpha > 18){ 
+          data[i-3] = 120; data[i-2] = 185; data[i-1] = 240; data[i] = 200;
         } else {
-          data[i] = 0; // transparent
+          data[i] = 0;
         }
       }
       ctx.clearRect(0,0,w,h);
       ctx.putImageData(img,0,0);
-
-      // overlay soft gradient to accent blue theme
       ctx.globalCompositeOperation = 'lighter';
       const grad = ctx.createLinearGradient(0,0,w,h);
-      grad.addColorStop(0,'rgba(15,146,255,0.06)');
-      grad.addColorStop(1,'rgba(21,93,99,0.06)');
+  grad.addColorStop(0,'rgba(74,163,255,0.04)');
+  grad.addColorStop(1,'rgba(11,42,68,0.04)');
       ctx.fillStyle = grad;
       ctx.fillRect(0,0,w,h);
       ctx.globalCompositeOperation = 'source-over';
@@ -296,8 +312,6 @@ nav ul li a:focus {
     step();
     window.addEventListener('resize', ()=>{ createBalls(); });
   })();
-
-  // Magnetic button effect
   (function(){
     const btn = document.querySelector('.btn-magnetic');
     if(!btn) return;
@@ -309,29 +323,21 @@ nav ul li a:focus {
     });
     btn.addEventListener('mouseleave', ()=> btn.style.transform = '');
   })();
-
-  // Basic anti-copy protections (client-side only, deterrent)
   (function(){
-    // Disable right click
     document.addEventListener('contextmenu', e => e.preventDefault());
-    // Disable selection
     document.addEventListener('selectstart', e => e.preventDefault());
-    // Disable common copy shortcuts
     document.addEventListener('keydown', e => {
       if((e.ctrlKey || e.metaKey) && ['c','s','u','a','p'].includes(e.key.toLowerCase())){
         e.preventDefault();
         return false;
       }
-      // Disable F12 and Ctrl+Shift+I / J
       if(e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.shiftKey && ['I','J'].includes(e.key.toUpperCase()))){
         e.preventDefault();
         return false;
       }
     });
-    // Watermark addition already via CSS; consider dynamically embedding small watermark into canvas images server-side for stronger protection.
   })();
 </script>
-<!-- Lightbox HTML -->
 <div class="lightbox-overlay" id="lightbox">
   <div class="lightbox-close" id="lightboxClose">✕</div>
   <div class="lightbox-content">
@@ -339,7 +345,6 @@ nav ul li a:focus {
   </div>
 </div>
 <script>
-  // Lightbox functionality for the first highlight image
   (function(){
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
@@ -406,37 +411,35 @@ nav ul li a:focus {
   }
   #conferences .card img {
   width: 100%;
-  max-width: 280px; /* Limite la largeur maximale pour homogénéiser les images */
+  max-width: 280px;
   height: auto;
-  object-fit: cover; /* Recadre l’image sans déformation */
-  border-radius: 10px; /* Angles arrondis pour un look moderne */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Ombre douce pour faire ressortir */
+  object-fit: cover; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: block;
-  margin: 0 auto 1rem auto; /* Centrer et espacer sous l'image */
+  margin: 0 auto 1rem auto; 
 }
 #conferences .card:hover img {
   transform: scale(1.05);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
-#conferences .card {
-  background: linear-gradient(120deg, #e3f0ff 0%, #cbe2fa 100%);
+  #conferences .card {
+  background: linear-gradient(120deg, rgba(238,246,255,0.9) 0%, rgba(203,226,250,0.9) 100%);
   border-radius: 12px;
   padding: 1rem 1.2rem 2rem;
   box-shadow: 0 0 18px rgba(10, 35, 66, 0.10);
   transition: background 0.5s ease, box-shadow 0.3s ease;
 }
-#conferences .card:hover {
-  background: linear-gradient(120deg, #155d63 0%, #1e3c72 100%);
+  #conferences .card:hover {
+  background: linear-gradient(120deg, var(--bleu-primaire) 0%, var(--bleu-second) 100%);
   color: white;
   box-shadow: 0 8px 32px rgba(10, 35, 66, 0.18);
 }
-/* Centrer le contenu textuel et images dans chaque carte */
 #conferences .card h3, #conferences .card p {
   text-align: center;
   margin: 0.5rem 0;
 }
- /* Palette de couleurs */
   :root {
     --bleu-primaire: #0a2342;
     --bleu-vert-ocean: #155d63;
@@ -449,8 +452,7 @@ nav ul li a:focus {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: #333;
-    /* Dégradé bleu animé pour effet captivant */
-    background: linear-gradient(120deg, #0a2342 0%, #155d63 40%, #1e3c72 70%, #fafafa 100%);
+    background: linear-gradient(120deg, var(--bleu-deep) 0%, var(--bleu-primaire) 35%, var(--bleu-second) 70%, #fafafa 100%);
     background-size: 200% 200%;
     animation: gradientMove 8s ease-in-out infinite;
   }
@@ -462,11 +464,10 @@ nav ul li a:focus {
   a {
     text-decoration: none;
   }
-  /* Hero Section */
   .hero {
     position: relative;
     height: 80vh;
-    background: var(--bleu-primaire);
+    background: linear-gradient(180deg, rgba(11,61,145,0.95), rgba(6,34,74,0.75));
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -475,38 +476,32 @@ nav ul li a:focus {
     text-align: center;
     padding: 0 1rem;
   }
-  /* Hi-tech scanline overlay */
   .hero .scanline {
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 100% 6px;
+    background-image: linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px);
+    background-size: 100% 8px;
     pointer-events: none;
     z-index: 2;
-    opacity: 0.25;
-    animation: scanMove 6s linear infinite;
+    opacity: 0.12;
+    animation: scanMove 10s linear infinite;
   }
   @keyframes scanMove { from { background-position-y: 0; } to { background-position-y: 6px; } }
 
-  /* Animated gradient overlay for hero text glow */
   .hero .glow-gradient {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 20% 20%, rgba(21,93,99,0.18), transparent 15%),
-                radial-gradient(ellipse at 80% 80%, rgba(9,35,66,0.18), transparent 20%);
+    background: radial-gradient(ellipse at 20% 20%, rgba(74,163,255,0.08), transparent 18%),
+                radial-gradient(ellipse at 80% 80%, rgba(11,42,68,0.06), transparent 22%);
     pointer-events: none;
     z-index: 1;
   }
-
-  /* Particle canvas in hero (behind content) */
   .hero-canvas {
     position: absolute;
     inset: 0;
     z-index: 0;
     pointer-events: none;
   }
-
-  /* Neon / Glitch style for hero h1 */
   .hero-content h1 {
     position: relative;
     z-index: 3;
@@ -531,27 +526,25 @@ nav ul li a:focus {
     clip: rect(0, 9999px, 0, 0);
   }
   .glitch::before {
-    color: #9fd6ff; transform: translate(2px, -1px);
-    text-shadow: -2px 0 #0f92ff;
-    animation: glitchTop 2.5s infinite linear alternate-reverse;
+    color: #9fd6ff; transform: translate(1px, -0.5px);
+    text-shadow: -1px 0 rgba(15,146,255,0.6);
+    animation: glitchTop 6s infinite linear alternate-reverse;
   }
   .glitch::after {
-    color: #c6f0ff; transform: translate(-2px, 1px);
-    text-shadow: 2px 0 #155d63;
-    animation: glitchBottom 3s infinite linear alternate-reverse;
+    color: #c6f0ff; transform: translate(-1px, 0.5px);
+    text-shadow: 1px 0 rgba(21,93,99,0.6);
+    animation: glitchBottom 7s infinite linear alternate-reverse;
   }
   @keyframes glitchTop {
-    0% { clip: rect(0,9999px,8px,0); transform: translate(2px,-1px) skewX(-2deg); }
-    50%{ clip: rect(20px,9999px,40px,0); transform: translate(-2px,-2px) skewX(2deg); }
-    100%{ clip: rect(0,9999px,8px,0); transform: translate(2px,-1px) skewX(-2deg); }
+    0% { clip: rect(0,9999px,6px,0); transform: translate(1px,-0.5px) skewX(-1deg); }
+    50%{ clip: rect(10px,9999px,24px,0); transform: translate(-1px,-1px) skewX(1deg); }
+    100%{ clip: rect(0,9999px,6px,0); transform: translate(1px,-0.5px) skewX(-1deg); }
   }
   @keyframes glitchBottom {
-    0% { clip: rect(60px,9999px,80px,0); transform: translate(-2px,1px) skewX(2deg);} 
-    50%{ clip: rect(10px,9999px,30px,0); transform: translate(1px,2px) skewX(-2deg);} 
-    100%{ clip: rect(60px,9999px,80px,0); transform: translate(-2px,1px) skewX(2deg);} 
+    0% { clip: rect(40px,9999px,60px,0); transform: translate(-1px,0.5px) skewX(1deg);} 
+    50%{ clip: rect(8px,9999px,22px,0); transform: translate(0.5px,1px) skewX(-1deg);} 
+    100%{ clip: rect(40px,9999px,60px,0); transform: translate(-1px,0.5px) skewX(1deg);} 
   }
-
-  /* Magnetic CTA button */
   .btn-primary {
     position: relative;
     z-index: 3;
@@ -560,8 +553,6 @@ nav ul li a:focus {
     transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
   .btn-magnetic { transition: transform 0.18s ease; }
-
-  /* Watermark overlay for images */
   .wm {
     position: relative;
     overflow: hidden;
@@ -575,17 +566,15 @@ nav ul li a:focus {
     transform: rotate(-18deg);
     pointer-events: none;
   }
-
-  /* FontAwesome hi-tech animated icons */
   .fa-animate-blue {
-    color: #78b6ff;
+    color: var(--bleu-second);
     text-shadow: 0 4px 18px rgba(17,82,130,0.25);
     transition: transform 0.45s cubic-bezier(.2,.9,.2,1), color 0.3s ease;
   }
   .fa-animate-blue.pulse {
-    animation: faPulse 2.4s infinite;
+    animation: faPulse 3.6s infinite;
   }
-  @keyframes faPulse { 0% { transform: scale(1); } 50% { transform: scale(1.08) rotate(-6deg); } 100% { transform: scale(1); } }
+  @keyframes faPulse { 0% { transform: scale(1); } 50% { transform: scale(1.04) rotate(-3deg); } 100% { transform: scale(1); } }
 
   .fa-rotate-tech { animation: faRotate 8s linear infinite; }
   @keyframes faRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -613,33 +602,36 @@ nav ul li a:focus {
     margin-bottom: 1.5rem;
   }
   .btn-primary {
-    background: var(--or-excellence);
-    color: var(--bleu-primaire);
-    font-weight: bold;
-    padding: 0.8rem 1.8rem;
-    border-radius: 5px;
+    background: linear-gradient(90deg, rgba(74,163,255,0.95), rgba(33,80,122,0.95));
+    color: var(--blanc);
+    font-weight: 700;
+    padding: 0.7rem 1.6rem;
+    border-radius: 8px;
     display: inline-block;
-    transition: background 0.3s ease;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
     cursor: pointer;
+    border: 1px solid rgba(249,197,28,0.14);
+    box-shadow: 0 6px 18px rgba(11,42,68,0.12);
   }
   .btn-primary:hover {
-    background: #d9a919;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(11,42,68,0.14);
   }
   #student-life {
   text-align: center;
   padding: 2rem 1rem;
-  background-color: #f9f9f9; /* fond clair et doux */
+  background-color: #f9f9f9; 
   border-radius: 12px;
   box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
   max-width: 600px;
   margin: 2rem auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #0a2342; /* couleur bleue foncée cohérente */
+  color: #0a2342;/
 }
 #student-life h2 {
   font-size: 2.4rem;
   font-weight: 700;
-  color: #155d63; /* bleu-vert */
+  color: #155d63; 
   margin-bottom: 0.5rem;
   text-shadow: 1px 1px 3px rgba(21, 93, 99, 0.4);
 }
@@ -661,7 +653,6 @@ nav ul li a:focus {
   margin: 0.3rem 0 0.8rem 0;
   color: #333;
 }
-  /* Sections */
   section {
     padding: 3rem 1rem;
     max-width: 1100px;
@@ -684,7 +675,6 @@ nav ul li a:focus {
     font-size: 2.2em;
     margin-bottom: 1rem;
   }
-  /* Cards interactive */
   .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
@@ -712,7 +702,7 @@ nav ul li a:focus {
     text-shadow: 0 1px 6px rgba(10,35,66,0.18);
   }
   .card h3 {
-    color: var(--bleu-primaire);
+    color: var(--bleu-deep);
     margin-bottom: 0.4rem;
   }
   .card p {
@@ -744,7 +734,6 @@ nav ul li a:focus {
     padding-left: 1.2rem;
     color: #333;
   }
-  /* Écosystème */
   .ecosystem-items {
     display: flex;
     justify-content: space-around;
@@ -763,7 +752,6 @@ nav ul li a:focus {
     color: var(--bleu-primaire);
     margin-bottom: 0.6rem;
   }
-  /* Galerie & carousel */
   .gallery {
     display: flex;
     gap: 1rem;
@@ -788,7 +776,6 @@ nav ul li a:focus {
   .carousel img:hover {
     filter: grayscale(0%);
   }
-  /* Contact */
   footer {
     padding: 2rem 1rem;
     background-color: var(--bleu-primaire);
@@ -799,7 +786,6 @@ nav ul li a:focus {
     margin-top: 1rem;
     width: 120px;
   }
-  /* Animations fade-in on scroll */
   [data-visible="false"] {
     opacity: 0;
     transform: translateY(20px);
@@ -809,8 +795,6 @@ nav ul li a:focus {
     opacity: 1;
     transform: translateY(0);
   }
-
-  /* Responsive */
   @media(max-width: 600px) {
     .hero h1 {
       font-size: 2rem;
@@ -825,11 +809,15 @@ nav ul li a:focus {
       flex-direction: column;
       align-items: center;
     }
+    /* Ensure anchor to #formateurs is not hidden under the fixed header */
+    #formateurs {
+      scroll-margin-top: 96px; /* offset for fixed header */
+      z-index: 5;
+    }
   }
 </style>
 </head>
 <body>
-  <!-- Hero Section -->
   <header class="hero">
     <video autoplay muted loop playsinline>
       <source src="PUB .mp4" type="video/mp4" />
@@ -846,12 +834,65 @@ nav ul li a:focus {
       <a href="#contact" class="btn-primary btn-magnetic">ICI CONSTRUIS TA VIE</a>
     </div>
     <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
-    <!-- Hi-tech decorative SVG blob and overlays -->
     <div class="glow-gradient"></div>
+    <style>
+ /* Mobile-specific improvements */
+  @media (max-width: 768px) {
+    /* make header fixed and compact for easier navigation */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 2000;
+      padding: 10px 14px;
+      backdrop-filter: blur(6px);
+      background: rgba(11,34,58,0.28);
+    }
+    body { padding-top: 64px; }
+    .hero { height: 56vh; }
+    .hero h1 { font-size: 1.8rem; }
+    .hero p { font-size: 0.95rem; }
+
+    /* mobile menu appearance */
+    nav ul {
+      background: linear-gradient(180deg, rgba(11,34,58,0.94), rgba(11,34,58,0.88));
+      top: 56px;
+      left: 8px;
+      right: 8px;
+      border-radius: 12px;
+      padding: 8px 0;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    nav ul li a {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 14px 18px;
+      font-size: 1.25rem;
+      color: var(--blanc);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    nav ul li a:hover { background: rgba(255,255,255,0.02); }
+
+    /* ensure image frames fit mobile screens */
+    .img-frame { width: 98%; max-width: 100%; padding: 6px; }
+
+    /* reduce metaballs and heavy visuals on small devices */
+    .hero-canvas { display: none; }
+    .scanline { opacity: 0.06; }
+  }
+
+  /* Respect users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+    </style>
+ 
     <div class="scanline" aria-hidden="true"></div>
   </header>
-
-  <!-- “Description  ?” -->
   <section id="about" class="section-light" data-visible="false">
   <h2 class="animated-zoom">C'EST QUOI ? 🤔</h2>
     <p>
@@ -939,7 +980,7 @@ nav ul li a:focus {
   <div class="highlight-images-vertical" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
   <!-- Les  images de Modules -->
   <!-- Utiliser l'image 'L1 réel' pour que toutes les informations soient visibles -->
-  <img src="L1 réel.jpg"  alt="L1 réel" class="highlight-img" />
+  <img src="Licence 1 .jpg"  alt="L1 réel" class="highlight-img" />
     <img src="L2.jpg" alt="Image descriptive 2" class="highlight-img" />
     <img src="L2 suite .jpg" alt="Image descriptive 3" class="highlight-img" />
      <img src="L3 1.jpg" alt="Image descriptive 1" class="highlight-img" />
@@ -952,7 +993,7 @@ nav ul li a:focus {
     max-width: 1000px;
     margin: 4rem auto;
     padding: 2rem 3rem;
-    background: linear-gradient(135deg, #155d63, #f9c51c);
+    background: linear-gradient(135deg, var(--bleu-primaire), #f9c51c);
     color: white;
     border-radius: 14px;
     box-shadow: 0 10px 36px rgba(249, 197, 28, 0.8);
@@ -979,7 +1020,7 @@ nav ul li a:focus {
   .highlight-cta {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #155d63;
+    color: var(--bleu-primaire);
     background: #f9c51c;
     padding: 0.8rem 1.5rem;
     border-radius: 9px;
@@ -1074,6 +1115,16 @@ nav ul li a:focus {
     font-size: 28px;
     cursor: pointer;
     z-index: 10000;
+  }
+  /* Frame wrapper for large images to allow scrolling on small screens */
+  .img-frame {
+    width: 100%;
+    max-width: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    justify-content: center;
+    padding: 6px 0;
   }
 </style>
 <script>
@@ -1286,7 +1337,7 @@ nav ul li a:focus {
 
 </style>
   </section>
-<section id="formateurs" class="fade-in" data-visible="false">
+<section id="formateurs" class="fade-in" data-visible="true">
   <h2 class="animated-zoom">Nos Formateurs 🎓</h2>
   <style>
     .ecosystem-items {
