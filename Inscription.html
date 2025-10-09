@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription IISS - Nouveaux Bacheliers</title>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <style>
+    /* Réinitialisation et style global */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1a73e8, #6200ea); /* Dégradé bleu/violet */
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Fond de particules */
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    /* Conteneur du formulaire */
+    .form-container {
+      background: rgba(255, 255, 255, 0.95); /* Blanc semi-transparent */
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 10px 40px rgba(26, 115, 232, 0.5), 0 0 20px rgba(98, 0, 234, 0.3);
+      position: relative;
+      color: #1a1a1a;
+      animation: slideIn 1s ease-in-out;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Titre et sous-titre */
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5em;
+      color: #1a73e8;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px rgba(26, 115, 232, 0.5);
+      animation: glowTitle 2s ease-in-out infinite alternate;
+    }
+
+    .subtitle {
+      font-size: 1.1em;
+      color: #6200ea;
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+
+    @keyframes glowTitle {
+      from { text-shadow: 0 0 5px rgba(26, 115, 232, 0.3); }
+      to { text-shadow: 0 0 15px rgba(26, 115, 232, 0.8); }
+    }
+
+    /* Labels et champs */
+    label {
+      font-size: 1em;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+      font-weight: 600;
+      display: block;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 2px solid #6200ea;
+      border-radius: 10px;
+      background: #f9f9f9;
+      color: #1a1a1a;
+      font-size: 1em;
+      transition: all 0.4s ease;
+      transform: perspective(600px) translateZ(0);
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #f4b400; /* Doré au focus */
+      transform: perspective(600px) translateZ(10px);
+      box-shadow: 0 0 15px rgba(244, 180, 0, 0.6);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 150px; /* Plus grand pour le commentaire */
+    }
+
+    select {
+      appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="%231a73e8" d="M7 10l5 5 5-5z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+
+    /* Bouton cinématographique */
+    button {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(45deg, #1a73e8, #6200ea);
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2em;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(26, 115, 232, 0.7), 0 0 30px rgba(98, 0, 234, 0.5);
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.6), transparent);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    button:hover::before {
+      width: 400px;
+      height: 400px;
+    }
+
+    /* Message de statut */
+    #status {
+      text-align: center;
+      font-size: 1.1em;
+      margin-top: 20px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.5s ease;
+    }
+
+    #status.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .success {
+      color: #1a73e8;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(26, 115, 232, 0.5);
+    }
+
+    .error {
+      color: #d32f2f;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 20px;
+      }
+      h2 {
+        font-size: 2em;
+      }
+      .subtitle {
+        font-size: 1em;
+      }
+      button {
+        font-size: 1.1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fond de particules -->
+  <div id="particles-js"></div>
+
+  <!-- Conteneur du formulaire -->
+  <div class="form-container">
+    <h2>Inscription IISS</h2>
+    <p class="subtitle">Votre avenir commence ici ! Rejoignez l’élite des Gestionnaires de projets.</p>
+    <form id="inscriptionForm" action="https://formspree.io/f/xwprndln" method="POST">
+      <label for="nom">Nom complet</label>
+      <input type="text" id="nom" name="nom" placeholder="Votre nom complet" required aria-label="Nom complet">
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Votre email" required aria-label="Email">
+
+      <label for="serie">Série du baccalauréat</label>
+      <select id="serie" name="serie" required aria-label="Série du baccalauréat">
+        <option value="" disabled selected>Sélectionnez votre série</option>
+        <option value="A1">A1</option>
+        <option value="A2">A2</option>
+        <option value="D">D</option>
+        <option value="S">S</option>
+        <option value="C">C</option>
+        <option value="OSE">OSE</option>
+      </select>
+
+      <label for="commentaire">Pourquoi rejoindre l’IISS ?</label>
+      <textarea id="commentaire" name="commentaire" placeholder="Partagez votre motivation pour rejoindre l’IISS..." required aria-label="Commentaire"></textarea>
+
+      <button type="submit">Démarrer Votre Parcours</button>
+    </form>
+    <div id="status"></div>
+  </div>
+
+  <script>
+    // Charger les polices Google Fonts
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+
+    // Initialiser particles.js
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 60, density: { enable: true, value_area: 1000 } },
+        color: { value: ['#1a73e8', '#6200ea', '#f4b400'] },
+        shape: { type: 'circle' },
+        opacity: { value: 0.4, random: true },
+        size: { value: 2, random: true },
+        line_linked: { enable: false },
+        move: { enable: true, speed: 1.5, direction: 'none', random: true }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+        modes: { repulse: { distance: 80 }, push: { particles_nb: 3 } }
+      },
+      retina_detect: true
+    });
+
+    // Gérer la soumission du formulaire
+    document.getElementById('inscriptionForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const status = document.getElementById('status');
+      status.innerHTML = '<p>Envoi en cours...</p>';
+      status.classList.add('show');
+
+      fetch("https://formspree.io/f/xwprndln", {
+        method: 'POST',
+        body: new FormData(document.getElementById('inscriptionForm')),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          status.innerHTML = '<p class="success">Inscription réussie ! Bienvenue dans l’aventure IISS !</p>';
+          status.classList.add('show');
+          document.getElementById('inscriptionForm').reset();
+          setTimeout(() => status.classList.remove('show'), 4000);
+        } else {
+          status.innerHTML = '<p class="error">Erreur lors de l’envoi. Veuillez réessayer.</p>';
+          status.classList.add('show');
+        }
+      })
+      .catch(error => {
+        status.innerHTML = '<p class="error">Erreur : ' + error.message + '</p>';
+        status.classList.add('show');
+      });
+    });
+  </script>
+</body>
+</html>
