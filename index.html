@@ -878,6 +878,11 @@ body.iiss-preloading > *:not(#iiss-preloader){display:none !important}
   <source src="audio/issaudio (online-audio-converter.com).mp3" type="audio/mpeg">
   <source src="audio/issaudio (online-audio-converter.com).ogg" type="audio/ogg">
 </audio>
+<!-- Main audio control UI -->
+<div id="audioControl" aria-label="Contrôle audio principal" style="position:fixed; right:18px; bottom:18px; z-index:99999; display:flex; gap:10px; align-items:center; background:rgba(0,0,0,0.45); padding:8px 10px; border-radius:30px; box-shadow:0 6px 18px rgba(0,0,0,0.4);">
+  <button id="audioToggle" aria-label="Activer / Désactiver son" style="background:transparent;border:0;color:#fff;font-size:18px;cursor:pointer;">🔊</button>
+  <input id="audioRange" type="range" min="0" max="1" step="0.01" value="0.7" style="width:120px;">
+</div>
   
     <div class="hero-content">
   <h1 class="animated-bounce neon glitch" data-text="Institut ISS – Excellence & Innovation">Institut ISS – Excellence & Innovation </h1>
@@ -1873,6 +1878,53 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
           <div>ISL</div>
     </div>
   </section>
+  <!-- Featured Videos (2x2) -->
+  <section id="featured-videos" class="section-white" data-visible="false" style="padding-top:2rem; padding-bottom:2rem;">
+    <h2 class="animated-zoom">Vidéos en vedette 🎬</h2>
+    <p style="text-align:center; max-width:900px; margin:0.5rem auto 1.2rem auto; color: #333;">Découvrez nos présentations et reportages. Cliquez pour lire.</p>
+    <div class="videos-grid" style="max-width:1100px; margin: 0 auto; display:grid; grid-template-columns: repeat(2,1fr); gap:1rem;">
+      <div class="video-card" data-src="Présentation Iss.mp4">
+        <div class="video-thumb iiss-thumb" data-title="Présentation ISS" data-duration="0:37"></div>
+        <div class="playmark" aria-hidden="true">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lire">
+            <circle cx="50" cy="50" r="45" fill="rgba(255,45,149,0.95)" />
+            <polygon points="40,32 72,50 40,68" fill="#fff" />
+          </svg>
+        </div>
+        <div class="video-meta"><strong>Présentation ISS</strong><span>0:37</span></div>
+      </div>
+      <div class="video-card" data-src="Adresse Iss.mp4">
+        <div class="video-thumb iiss-thumb" data-title="Lieu" data-duration="0:15"></div>
+        <div class="playmark" aria-hidden="true">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lire">
+            <circle cx="50" cy="50" r="45" fill="rgba(124,77,255,0.94)" />
+            <polygon points="40,32 72,50 40,68" fill="#fff" />
+          </svg>
+        </div>
+        <div class="video-meta"><strong>Lieu</strong><span>0:15</span></div>
+      </div>
+      <div class="video-card" data-src="Atelier et conférences.mp4">
+        <div class="video-thumb iiss-thumb" data-title="Atelier et conférences" data-duration="2:17"></div>
+        <div class="playmark" aria-hidden="true">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lire">
+            <circle cx="50" cy="50" r="45" fill="rgba(0,229,255,0.92)" />
+            <polygon points="40,32 72,50 40,68" fill="#fff" />
+          </svg>
+        </div>
+        <div class="video-meta"><strong>Atelier et conférences</strong><span>2:17</span></div>
+      </div>
+      <div class="video-card" data-src="Dossier à fournir .mp4">
+        <div class="video-thumb iiss-thumb" data-title="Dossier à fournir" data-duration="0:46"></div>
+        <div class="playmark" aria-hidden="true">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lire">
+            <circle cx="50" cy="50" r="45" fill="rgba(255,209,0,0.95)" />
+            <polygon points="40,32 72,50 40,68" fill="#fff" />
+          </svg>
+        </div>
+        <div class="video-meta"><strong>Dossier à fournir</strong><span>0:46</span></div>
+      </div>
+    </div>
+  </section>
 <footer id="contact" data-visible=""true> 
    <h2 class="animated-zoom">Contact & Localisation </h2>
     <p>
@@ -1883,6 +1935,36 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
     <img src="QR.jpg" alt="QR Code" />
    </footer>
   <!-- Contact & Localisation -->
+    <style>
+  /* Featured videos styles */
+  .videos-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:1rem; }
+  .video-card { background: linear-gradient(180deg, #fff, #f6f8fb); border-radius:12px; overflow:hidden; cursor:pointer; box-shadow:0 8px 30px rgba(10,35,66,0.08); position:relative; min-height:160px; display:flex; flex-direction:column; }
+  .video-card .video-thumb{ background-size:cover; background-position:center; height:140px; width:100%; display:flex; align-items:center; justify-content:center; position:relative; }
+  /* IISS-branded thumbnail: subtle logo filigree + gradient overlay + centered mark */
+  .iiss-thumb{ background-image: linear-gradient(180deg, rgba(12,10,20,0.12), rgba(0,0,0,0.18)), url('IISS logo.jpg'); background-blend-mode:overlay; background-size: 240px auto; background-repeat:no-repeat; background-position:center; filter: contrast(1.05) saturate(0.95); }
+  .iiss-thumb::before{ content:attr(data-title); position:absolute; left:12px; bottom:12px; right:12px; color: #fff; font-weight:800; text-shadow: 0 6px 18px rgba(0,0,0,0.6); font-size:clamp(12px,1.6vw,16px); display:block; }
+  .iiss-thumb::after{ content:attr(data-duration); position:absolute; right:10px; top:10px; background:rgba(0,0,0,0.45); color:#fff; padding:4px 8px; border-radius:8px; font-size:12px; font-weight:700; }
+  /* center play icon */
+  .video-card .playmark{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; }
+  .video-card .playmark svg{ width:64px; height:64px; filter: drop-shadow(0 10px 25px rgba(0,0,0,0.45)); }
+  .video-meta{ display:flex; justify-content:space-between; align-items:center; padding:0.7rem 0.9rem; font-weight:700; color:#0a2342; }
+  @media(max-width:900px){ .videos-grid{ grid-template-columns: 1fr; } }
+
+      /* Lightbox modal for video playback */
+      .video-lightbox{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.8); z-index:100000; }
+      .video-lightbox.active{ display:flex; }
+      .video-lightbox .inner{ width:clamp(320px,80vw,1100px); max-height:90vh; background:transparent; display:flex; align-items:center; justify-content:center; }
+      .video-lightbox video{ width:100%; height:auto; max-height:90vh; border-radius:10px; box-shadow:0 20px 80px rgba(0,0,0,0.6); }
+      .video-lightbox .close{ position:absolute; right:18px; top:16px; font-size:28px; color:white; cursor:pointer; z-index:100001; }
+    </style>
+
+    <!-- Video lightbox markup -->
+    <div class="video-lightbox" id="videoLightbox" aria-hidden="true">
+      <div class="close" id="videoLightboxClose" aria-label="Fermer">✕</div>
+      <div class="inner">
+        <video id="lightboxVideo" controls playsinline></video>
+      </div>
+    </div>
 <script>
 // Tentative d'activation automatique du son (certains navigateurs peuvent bloquer l'autoplay sans interaction)
 window.addEventListener('DOMContentLoaded', function() {
@@ -1920,6 +2002,96 @@ window.addEventListener('DOMContentLoaded', function() {
     el.setAttribute('data-visible', 'false');
     observer.observe(el);
   });
+</script>
+<script>
+  // Video lightbox handler
+  (function(){
+    const cards = document.querySelectorAll('.video-card');
+    const lightbox = document.getElementById('videoLightbox');
+    const videoEl = document.getElementById('lightboxVideo');
+    const closeBtn = document.getElementById('videoLightboxClose');
+
+    if(!cards.length || !lightbox || !videoEl) return;
+
+  // keep reference to background audio (if present)
+  const bgAudio = document.getElementById('monson');
+  let wasBgPlaying = false; // track if bg audio was playing before opening video
+
+    function open(src){
+  // pause background audio to avoid competing sound; remember if it was playing
+  try{ if(bgAudio){ wasBgPlaying = !bgAudio.paused; if(wasBgPlaying) bgAudio.pause(); } }catch(e){}
+
+      videoEl.src = src;
+      // ensure audio allowed and audible
+      videoEl.muted = false;
+      try{ videoEl.volume = 0.9; }catch(e){}
+      lightbox.classList.add('active');
+      lightbox.setAttribute('aria-hidden','false');
+      // try to play; browsers may block autoplay with audio if user never interacted
+      videoEl.play().catch(()=>{
+        // if blocked, show controls and leave to user
+        videoEl.controls = true;
+      });
+    }
+
+    function close(){
+      try{ videoEl.pause(); }catch(e){}
+      try{ videoEl.removeAttribute('src'); videoEl.load(); }catch(e){}
+      lightbox.classList.remove('active');
+      lightbox.setAttribute('aria-hidden','true');
+      // resume background audio only if it was playing before
+      try{ if(bgAudio && wasBgPlaying){ bgAudio.play().catch(()=>{}); } }catch(e){}
+    }
+
+    cards.forEach(c => {
+      c.addEventListener('click', ()=>{
+        const src = c.getAttribute('data-src');
+        if(src) open(src);
+      });
+      // keyboard accessibility: open on Enter or Space
+      c.setAttribute('tabindex','0');
+      c.addEventListener('keydown', (ev)=>{
+        if(ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar'){
+          ev.preventDefault();
+          const src = c.getAttribute('data-src');
+          if(src) open(src);
+        }
+      });
+    });
+
+    // Ensure iiss-thumb elements have an accessible fallback and roles
+    document.querySelectorAll('.iiss-thumb').forEach(t => {
+      // if background image fails, use a subtle gradient fallback
+      t.setAttribute('role','img');
+      const title = t.getAttribute('data-title') || 'Vidéo';
+      t.setAttribute('aria-label', title + ' - vignette IISS');
+    });
+    closeBtn.addEventListener('click', close);
+    lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) close(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') close(); });
+  })();
+</script>
+<script>
+  // Audio control UI wiring for #monson
+  (function(){
+    const bg = document.getElementById('monson');
+    const toggle = document.getElementById('audioToggle');
+    const range = document.getElementById('audioRange');
+    if(!bg || !toggle || !range) return;
+
+    // initialize from element
+    try{ bg.volume = parseFloat(range.value); bg.muted = false; }catch(e){}
+
+    toggle.addEventListener('click', ()=>{
+      if(bg.paused){ bg.play().catch(()=>{}); toggle.textContent = '🔊'; }
+      else { bg.pause(); toggle.textContent = '🔈'; }
+    });
+
+    range.addEventListener('input', (e)=>{
+      const v = parseFloat(e.target.value);
+      try{ bg.volume = v; if(v === 0) bg.muted = true; else bg.muted = false; }catch(e){}
+    });
+  })();
 </script>
 <!-- IISS Preloader JS (inserted) -->
 <script>
