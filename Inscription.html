@@ -122,6 +122,15 @@
       background-position: right 10px center;
     }
 
+    /* Champ Autre pour série */
+    #serie_autre {
+      display: none; /* Caché par défaut */
+    }
+
+    #serie_autre.show {
+      display: block;
+    }
+
     /* Bouton cinématographique */
     button {
       width: 100%;
@@ -218,12 +227,23 @@
   <div class="form-container">
     <h2>Inscription IISS</h2>
     <p class="subtitle">Votre avenir commence ici ! Rejoignez l’élite des Gestionnaires de projets.</p>
-    <form id="inscriptionForm" action="https://formspree.io/f/xwprndln" method="POST">
+    <form id="inscriptionForm" action="https://formspree.io/f/mldppjnq" method="POST">
       <label for="nom">Nom complet</label>
       <input type="text" id="nom" name="nom" placeholder="Votre nom complet" required aria-label="Nom complet">
 
       <label for="email">Email</label>
       <input type="email" id="email" name="email" placeholder="Votre email" required aria-label="Email">
+
+      <label for="telephone">Numéro de téléphone</label>
+      <input type="tel" id="telephone" name="telephone" placeholder="Ex. +261 34 13 876 90" pattern="(\+?261[-.\s]?)?[0-9]{2}[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}" aria-label="Numéro de téléphone">
+
+      <label for="sexe">Sexe</label>
+      <select id="sexe" name="sexe" required aria-label="Sexe">
+        <option value="" disabled selected>Sélectionnez votre sexe</option>
+        <option value="Masculin">Masculin</option>
+        <option value="Féminin">Féminin</option>
+        <option value="Autre">Autre</option>
+      </select>
 
       <label for="serie">Série du baccalauréat</label>
       <select id="serie" name="serie" required aria-label="Série du baccalauréat">
@@ -234,7 +254,11 @@
         <option value="S">S</option>
         <option value="C">C</option>
         <option value="OSE">OSE</option>
+        <option value="Autre">Autre</option>
       </select>
+
+      <label for="serie_autre" id="serie_autre_label">Précisez votre série (si Autre)</label>
+      <input type="text" id="serie_autre" name="serie_autre" placeholder="Ex. Série personnalisée" aria-label="Précision de la série">
 
       <label for="commentaire">Pourquoi rejoindre l’IISS ?</label>
       <textarea id="commentaire" name="commentaire" placeholder="Partagez votre motivation pour rejoindre l’IISS..." required aria-label="Commentaire"></textarea>
@@ -270,6 +294,22 @@
       retina_detect: true
     });
 
+    // Gérer le champ "Autre" pour la série
+    const serieSelect = document.getElementById('serie');
+    const serieAutre = document.getElementById('serie_autre');
+    const serieAutreLabel = document.getElementById('serie_autre_label');
+
+    serieSelect.addEventListener('change', function() {
+      if (serieSelect.value === 'Autre') {
+        serieAutre.classList.add('show');
+        serieAutreLabel.classList.add('show');
+      } else {
+        serieAutre.classList.remove('show');
+        serieAutreLabel.classList.remove('show');
+        serieAutre.value = ''; // Réinitialiser le champ
+      }
+    });
+
     // Gérer la soumission du formulaire
     document.getElementById('inscriptionForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -277,9 +317,14 @@
       status.innerHTML = '<p>Envoi en cours...</p>';
       status.classList.add('show');
 
-      fetch("https://formspree.io/f/xwprndln", {
+      // Combiner la série et le champ "Autre" si nécessaire
+      const serieValue = serieSelect.value === 'Autre' ? `Autre: ${serieAutre.value}` : serieSelect.value;
+      const formData = new FormData(document.getElementById('inscriptionForm'));
+      formData.set('serie', serieValue); // Remplacer la série par la valeur combinée
+
+      fetch('https://formspree.io/f/mldppjnq', {
         method: 'POST',
-        body: new FormData(document.getElementById('inscriptionForm')),
+        body: formData,
         headers: { 'Accept': 'application/json' }
       })
       .then(response => {
@@ -287,6 +332,8 @@
           status.innerHTML = '<p class="success">Inscription réussie ! Bienvenue dans l’aventure IISS !</p>';
           status.classList.add('show');
           document.getElementById('inscriptionForm').reset();
+          serieAutre.classList.remove('show');
+          serieAutreLabel.classList.remove('show');
           setTimeout(() => status.classList.remove('show'), 4000);
         } else {
           status.innerHTML = '<p class="error">Erreur lors de l’envoi. Veuillez réessayer.</p>';
