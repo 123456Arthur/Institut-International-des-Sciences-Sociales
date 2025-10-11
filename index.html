@@ -7,9 +7,23 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self' data:; style-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline';">
 <head>
   <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
-  <link rel="stylesheet" href="Inscription.html">
 </head>
+<body>
+  <div id="zoom-wrapper">
+
+
+
+    
+  </div>
+</body>
+
 <style>
+  /* Wrapper autour du body ou contenu principal */
+#zoom-wrapper {
+  transform-origin: top center;
+  transition: transform 0.5s ease;
+}
+
   :root {
   --bleu-primaire: #21507a; 
   --bleu-second: #4aa3ff; 
@@ -139,44 +153,232 @@ nav ul li a:focus {
 </head>
 <!-- IISS Preloader CSS (inserted) -->
 <style>
-/* ===== IISS Preloader styles (injected) ===== */
-:root{--iiss-neon-violet:#7c4dff;--iiss-neon-blue:#00b3ff;--iiss-bg:rgba(0,0,0,0.85);--iiss-text-white:#ffffff;--iiss-pink:#ff5ec7;--iiss-green:#b7ffd9;--iiss-max-z:999999;--iiss-frame-radius:14px;--iiss-fade-time:700ms}
-#iiss-preloader{position:fixed;inset:0;width:100vw;height:100vh;background:var(--iiss-bg);z-index:var(--iiss-max-z);display:flex;align-items:center;justify-content:center;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow:hidden}
-#iiss-preloader .iiss-frame{position:absolute;inset:4vh;border-radius:var(--iiss-frame-radius);pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,0.01),rgba(0,0,0,0.02));border:1px solid rgba(255,255,255,0.03);box-shadow:0 0 30px rgba(124,77,255,0.22),0 0 80px rgba(0,179,255,0.12),inset 0 0 40px rgba(124,77,255,0.06);background-image:linear-gradient(90deg,rgba(124,77,255,0.02),rgba(0,179,255,0.02))}
-#iiss-preloader{--iiss-frame-border: 1.6px;}
-#iiss-preloader .iiss-frame::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;mix-blend-mode:screen;background:linear-gradient(90deg, rgba(124,77,255,0.12), rgba(0,195,255,0.10));box-shadow:0 0 48px rgba(124,77,255,0.28),0 0 120px rgba(0,195,255,0.16),inset 0 0 40px rgba(255,210,60,0.06);}
-#iiss-preloader .iiss-frame::after{content:'';position:absolute;inset:12%;border-radius:calc(var(--iiss-frame-radius) - 4px);background: url('IISS logo.jpg') center/center no-repeat; background-size: 60%; opacity:0.06; filter: blur(6px) saturate(0.5); mix-blend-mode:overlay;pointer-events:none}
+:root {
+    --iiss-neon-violet: #7c4dff;
+    --iiss-neon-blue: #00b3ff;
+    --iiss-bg: rgba(0, 0, 0, 0.9); /* Slightly darker for premium feel */
+    --iiss-text-white: #ffffff;
+    --iiss-pink: #ff5ec7;
+    --iiss-green: #b7ffd9;
+    --iiss-max-z: 999999;
+    --iiss-frame-radius: 16px; /* Slightly larger radius for elegance */
+    --iiss-fade-time: 800ms; /* Longer fade for smoother transition */
+}
 
-/* Marvel-like enhancements */
-#iiss-preloader .iiss-scanlines{position:absolute;inset:6vh;border-radius:calc(var(--iiss-frame-radius)-6px);background-image:linear-gradient(180deg, rgba(255,255,255,0.03) 1px, transparent 1px);background-size:100% 6px;opacity:0.06;pointer-events:none;mix-blend-mode:screen;animation:scan-move 6s linear infinite}
-@keyframes scan-move{from{background-position-y:0}to{background-position-y:6px}}
+#iiss-preloader {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--iiss-bg);
+    z-index: var(--iiss-max-z);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+    backdrop-filter: blur(2px); /* Subtle blur for depth */
+}
 
-/* Pulsing frame for cinematic effect */
-#iiss-preloader.pulse-frame .iiss-frame{box-shadow:0 0 80px rgba(124,77,255,0.35),0 0 180px rgba(0,195,255,0.22),inset 0 0 60px rgba(255,210,60,0.08);transform:scale(1.01);transition:transform 520ms cubic-bezier(.2,.9,.2,1)}
+#iiss-preloader .iiss-frame {
+    position: absolute;
+    inset: 4vh;
+    border-radius: var(--iiss-frame-radius);
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.03));
+    border: 2px solid rgba(255, 255, 255, 0.05); /* Thicker border for premium look */
+    box-shadow: 0 0 40px rgba(124, 77, 255, 0.3), 0 0 100px rgba(0, 179, 255, 0.18), inset 0 0 50px rgba(124, 77, 255, 0.08);
+    background-image: linear-gradient(90deg, rgba(124, 77, 255, 0.03), rgba(0, 179, 255, 0.03));
+}
 
-/* radial light burst (subtle) */
-#iiss-preloader .iiss-burst{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:0;transition:opacity 420ms ease}
-#iiss-preloader.burst-on .iiss-burst{opacity:1}
-#iiss-preloader .iiss-burst::before{content:'';position:absolute;left:50%;top:40%;width:30vmax;height:30vmax;background:radial-gradient(circle at center, rgba(255,215,80,0.18), rgba(124,77,255,0.06) 30%, rgba(0,229,255,0.02) 60%, transparent 80%);transform:translate(-50%,-50%);filter:blur(26px)}
+#iiss-preloader .iiss-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    background: linear-gradient(90deg, rgba(124, 77, 255, 0.15), rgba(0, 195, 255, 0.12));
+    box-shadow: 0 0 60px rgba(124, 77, 255, 0.35), 0 0 150px rgba(0, 195, 255, 0.2), inset 0 0 50px rgba(255, 210, 60, 0.08);
+}
 
-/* Logo spotlight - subtle pulse */
-#iiss-preloader .iiss-frame::after{transition:opacity 420ms ease, transform 520ms ease}
-#iiss-preloader.logo-pulse .iiss-frame::after{opacity:0.12; transform: scale(1.03)}
+#iiss-preloader .iiss-frame::after {
+    content: '';
+    position: absolute;
+    inset: 12%;
+    border-radius: calc(var(--iiss-frame-radius) - 4px);
+    background: url('IISS logo.jpg') center/center no-repeat;
+    background-size: 70%; /* Slightly larger logo for prominence */
+    opacity: 0.08;
+    filter: blur(8px) saturate(0.6); /* Enhanced blur and saturation */
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    animation: logoPulse 3s ease-in-out infinite; /* Subtle logo pulse */
+}
 
-/* small chromatic split on text for cinematic edge */
-#iiss-preloader .iiss-title::before{mix-blend-mode:screen; left:2px; color: rgba(255,80,160,0.95); opacity:0.6}
-#iiss-preloader .iiss-title::after{mix-blend-mode:screen; right:2px; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent);opacity:0.95}
-#iiss-preloader canvas{position:absolute;inset:4vh;border-radius:calc(var(--iiss-frame-radius)-2px);width:calc(100% - 8vh);height:calc(100% - 8vh);pointer-events:none;display:block;filter:blur(0.4px)}
-#iiss-preloader .iiss-center{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;text-align:center;gap:1rem;padding:2rem;pointer-events:none}
-#iiss-preloader .iiss-title{font-family:"Inter","Montserrat","Poppins",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;font-size:clamp(28px,6vw,84px);letter-spacing:0.18em;color:var(--iiss-text-white);font-weight:900;line-height:1.02;text-transform:uppercase;text-align:center;margin:0;padding:0.1rem 0;text-shadow:0 0 2px rgba(255,255,255,0.95),0 0 12px rgba(255,255,255,0.85),0 0 28px rgba(180,110,255,0.8),8px 0 44px rgba(0,195,255,0.45),-8px 0 44px rgba(255,40,140,0.32),0 10px 60px rgba(0,0,0,0.28);background:linear-gradient(90deg,#ff2d95,#7c4dff,#00e5ff,#ffd100);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative;display:inline-block;letter-spacing:0.14em;transform:translateZ(0);}
-#iiss-preloader .iiss-title::before{content:attr(data-text);position:absolute;left:0;top:0;width:100%;height:100%;color:var(--iiss-text-white);z-index:-1;transform: translateZ(0);mix-blend-mode:screen;opacity:0.85;text-shadow:0 0 18px rgba(255,255,255,0.85),0 0 36px rgba(124,77,255,0.6),0 0 60px rgba(0,229,255,0.45);filter:blur(1px)}
+@keyframes logoPulse {
+    0%, 100% { transform: scale(1); opacity: 0.08; }
+    50% { transform: scale(1.05); opacity: 0.12; }
+}
 
-/* shimmer animation across text */
-#iiss-preloader .iiss-title::after{content:'';position:absolute;left:-30%;top:0;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.35),transparent);transform:skewX(-18deg);opacity:0.8;animation:iiss-shimmer 2.6s linear infinite}
-@keyframes iiss-shimmer{0%{left:-60%}50%{left:100%}100%{left:100%}}
-#iiss-preloader .iiss-sub{color:rgba(255,255,255,0.6);font-size:clamp(12px,1.4vw,16px);margin-top:0.5rem;letter-spacing:0.12em}
-#iiss-preloader.iiss-fadeout{opacity:0;transition:opacity var(--iiss-fade-time) ease;pointer-events:none}
-body.iiss-preloading > *:not(#iiss-preloader){display:none !important}
+/* Enhanced Marvel-like enhancements */
+#iiss-preloader .iiss-scanlines {
+    position: absolute;
+    inset: 6vh;
+    border-radius: calc(var(--iiss-frame-radius) - 6px);
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 100% 4px; /* Tighter scanlines for premium effect */
+    opacity: 0.08;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    animation: scan-move 4s linear infinite; /* Faster scan for dynamism */
+}
+
+@keyframes scan-move {
+    from { background-position-y: 0; }
+    to { background-position-y: 4px; }
+}
+
+/* Enhanced Pulsing frame */
+#iiss-preloader.pulse-frame .iiss-frame {
+    box-shadow: 0 0 100px rgba(124, 77, 255, 0.4), 0 0 200px rgba(0, 195, 255, 0.25), inset 0 0 70px rgba(255, 210, 60, 0.1);
+    transform: scale(1.02);
+    transition: transform 600ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+#iiss-preloader.pulse-frame .iiss-frame::before {
+    box-shadow: 0 0 80px rgba(124, 77, 255, 0.45), 0 0 180px rgba(0, 195, 255, 0.25);
+}
+
+/* Enhanced radial light burst */
+#iiss-preloader .iiss-burst {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0;
+    transition: opacity 500ms ease;
+}
+
+#iiss-preloader.burst-on .iiss-burst {
+    opacity: 0.15;
+}
+
+#iiss-preloader .iiss-burst::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    width: 35vmax;
+    height: 35vmax;
+    background: radial-gradient(circle at center, rgba(255, 215, 80, 0.2), rgba(124, 77, 255, 0.08) 30%, rgba(0, 229, 255, 0.03) 60%, transparent 80%);
+    transform: translate(-50%, -50%);
+    filter: blur(30px);
+    animation: burstGlow 5s ease-in-out infinite;
+}
+
+@keyframes burstGlow {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.25; }
+}
+
+/* Enhanced Logo spotlight */
+#iiss-preloader.logo-pulse .iiss-frame::after {
+    opacity: 0.15;
+    transform: scale(1.06);
+    transition: opacity 500ms ease, transform 600ms ease;
+}
+
+/* Enhanced text effects */
+#iiss-preloader .iiss-center {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5rem; /* Increased gap for spacing */
+    padding: 2.5rem;
+}
+
+#iiss-preloader .iiss-title {
+    font-family: "Inter", "Montserrat", "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    font-size: clamp(32px, 7vw, 90px); /* Slightly larger text range */
+    letter-spacing: 0.2em;
+    color: var(--iiss-text-white);
+    font-weight: 900;
+    line-height: 1.05;
+    text-transform: uppercase;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.98), 0 0 15px rgba(255, 255, 255, 0.9), 0 0 35px rgba(180, 110, 255, 0.85), 10px 0 50px rgba(0, 195, 255, 0.5), -10px 0 50px rgba(255, 40, 140, 0.35), 0 12px 70px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(90deg, #ff2d95, #7c4dff, #00e5ff, #ffd100);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 0.16em;
+    transform: translateZ(0);
+    animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+    0%, 100% { text-shadow: 0 0 3px rgba(255, 255, 255, 0.98), 0 0 15px rgba(255, 255, 255, 0.9); }
+    50% { text-shadow: 0 0 5px rgba(255, 255, 255, 1), 0 0 20px rgba(124, 77, 255, 0.9); }
+}
+
+#iiss-preloader .iiss-title::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--iiss-text-white);
+    z-index: -1;
+    transform: translateZ(0);
+    mix-blend-mode: screen;
+    opacity: 0.9;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 40px rgba(124, 77, 255, 0.7), 0 0 70px rgba(0, 229, 255, 0.5);
+    filter: blur(1.2px);
+}
+
+#iiss-preloader .iiss-title::after {
+    content: '';
+    position: absolute;
+    left: -35%;
+    top: 0;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: skewX(-20deg);
+    opacity: 0.85;
+    animation: iiss-shimmer 2.4s linear infinite;
+}
+
+@keyframes iiss-shimmer {
+    0% { left: -70%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+}
+
+#iiss-preloader .iiss-sub {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: clamp(14px, 1.6vw, 18px);
+    margin-top: 0.7rem;
+    letter-spacing: 0.15em;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+#iiss-preloader.iiss-fadeout {
+    opacity: 0;
+    transition: opacity var(--iiss-fade-time) ease;
+    pointer-events: none;
+}
+
+body.iiss-preloading > *:not(#iiss-preloader) {
+    display: none !important;
+}
 </style>
 
 <body>
@@ -197,7 +399,7 @@ body.iiss-preloading > *:not(#iiss-preloader){display:none !important}
   </div>
   <nav>
     <ul id="menu">
-        <li><a href="Inscription.html">Inscription</a></li>
+       <li><a href="inscription.html">Inscription</a></li>
       <li><a href="#about">C’est quoi ?</a></li>
       <li><a href="#mentions">Nos 5 Mentions</a></li>
       <li><a href="#ecosystem">Notre écosystème</a></li>
@@ -206,7 +408,6 @@ body.iiss-preloading > *:not(#iiss-preloader){display:none !important}
       <li><a href="#student-life">Frais de scolarité</a></li>
       <li><a href="#conferences">Conférences Hebdomadaires</a></li>
       <li><a href="#contact">Contact</a></li>
-    
     </ul>
   </nav>
   <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0" aria-expanded="false" aria-controls="menu">
@@ -1024,8 +1225,7 @@ body.iiss-preloading > *:not(#iiss-preloader){display:none !important}
       </div>
     </div>
   </section>
-
-  <section id="emploi-du-temps" style="margin-top: 40px; max-width: 900px; margin-left: auto; margin-right: auto;">
+ <section id="emploi-du-temps" style="margin-top: 40px; max-width: 900px; margin-left: auto; margin-right: auto;">
   <h2 id="emploi-titre" style="
     text-align:center;
     color:#0b2a44 !important;
@@ -1080,6 +1280,8 @@ body.iiss-preloading > *:not(#iiss-preloader){display:none !important}
     </tbody>
   </table>
 </section>
+
+
   <section id="l1-highlight" class="highlight-section-vertical">
   <div class="highlight-content">
     <h2>Plongez au cœur de l'excellence et de l'innovation</h2>
@@ -1256,88 +1458,119 @@ body.iiss-preloading > *:not(#iiss-preloader){display:none !important}
     }
   });
 </script>
-  <!-- Notre Écosystème -->
-  <section id="ecosystem" class="section-light" data-visible="false">
+ <section id="ecosystem" class="section-light" data-visible="false" aria-label="Notre Écosystème">
   <h2 class="animated-zoom">Notre Écosystème 🤝</h2>
-    <div class="ecosystem-items">
-      <div>
-  <h4>SFM </h4>
-        <p> Cours préparatif à distance pour l'organisation , sciences humaines, Vie professionnelle et Gestion de projet.</p>
-       <div style="text-align:center;">
-          <img src="Sfm.jpg" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
-        </div>
-      </div>
-      <div>
-  <h4>PAMF 👨‍💻</h4>
-        <p>Alternance et formation pro en conseiller clientèle, cadre commercial, agence et siège .</p>
-       <div style="text-align:center;">
-          <img src="PAMF.png" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
-        </div>
-      </div>
-       <div>
-  <h4>ISL 📈</h4>
-        <p>Formation des professionels afin de développer leur soft skills 
-          pour un renforcement des compétences .</p>
-       <div style="text-align:center;">
-          <img src="isl.jpg" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
-        </div>
-      </div>
-      <div>
-  <h4>IS-Studio 🎬</h4>
-        <p>Production audiovisuelle professionnelle à Antananarivo.</p>
-       <div style="text-align:center;">
-          <img src="Is studio.png" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
-        </div>
-      </div>
-      <div>
-  <h4>CO42 🏢</h4>
-        <p>Espace de coworking et organisation d'événements innovants.</p>
-        <div style="text-align:center;">
-          <img src="Co42.png" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
-        </div>
-      </div>
-      <div>
-  <h4>K4M 🧠</h4>
-        <p>Cabinet de consultation psychologique et développement humain.</p>
-        <div style="text-align:center;">
-          <img src="K4M.jpg" alt="is studio" style="height:80px; margin-bottom:0.5rem;" />
-        </div>
+  <div class="ecosystem-items">
+    <div>
+      <h4>SFM</h4>
+      <p>Cours préparatif à distance pour l'organisation , sciences humaines, Vie professionnelle et Gestion de projet.</p>
+      <div style="text-align:center;">
+        <img src="Sfm.jpg" alt="Logo SFM" style="height:80px; margin-bottom:0.5rem;" />
       </div>
     </div>
-     <div>
-      <!-- Ligne de séparation décorative -->
-<hr class="section-divider" />
-<style> 
-  /* Séparateur élégant et discret */
-.section-divider {
-  border: none;
-  height: 2px;
-  max-width: 600px;
-  margin: 3rem auto 4rem;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #b0bac9, #d9e2ec, #b0bac9);
-  box-shadow: 0 2px 8px rgba(176, 186, 201, 0.4);
-}
-/* Titre section avec animation d'opacité */
-#ecosystem > h2 {
-  font-weight: 800;
-  font-size: 2.5rem;
-  text-align: center;
-  color: #1d2d50;
-  opacity: 0.95;
-  transition: opacity 1.2s ease-in-out;
-}
-#ecosystem:hover > h2 {
-  opacity: 1;
-}
-/* Effet doux au survol de la section */
-#ecosystem:hover {
-  box-shadow: 0 0 30px 2px rgba(29, 45, 80, 0.24);
-  background-color: #f6f8fa;
-  transition: box-shadow 0.4s ease, background-color 0.4s ease;
-  border-radius: 15px;
-}
-</style>
+    <div>
+      <h4>PAMF 👨‍💻</h4>
+      <p>Alternance et formation pro en conseiller clientèle, cadre commercial, agence et siège.</p>
+      <div style="text-align:center;">
+        <img src="PAMF.png" alt="Logo PAMF" style="height:80px; margin-bottom:0.5rem;" />
+      </div>
+    </div>
+    <div>
+      <h4>ISL 📈</h4>
+      <p>Formation des professionnels afin de développer leurs soft skills pour un renforcement des compétences.</p>
+      <div style="text-align:center;">
+        <img src="isl.jpg" alt="Logo ISL" style="height:80px; margin-bottom:0.5rem;" />
+      </div>
+    </div>
+    <div>
+      <h4>IS-Studio 🎬</h4>
+      <p>Production audiovisuelle professionnelle à Antananarivo.</p>
+      <div style="text-align:center;">
+        <img src="Is studio.png" alt="Logo IS-Studio" style="height:80px; margin-bottom:0.5rem;" />
+      </div>
+    </div>
+    <div>
+      <h4>CO42 🏢</h4>
+      <p>Espace de coworking et organisation d'événements innovants.</p>
+      <div style="text-align:center;">
+        <img src="Co42.png" alt="Logo CO42" style="height:80px; margin-bottom:0.5rem;" />
+      </div>
+    </div>
+    <div>
+      <h4>K4M 🧠</h4>
+      <p>Cabinet de consultation psychologique et développement humain.</p>
+      <div style="text-align:center;">
+        <img src="K4M.jpg" alt="Logo K4M" style="height:80px; margin-bottom:0.5rem;" />
+      </div>
+    </div>
+  </div>
+  <hr class="section-divider" />
+
+  <style>
+    /* Section style */
+    #ecosystem {
+      max-width: 1200px;
+      margin: 3rem auto 5rem auto;
+      padding: 2rem 2.4rem 3rem 2.4rem;
+      background: #fff;
+      box-shadow: 0 10px 35px rgba(29, 45, 80, 0.12);
+      border-radius: 15px;
+      transition: box-shadow 0.4s ease, background-color 0.4s ease;
+    }
+    #ecosystem:hover {
+      box-shadow: 0 18px 55px rgba(29, 45, 80, 0.25);
+      background-color: #f6f9ff;
+    }
+    /* Title animation */
+    #ecosystem > h2 {
+      font-weight: 800;
+      font-size: 2.5rem;
+      text-align: center;
+      color: #1d2d50;
+      opacity: 0.95;
+      transition: opacity 1.2s ease-in-out;
+      animation: fadeInDown 1.2s ease forwards;
+      margin-bottom: 3rem;
+      letter-spacing: 1.5px;
+    }
+    #ecosystem:hover > h2 {
+      opacity: 1;
+    }
+    /* Grid of items */
+    .ecosystem-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.8rem;
+      padding: 0 1rem;
+    }
+    .ecosystem-items > div {
+      text-align: center;
+      padding: 0 1rem 1rem 1rem;
+    }
+    /* Section divider */
+    .section-divider {
+      border: none;
+      height: 2px;
+      max-width: 600px;
+      margin: 3rem auto 4rem;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #b0bac9, #d9e2ec, #b0bac9);
+      box-shadow: 0 2px 8px rgba(176, 186, 201, 0.4);
+    }
+    /* FadeInDown keyframes */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translate3d(0, -40px, 0);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</section>
+
 <!-- Section Nos Valeurs -->
 <section id="valeurs" class=" fade-in" data-visible="false">
   <div class="wave-bg">
@@ -1451,243 +1684,111 @@ body.iiss-preloading > *:not(#iiss-preloader){display:none !important}
 }
 
 </style>
-  </section>
-<section id="formateurs" class="fade-in" data-visible="true">
-  <h2 class="animated-zoom">Nos Formateurs 🎓</h2>
-  <style>
-    .ecosystem-items {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Deux colonnes égales */
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-    }
-    .ecosystem-items > div {
-      background: #f9f9f9;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      padding: 1.5rem;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .ecosystem-items > div:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
-    .ecosystem-items img {
-      height: 200px;
-      width: auto;
-      border-radius: 12px;
-      margin-bottom: 0.5rem;
-      object-fit: cover;
-    }
-    .ecosystem-items h4 {
-      margin-bottom: 0.3rem;
-      color: #0a2342;
-      font-weight: 700;
-    }
-    .ecosystem-items p {
-      font-style: italic;
-      color: #555;
-      margin: 0;
-    }
-    @media (max-width: 700px) {
-      .ecosystem-items {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-      }
-    }
-  </style>
-  <div class="ecosystem-items">
-    <div>
-      <h4><strong>RANDRIANARISOA Tahianarinaly</strong></h4>
-      <p>GENERAL MANAGER</p>
-      <div style="text-align:center;">
-        <img src="Mr tahiana.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RATOMPOARINOSY Harinoro</strong></h4>
-      <p>SPECILIST IN BUSINESS MANAGEMENT AND DEVELOPMENT.</p>
-      <div style="text-align:center;">
-        <img src="Md Harinoro.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RABENJA José Tiana</strong></h4>
-      <p>CONSULTANT FORMATEUR.</p>
-      <div style="text-align:center;">
-        <img src="Mr Rabenja.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>ANDRIANIAINA Sitraka Fanantenana</strong></h4>
-      <p>CONSULTANT FORMATRICE.</p>
-      <div style="text-align:center;">
-        <img src="Md Sitraka F.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RABEMANORINTSOA Hanitrinirina Sitraka</strong></h4>
-      <p>CONSULTANT AND TRAINER.</p>
-      <div style="text-align:center;">
-        <img src="Mr sitraka.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>MANDINY Ursulla</strong></h4>
-      <p>FORMATRICE & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Md Ursulla.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>ANDRIANAMBININA Mamy Arilala</strong></h4>
-      <p>FORMATEUR & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Mr Arilala.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RAHAJARIZAFY Ny Raitra Maeva Iriana</strong></h4>
-      <p>FORMATRICE / PSYCHOLOGUE CLINICIENNE.</p>
-      <div style="text-align:center;">
-        <img src="Md Ny Raitra.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RANDRIAMANARINA Patriarck</strong></h4>
-      <p>FORMATEUR & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Md Patriarck.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>ANDRIANAHAGA Mbolatiana Andriatsiresisoa Nathalie</strong></h4>
-      <p>FORMATRICE & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Md Mbolatiana.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RAKOTOVOLOLONA Finaritra</strong></h4>
-      <p>FORMATRICE & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Md Finaritra.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>TEFY NIRINA Ignace Olivier</strong></h4>
-      <p>FORMATEUR & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Mr TEFY.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RABENJA Lova Anthony</strong></h4>
-      <p>FORMATEUR & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Mr Anthony.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RABEHAJA Tanya</strong></h4>
-      <p>RESPONSABLE COMMUNICATION.</p>
-      <div style="text-align:center;">
-        <img src="Md Tanya.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>INDRENJAFIMORA Aaronne</strong></h4>
-      <p>FORMATRICE CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Md Aaronne.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RASATARIMANA Andy</strong></h4>
-      <p>JUNIOR ENTREPRISE / BUSINESS MANAGEMENT.</p>
-      <div style="text-align:center;">
-        <img src="Mr Andy.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RIMA Manankasina</strong></h4>
-      <p>CONSULTANT-FORMATEUR-en PATRIMOINE CULTUREL & COMMUNICATION.</p>
-      <div style="text-align:center;">
-        <img src="Mr RIMA.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RAJAONARISOA Tahina</strong></h4>
-      <p>CONSULTANTE INTERNATIONALE & EXPERTE EN STRATEGIE.</p>
-      <div style="text-align:center;">
-        <img src="Md Tahina.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RAMILISION Andréa</strong></h4>
-      <p>Formatrice.</p>
-      <div style="text-align:center;">
-        <img src="Md Andréa.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>MENJANAHARY Michel Jean</strong></h4>
-      <p>Trainer.</p>
-      <div style="text-align:center;">
-        <img src="Mr Michel.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RALAIMIHOATRA Cédric</strong></h4>
-      <p>CONSULTANT / FORMATEUR.</p>
-      <div style="text-align:center;">
-        <img src="Mr Cédric.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>NOSIMIANGOLA Sarah</strong></h4>
-      <p>JUNIOR ENTREPRISE / JURIST.</p>
-      <div style="text-align:center;">
-        <img src="Md Sarah.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RAKOTONDRADRIA Alferie</strong></h4>
-      <p>FORMATEUR & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Mr Alferie.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>BAO Tohin'Ny Aina</strong></h4>
-      <p>JUNIOR ENTREPRISE / BUSINESS MANAGEMENT.</p>
-      <div style="text-align:center;">
-        <img src="Md Bao.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RABARITIANA Arthur Ulrich</strong></h4>
-      <p>JUNIOR ALTERNANT.</p>
-      <div style="text-align:center;">
-        <img src="Mr Arthur.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>HANITRINIAINA Cynthia</strong></h4>
-      <p>JUNIOR ENTREPRISE / QUALITY MANAGER.</p>
-      <div style="text-align:center;">
-        <img src="Md Cynthia.jpg" alt="is studio" />
-      </div>
-    </div>
-  </div>
-</section>
+<div style="text-align:center; margin: 3.5rem 0;">
+  <a href="Formateurs.html" 
+     class="btn-premium-formateurs" 
+     aria-label="Voir tous nos formateurs">
+    Voir tous nos formateurs
+  </a>
+</div>
 
+<style>
+  .btn-premium-formateurs {
+    display: inline-block;
+    background: linear-gradient(135deg, #0a3d91, #1470e3, #2fa1ff);
+    padding: 1.4rem 3.5rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: white;
+    border-radius: 40px;
+    box-shadow:
+      0 7px 20px rgba(21, 81, 191, 0.85),
+      0 0 40px #54a2ff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+  }
+  .btn-premium-formateurs:hover,
+  .btn-premium-formateurs:focus {
+    box-shadow:
+      0 12px 35px rgba(21, 81, 191, 1),
+      0 0 60px #54a2ff,
+      0 0 20px #b3d4ff;
+    transform: scale(1.1);
+    outline: none;
+  }
+</style>
+<style>
+.ecosystem-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 3rem;
+  background: linear-gradient(135deg, #f9fafb, #e0e9f8);
+  border-radius: 24px;
+  box-shadow: 0 0 40px rgba(15, 50, 110, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+.ecosystem-items:hover {
+  box-shadow: 0 0 65px rgba(15, 50, 110, 0.2);
+}
+.ecosystem-items > div {
+  background: white;
+  border-radius: 18px;
+  box-shadow:
+    0 6px 15px rgba(0, 0, 0, 0.06),
+    0 3px 7px rgba(0, 0, 0, 0.04);
+  padding: 1.8rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: default;
+}
+.ecosystem-items > div:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.12),
+    0 8px 18px rgba(0, 0, 0, 0.08);
+}
+.ecosystem-items img {
+  height: 210px;
+  width: 210px;
+  border-radius: 50%;
+  margin-bottom: 0.7rem;
+  object-fit: cover;
+  border: 4px solid #2a6dff;
+  box-shadow: 0 4px 15px rgba(42, 109, 255, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+.ecosystem-items > div:hover img {
+  box-shadow: 0 6px 20px rgba(42, 109, 255, 0.6);
+}
+.ecosystem-items h4 {
+  margin-bottom: 0.55rem;
+  color: #0a2342;
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+.ecosystem-items p {
+  font-style: italic;
+  color: #555;
+  margin: 0;
+  font-size: 1rem;
+}
+@media (max-width: 700px) {
+  .ecosystem-items {
+    grid-template-columns: 1fr;
+    padding: 1rem 1.2rem;
+  }
+}
+</style>
 <section id="student-life" class="fade-in">
   <h2 class="animated-bounce">Frais de scolarité</h2>
   <div>
@@ -1906,6 +2007,82 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
     <div class="gallery">
       <!-- Ajoutez d'autres images de conférences si disponible -->
     </div>
+  </section>
+  <section>
+   <div class="btn-premium-emploi-temps-glow-container" style="margin-top: 4rem; text-align: center;">
+  <a href="Emploie de temps.html"
+     class="btn-premium-emploi-temps-glow"
+     aria-label="Voir l'emploi du temps des conférences hebdomadaires">
+    Emploi du temps des conférences hebdomadaires
+  </a>
+</div>
+<style>
+.btn-premium-emploi-temps-glow-container {
+  perspective: 800px;
+}
+
+.btn-premium-emploi-temps-glow {
+  display: inline-block;
+  position: relative;
+  padding: 1.6rem 3.5rem;
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  border-radius: 30px;
+  cursor: pointer;
+  background: linear-gradient(270deg, #3b82f6, #06b6d4, #3b82f6);
+  background-size: 600% 600%;
+  box-shadow: 0 0 20px #3b82f6,
+              0 0 30px #06b6d4,
+              0 0 40px #3b82f6,
+              0 0 60px #2563eb,
+              0 0 80px #14b8a6;
+  transition: box-shadow 0.6s ease-in-out, transform 0.3s ease;
+  animation: gradientShift 15s ease infinite;
+  user-select: none;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  transform-style: preserve-3d;
+}
+
+.btn-premium-emploi-temps-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  background: inherit;
+  filter: blur(25px);
+  opacity: 0.6;
+  z-index: -1;
+  animation: gradientShift 15s ease infinite;
+}
+
+.btn-premium-emploi-temps-glow:hover {
+  transform: scale(1.12) rotateX(10deg) rotateY(5deg);
+  box-shadow: 0 0 30px #3b82f6,
+              0 0 48px #06b6d4,
+              0 0 62px #3b82f6,
+              0 0 85px #2563eb,
+              0 0 98px #14b8a6;
+}
+
+.btn-premium-emploi-temps-glow:active {
+  transform: scale(0.95) rotateX(0deg) rotateY(0deg);
+  box-shadow: 0 0 15px #3b82f6,
+              0 0 22px #06b6d4,
+              0 0 28px #3b82f6;
+}
+
+/* Animation keyframes for gradient shifting */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+</style>
+
   </section>
   <!-- Partenaires -->
   <section id="partners" class="section-light" data-visible="false">
@@ -2263,12 +2440,23 @@ window.addEventListener('DOMContentLoaded', function() {
   forcedTimer = setTimeout(cleanup, SAFETY);
 
 })();
+  // Appliquer un zoom initial à 60%
+  document.addEventListener('DOMContentLoaded', () => {
+    const zoomWrapper = document.getElementById('zoom-wrapper');
+    if (zoomWrapper) {
+      zoomWrapper.style.transform = 'scale(0.6)';
+    }
+  });
+
+  // Optionnel : Pour restaurer zoom à 100% sur interaction (exemple)
+  // document.addEventListener('click', () => {
+  //   const zoomWrapper = document.getElementById('zoom-wrapper');
+  //   if(zoomWrapper.style.transform !== 'scale(1)') {
+  //     zoomWrapper.style.transform = 'scale(1)';
+  //   }
+  // });
 </script>
 </body>
 </html>
-
-
-
-
 
 
