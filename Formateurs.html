@@ -1,0 +1,352 @@
+<style>
+  /* Reset & font */
+  body, html {
+    margin: 0; padding: 0;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0a2342, #154580);
+    color: #e6f0ff;
+    min-height: 100vh;
+  }
+  a {
+    text-decoration: none;
+  }
+  .page-wrapper {
+    padding: 3rem 2rem 5rem 2rem;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+  h1 {
+    font-size: 3.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #a8dbff;
+    text-shadow: 0 0 15px #3390ff;
+  }
+  /* Bouton retour haut de gamme */
+  .btn-return {
+    background: linear-gradient(135deg, #4dd0ff, #1470e3);
+    padding: 1rem 3rem;
+    border-radius: 40px;
+    box-shadow: 0 10px 35px #1a87ff99;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: white;
+    letter-spacing: 1.1px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .btn-return:hover, .btn-return:focus {
+    box-shadow: 0 16px 48px #54a8ffee;
+    transform: scale(1.05);
+    outline: none;
+  }
+  
+  /* Container formateurs */
+  .ecosystem-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    background: linear-gradient(145deg, #1c3b72, #163162);
+    padding: 3rem;
+    border-radius: 36px;
+    box-shadow: 0 0 100px #0d255c;
+    backdrop-filter: saturate(180%) blur(12px);
+  }
+  
+  /* Chaque carte formateur */
+  .ecosystem-items > div {
+    background: rgba(255 255 255 / 0.13);
+    border-radius: 32px;
+    padding: 2.5rem 2rem 3rem 2rem;
+    box-shadow:
+      0 12px 25px rgba(0,0,0,0.18),
+      inset 0 0 12px rgba(255,255,255,0.07);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+  }
+  .ecosystem-items > div:hover {
+    transform: scale(1.15);
+    box-shadow:
+      0 22px 50px #54a9ffbb,
+      inset 0 0 24px #a3d0ffaa;
+    z-index: 15;
+  }
+
+  /* Photos haut de gamme */
+  .ecosystem-items img {
+    height: 200px;
+    width: auto;
+    border-radius: 26px;
+    margin-bottom: 1.6rem;
+    object-fit: cover;
+    border: 6px solid #3699ff;
+    box-shadow: 0 0 25px #54a9ffcc;
+    transition: box-shadow 0.3s ease;
+  }
+  .ecosystem-items > div:hover img {
+    box-shadow: 0 0 50px #a4cfffdd;
+  }
+
+  /* Titres */
+  .ecosystem-items h4 {
+    margin-bottom: 0.8rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #d0e8ff;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 12px #5ea1ffaa;
+    user-select: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  .ecosystem-items > div:hover h4 {
+    color: #a7d3ff;
+    text-shadow: 0 0 22px #77aaffcc;
+  }
+
+  /* Description */
+  .ecosystem-items p {
+    font-style: italic;
+    font-weight: 600;
+    color: #cbdcff;
+    font-size: 1.1rem;
+    user-select: none;
+    margin: 0;
+    line-height: 1.53;
+    transition: color 0.3s ease;
+  }
+  .ecosystem-items > div:hover p {
+    color: #e2f0ff;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.8rem;
+    }
+    .ecosystem-items {
+      padding: 2rem 1rem;
+      gap: 2rem;
+    }
+    .ecosystem-items > div {
+      padding: 1.8rem 1.2rem 2.2rem 1.2rem;
+    }
+  }
+</style>
+<div class="page-wrapper">
+  <header>
+    <h1>Nos Formateurs Exclusifs 🎓</h1>
+    <button class="btn-return" aria-label="Retour à la page principale" onclick="history.back()">← Retour au site principal</button>
+  </header>
+  <div class="ecosystem-items">
+    <div>
+      <h4><strong>RANDRIANARISOA Tahianarinaly</strong></h4>
+      <p>GENERAL MANAGER</p>
+      <div style="text-align:center;">
+        <img src="Mr tahiana.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>RATOMPOARINOSY Harinoro</strong></h4>
+      <p>SPECILIST IN BUSINESS MANAGEMENT AND DEVELOPMENT.</p>
+      <div style="text-align:center;">
+        <img src="Md Harinoro.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>RABENJA José Tiana</strong></h4>
+      <p>CONSULTANT FORMATEUR.</p>
+      <div style="text-align:center;">
+        <img src="Mr Rabenja.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>ANDRIANIAINA Sitraka Fanantenana</strong></h4>
+      <p>CONSULTANT FORMATRICE.</p>
+      <div style="text-align:center;">
+        <img src="Md Sitraka F.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>RABEMANORINTSOA Hanitrinirina Sitraka</strong></h4>
+      <p>CONSULTANT AND TRAINER.</p>
+      <div style="text-align:center;">
+        <img src="Mr sitraka.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>MANDINY Ursulla</strong></h4>
+      <p>FORMATRICE & CONSULTANT.</p>
+      <div style="text-align:center;">
+        <img src="Md Ursulla.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>ANDRIANAMBININA Mamy Arilala</strong></h4>
+      <p>FORMATEUR & CONSULTANT.</p>
+      <div style="text-align:center;">
+        <img src="Mr Arilala.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>RAHAJARIZAFY Ny Raitra Maeva Iriana</strong></h4>
+      <p>FORMATRICE / PSYCHOLOGUE CLINICIENNE.</p>
+      <div style="text-align:center;">
+        <img src="Md Ny Raitra.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>RANDRIAMANARINA Patriarck</strong></h4>
+      <p>FORMATEUR & CONSULTANT.</p>
+      <div style="text-align:center;">
+        <img src="Md Patriarck.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>ANDRIANAHAGA Mbolatiana Andriatsiresisoa Nathalie</strong></h4>
+      <p>FORMATRICE & CONSULTANT.</p>
+      <div style="text-align:center;">
+        <img src="Md Mbolatiana.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>RAKOTOVOLOLONA Finaritra</strong></h4>
+      <p>FORMATRICE & CONSULTANT.</p>
+      <div style="text-align:center;">
+        <img src="Md Finaritra.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>TEFY NIRINA Ignace Olivier</strong></h4>
+      <p>FORMATEUR & CONSULTANT.</p>
+      <div style="text-align:center;">
+        <img src="Mr TEFY.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>RABENJA Lova Anthony</strong></h4>
+      <p>FORMATEUR & CONSULTANT.</p>
+      <div style="text-align:center;">
+        <img src="Mr Anthony.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>RABEHAJA Tanya</strong></h4>
+      <p>RESPONSABLE COMMUNICATION.</p>
+      <div style="text-align:center;">
+        <img src="Md Tanya.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>INDRENJAFIMORA Aaronne</strong></h4>
+      <p>FORMATRICE CONSULTANT.</p>
+      <div style="text-align:center;">
+        <img src="Md Aaronne.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>RASATARIMANA Andy</strong></h4>
+      <p>JUNIOR ENTREPRISE / BUSINESS MANAGEMENT.</p>
+      <div style="text-align:center;">
+        <img src="Mr Andy.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>RIMA Manankasina</strong></h4>
+      <p>CONSULTANT-FORMATEUR-en PATRIMOINE CULTUREL & COMMUNICATION.</p>
+      <div style="text-align:center;">
+        <img src="Mr RIMA.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>RAJAONARISOA Tahina</strong></h4>
+      <p>CONSULTANTE INTERNATIONALE & EXPERTE EN STRATEGIE.</p>
+      <div style="text-align:center;">
+        <img src="Md Tahina.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>RAMILISION Andréa</strong></h4>
+      <p>Formatrice.</p>
+      <div style="text-align:center;">
+        <img src="Md Andréa.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>MENJANAHARY Michel Jean</strong></h4>
+      <p>Trainer.</p>
+      <div style="text-align:center;">
+        <img src="Mr Michel.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>RALAIMIHOATRA Cédric</strong></h4>
+      <p>CONSULTANT / FORMATEUR.</p>
+      <div style="text-align:center;">
+        <img src="Mr Cédric.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>NOSIMIANGOLA Sarah</strong></h4>
+      <p>JUNIOR ENTREPRISE / JURIST.</p>
+      <div style="text-align:center;">
+        <img src="Md Sarah.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>RAKOTONDRADRIA Alferie</strong></h4>
+      <p>FORMATEUR & CONSULTANT.</p>
+      <div style="text-align:center;">
+        <img src="Mr Alferie.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>BAO Tohin'Ny Aina</strong></h4>
+      <p>JUNIOR ENTREPRISE / BUSINESS MANAGEMENT.</p>
+      <div style="text-align:center;">
+        <img src="Md Bao.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>RABARITIANA Arthur Ulrich</strong></h4>
+      <p>JUNIOR ALTERNANT.</p>
+      <div style="text-align:center;">
+        <img src="Mr Arthur.jpg" alt="is studio" />
+      </div>
+    </div>
+    <div>
+      <h4><strong>HANITRINIAINA Cynthia</strong></h4>
+      <p>JUNIOR ENTREPRISE / QUALITY MANAGER.</p>
+      <div style="text-align:center;">
+        <img src="Md Cynthia.jpg" alt="is studio" />
+      </div>
+    </div>
+  </div>
+  <script>
+// Désactive clic droit
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+
+// Désactive sélection texte
+document.addEventListener('selectstart', function(e) {
+  e.preventDefault();
+});
+
+// Désactive copier, couper, coller, Ctrl+U (afficher source)
+document.addEventListener('keydown', function(e) {
+  if (
+    (e.ctrlKey && (e.key === 'c' || e.key === 'x' || e.key === 'v' || e.key === 'u')) ||
+    e.key === 'F12' // désactive aussi F12 (DevTools)
+  ) {
+    e.preventDefault();
+  }
+});
+</script>
+</section>

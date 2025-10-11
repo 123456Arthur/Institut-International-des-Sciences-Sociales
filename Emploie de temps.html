@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Emploi du temps premium - Fullscreen</title>
+<style>
+  /* Reset & fonts */
+  body, html {
+    margin: 0; padding: 0; height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    background: #0a2347;
+    color: #cdf1ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* Animated digital gradient background */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(270deg, #0a2347, #004b7c, #0074a8, #005f88, #0a2347);
+    background-size: 1000% 1000%;
+    animation: gradientShift 30s linear infinite;
+    filter: brightness(0.7);
+    z-index: -2;
+  }
+  /* Moving digital lines */
+  .digital-lines {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+  }
+  .line {
+    position: absolute;
+    width: 2px;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(100, 190, 255, 0.8), rgba(50, 90, 160, 0.2));
+    animation: lineMove 25s linear infinite;
+  }
+  .line:nth-child(odd) {
+    animation-direction: reverse;
+  }
+  @keyframes lineMove {
+    0% { transform: translateX(-10%); opacity: 0.1; }
+    50% { opacity: 0.6; }
+    100% { transform: translateX(110%); opacity: 0.1; }
+  }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  /* Main container */
+  .container {
+    max-width: 980px;
+    width: 90vw;
+    padding: 3rem 3rem;
+    background: rgba(5, 30, 60, 0.85);
+    border-radius: 30px;
+    box-shadow: 0 0 60px rgba(40, 130, 220, 0.7);
+    overflow-y: auto;
+    max-height: 90vh;
+  }
+  h1 {
+    font-size: 3.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin: 0 0 1.2rem 0;
+    text-align: center;
+    color: #a2d0ff;
+    text-shadow: 0 0 12px #2894ff;
+  }
+  .intro-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #9fcfff;
+    font-style: italic;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  /* Table styling */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 20px;
+    font-size: 1.25rem;
+    color: #d0e9ff;
+  }
+  thead tr {
+    background: linear-gradient(135deg, #1352b9, #0a2d72);
+    box-shadow: 0 8px 15px rgba(19, 82, 185, 0.5);
+  }
+  th {
+    padding: 1.2rem 1.5rem;
+    font-weight: 900;
+    text-align: left;
+    border-radius: 20px 20px 0 0;
+  }
+  tbody tr {
+    background: linear-gradient(90deg, #0c1d3a, #022847);
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 3px 15px rgba(14, 56, 102, 0.8);
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+  }
+  tbody tr:hover {
+    background: linear-gradient(90deg, #1c3d77, #3a73d4);
+    box-shadow: 0 8px 30px rgba(58, 115, 212, 0.7);
+    color: #e2f0ff;
+    cursor: default;
+  }
+  td {
+    padding: 1.2rem 1.5rem;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<div class="digital-lines">
+  <!-- Generate lines in JS or manually add a few -->
+  <div class="line" style="left: 3%; animation-delay: 0s;"></div>
+  <div class="line" style="left: 15%; animation-delay: 4s;"></div>
+  <div class="line" style="left: 28%; animation-delay: 8s;"></div>
+  <div class="line" style="left: 41%; animation-delay: 12s;"></div>
+  <div class="line" style="left: 54%; animation-delay: 16s;"></div>
+  <div class="line" style="left: 67%; animation-delay: 20s;"></div>
+  <div class="line" style="left: 80%; animation-delay: 24s;"></div>
+  <div class="line" style="left: 93%; animation-delay: 28s;"></div>
+</div>
+<!-- Bouton Retour -->
+<div style="text-align:center; margin-top: 2rem;">
+  <button id="btn-return" style="
+    background: linear-gradient(135deg, #2563eb, #4aa3ff);
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(58, 115, 212, 0.7);
+    transition: background 0.3s ease, transform 0.2s ease;
+  ">
+    ← Retour à la page principale
+  </button>
+</div>
+
+<script>
+  document.getElementById("btn-return").addEventListener("click", function() {
+    window.history.back();
+  });
+
+  // Optionnel : effet au survol
+  document.getElementById("btn-return").addEventListener("mouseover", function() {
+    this.style.background = "linear-gradient(135deg, #1e40af, #2563eb)";
+    this.style.transform = "scale(1.05)";
+  });
+  document.getElementById("btn-return").addEventListener("mouseout", function() {
+    this.style.background = "linear-gradient(135deg, #2563eb, #4aa3ff)";
+    this.style.transform = "scale(1)";
+  });
+</script>
+
+
+<div class="container">
+  <h1>Emploi du temps des conférences hebdomadaires</h1>
+  <p class="intro-text">Un programme pensé pour vous immerger dans l’excellence et l’innovation de l’Institut ISS.</p>
+  <table aria-label="Emploi du temps conférences">
+    <thead>
+      <tr>
+        <th>Jour</th>
+        <th>Heure</th>
+        <th>Conférence / Sujet</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Lundi</td><td>12:30h - 13h</td><td>Management en couleur, Andy</td></tr>
+      <tr><td>Mardi</td><td>12:30h - 13h</td><td>Le pitch éclair,  Md Harinoro</td></tr>
+      <tr><td>Mercredi</td><td>12:30h - 13h</td><td> Mr John</td></tr>
+      <tr><td>Jeudi</td><td>12:30h - 13h</td><td><em>Oups, mon collègue m'attire</em></td></tr>
+      <tr><td>Vendredi</td><td>12:30h - 13h</td><td>Generation gap, junior entreprise</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // Désactiver le clic droit
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
+  // Désactiver la sélection
+  document.addEventListener('selectstart', event => event.preventDefault());
+
+  // Désactiver certains raccourcis clavier populaires de copie et inspection
+  document.addEventListener('keydown', function(event) {
+    if (
+      event.ctrlKey &&
+      ['c', 'v', 'x', 'u', 's', 'p', 'a', 'i'].includes(event.key.toLowerCase())
+    ) {
+      event.preventDefault();
+    }
+
+    // Désactiver F12 (devtools)
+    if(event.key === "F12") {
+      event.preventDefault();
+    }
+  });
+</script>
+<script>
+  if (window.top !== window.self) {
+    window.top.location = window.self.location;
+  }
+</script>
+<script>
+  document.addEventListener('dragstart', event => event.preventDefault());
+  document.addEventListener('drop', event => event.preventDefault());
+</script>
+<script>
+  document.addEventListener('contextmenu', event => event.preventDefault());
+  document.addEventListener('selectstart', event => event.preventDefault());
+  document.addEventListener('dragstart', event => event.preventDefault());
+  document.addEventListener('drop', event => event.preventDefault());
+
+  document.addEventListener('keydown', function(event) {
+    if (
+      event.ctrlKey &&
+      ['c', 'v', 'x', 'u', 's', 'p', 'a', 'i'].includes(event.key.toLowerCase())
+    ) {
+      event.preventDefault();
+    }
+    if(event.key === "F12") {
+      event.preventDefault();
+    }
+  });
+
+  if (window.top !== window.self) {
+    window.top.location = window.self.location;
+  }
+</script>
+</body>
+</html>
