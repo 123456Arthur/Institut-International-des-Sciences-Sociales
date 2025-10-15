@@ -399,7 +399,7 @@ body.iiss-preloading > *:not(#iiss-preloader) {
       <li><a href="#mentions">Nos 5 Mentions</a></li>
       <li><a href="#ecosystem">Notre écosystème</a></li>
       <li><a href="#valeurs">Nos Valeurs</a></li>
-      <li><a href="#formateurs">Nos Formateurs</a></li>
+      <li><a href="Formateurs.html">Nos Formateurs</a></li>
       <li><a href="#student-life">Frais de scolarité</a></li>
       <li><a href="#conferences">Conférences Hebdomadaires</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -1066,11 +1066,76 @@ body.iiss-preloading > *:not(#iiss-preloader) {
     }
   }
 </style>
+<script>
+  // Désactive clic droit partout
+  document.addEventListener('contextmenu', e => {
+    e.preventDefault();
+    alert("Clic droit désactivé pour protéger le contenu.");
+  });
+
+  // Empêche sélection texte, drag and drop, copy-paste et certains raccourcis courants
+  ['selectstart', 'dragstart', 'drop'].forEach(event =>
+    document.addEventListener(event, e => e.preventDefault()));
+
+  document.addEventListener('keydown', e => {
+    const forbiddenKeys = ['c', 'v', 'x', 'u', 's', 'a', 'p', 'i'];
+    if (e.ctrlKey && forbiddenKeys.includes(e.key.toLowerCase())) {
+      e.preventDefault();
+      alert("Cette action est désactivée pour protéger le contenu.");
+    }
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i')) {
+      e.preventDefault();
+      alert("Outils de développement désactivés.");
+    }
+    if (e.key === 'PrintScreen') {
+      try { navigator.clipboard.writeText(''); } catch {}
+      e.preventDefault();
+      alert("Capture d'écran désactivée.");
+    }
+  });
+
+  // Protection vidéos HTML5
+  document.querySelectorAll('video').forEach(video => {
+    video.setAttribute('controlsList', 'nodownload nofullscreen noremoteplayback');
+    video.setAttribute('disablePictureInPicture', '');
+    video.addEventListener('contextmenu', e => {
+      e.preventDefault();
+      alert("Clic droit désactivé sur la vidéo.");
+    });
+  });
+
+  // Overlay transparent anti-capture (peut gêner utilisateurs)
+  const overlay = document.createElement('div');
+  overlay.style.position = 'fixed';
+  overlay.style.top = '0'; overlay.style.left = '0';
+  overlay.style.width = '100%'; overlay.style.height = '100%';
+  overlay.style.zIndex = '9999999';
+  overlay.style.pointerEvents = 'none';
+  overlay.style.backgroundColor = 'transparent';
+  document.body.appendChild(overlay);
+
+  // Politique CSP à configurer côté serveur (exemple)
+  /*
+  Content-Security-Policy:
+    default-src 'self';
+    script-src 'self';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data:;
+    media-src 'self';
+    object-src 'none';
+  */
+
+  // Empêche l'accès iframe (clickjacking)
+  if (window.top !== window.self) {
+    window.top.location = window.self.location;
+  }
+</script>
+
 </head>
 <body>
   <header class="hero">
     <video autoplay muted loop playsinline>
-      <source src="PUB .mp4" type="video/mp4" />
+      <source src="pub iss fn.mp4" type="video/mp4" />
       Votre navigateur ne supporte pas la vidéo.
     </video>
    <audio id="monson" autoplay loop style="display:none">
@@ -1086,7 +1151,7 @@ body.iiss-preloading > *:not(#iiss-preloader) {
     <div class="hero-content">
   <h1 class="animated-bounce neon glitch" data-text="Institut ISS – Excellence & Innovation">Institut ISS – Excellence & Innovation </h1>
       <p>Intégrez notre pédagogie interdisciplinaire et plongez dans le monde professionnel, </p>
-      <a href="Inscription.html" class="btn-primary btn-magnetic">ICI CONSTRUIS TA VIE</a>
+      <a href="#contact" class="btn-primary btn-magnetic">ICI CONSTRUIS TA VIE</a>
     </div>
     <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
     <div class="glow-gradient"></div>
@@ -2244,65 +2309,364 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
           <img src="isl.jpg" alt="ESP BIG" style="height:60px; margin-bottom:0.5rem;" />
           <div>ISL</div>
     </div>
-  </section>
-  <!-- Featured Videos (2x2) -->
-  <section id="featured-videos" class="section-white" data-visible="false" style="padding-top:2rem; padding-bottom:2rem;">
-    <h2 class="animated-zoom">Vidéos en vedette 🎬</h2>
-    <p style="text-align:center; max-width:900px; margin:0.5rem auto 1.2rem auto; color: #333;">Découvrez nos présentations et reportages. Cliquez pour lire.</p>
-    <div class="videos-grid" style="max-width:1100px; margin: 0 auto; display:grid; grid-template-columns: repeat(2,1fr); gap:1rem;">
+ <section id="featured-videos" class="section-white" data-visible="false" style="padding-top:2rem; padding-bottom:2rem;">
+  <h2 class="animated-zoom">Vidéos en vedette 🎬</h2>
+  <p style="text-align:center; max-width:900px; margin:0.5rem auto 1.2rem auto; color: #333;">Découvrez nos présentations et reportages en défilement continu.</p>
+  <div class="videos-story-container">
+    <div class="videos-story" id="videos-story">
+      <!-- Les vidéos originales -->
       <div class="video-card" data-src="Présentation Iss.mp4">
-        <div class="video-thumb iiss-thumb" data-title="Présentation ISS" data-duration="0:37"></div>
-        <div class="playmark" aria-hidden="true">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lire">
-            <circle cx="50" cy="50" r="45" fill="rgba(255,45,149,0.95)" />
-            <polygon points="40,32 72,50 40,68" fill="#fff" />
-          </svg>
-        </div>
+        <video class="video-player" muted playsinline loop data-title="Présentation ISS" data-duration="0:37">
+          <source src="Présentation Iss.mp4" type="video/mp4">
+          Votre navigateur ne supporte pas la vidéo.
+        </video>
         <div class="video-meta"><strong>Présentation ISS</strong><span>0:37</span></div>
       </div>
       <div class="video-card" data-src="Adresse Iss.mp4">
-        <div class="video-thumb iiss-thumb" data-title="Lieu" data-duration="0:15"></div>
-        <div class="playmark" aria-hidden="true">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lire">
-            <circle cx="50" cy="50" r="45" fill="rgba(124,77,255,0.94)" />
-            <polygon points="40,32 72,50 40,68" fill="#fff" />
-          </svg>
-        </div>
+        <video class="video-player" muted playsinline loop data-title="Lieu" data-duration="0:15">
+          <source src="Adresse Iss.mp4" type="video/mp4">
+          Votre navigateur ne supporte pas la vidéo.
+        </video>
         <div class="video-meta"><strong>Lieu</strong><span>0:15</span></div>
       </div>
       <div class="video-card" data-src="Communauté.mp4">
-        <div class="video-thumb iiss-thumb" data-title="Communauté IISS" data-duration="2:17"></div>
-        <div class="playmark" aria-hidden="true">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lire">
-            <circle cx="50" cy="50" r="45" fill="rgba(0,229,255,0.92)" />
-            <polygon points="40,32 72,50 40,68" fill="#fff" />
-          </svg>
-        </div>
-        <div class="video-meta"><strong>communauté IISS</strong><span>2:17</span></div>
+        <video class="video-player" muted playsinline loop data-title="Communauté IISS" data-duration="2:17">
+          <source src="Communauté.mp4" type="video/mp4">
+          Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <div class="video-meta"><strong>Communauté IISS</strong><span>2:17</span></div>
       </div>
       <div class="video-card" data-src="Dossier à fournir .mp4">
-        <div class="video-thumb iiss-thumb" data-title="Dossier à fournir" data-duration="0:46"></div>
-        <div class="playmark" aria-hidden="true">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lire">
-            <circle cx="50" cy="50" r="45" fill="rgba(255,209,0,0.95)" />
-            <polygon points="40,32 72,50 40,68" fill="#fff" />
-          </svg>
-        </div>
+        <video class="video-player" muted playsinline loop data-title="Dossier à fournir" data-duration="0:46">
+          <source src="Dossier à fournir .mp4" type="video/mp4">
+          Votre navigateur ne supporte pas la vidéo.
+        </video>
         <div class="video-meta"><strong>Dossier à fournir</strong><span>0:46</span></div>
       </div>
+      <!-- Les copies seront ajoutées dynamiquement via JavaScript -->
     </div>
-  </section>
-<footer id="contact" data-visible=""true> 
-   <h2 class="animated-zoom">Contact & Localisation </h2>
-    <p>
-      Adresse : Tsiadana, Antananarivo  Immeuble Pouce fitness 2éme Etage  <br />
-      Email :  <link rel="stylesheet" href="institutisscontact@gmail.com"> institutisscontact@gmail.com<br />
-      Téléphone :  +261 38 43 331 87
-    </p>
-    <img src="QR.jpg" alt="QR Code" />
-   </footer>
+  </div>
+</section>
+<script>
+(function(){
+  const container = document.querySelector('#videos-story');
+  const videos = document.querySelectorAll('.video-player');
+  const videoCards = document.querySelectorAll('.video-card');
+
+  if (!container || !videos.length || !videoCards.length) return;
+
+  // Gestion du son de fond
+  const bgAudio = document.getElementById('monson');
+  let wasBgPlaying = false;
+
+  // Duplication des vidéos pour un défilement continu
+  const originalWidth = Array.from(videoCards).reduce((total, card) => {
+    return total + card.offsetWidth + 24; // Largeur de la carte + gap (1.5rem = 24px)
+  }, 0);
+  const containerWidth = document.querySelector('.videos-story-container').offsetWidth;
+  const copiesNeeded = Math.ceil(containerWidth / originalWidth) + 1; // Nombre de copies nécessaires
+
+  for (let i = 0; i < copiesNeeded; i++) {
+    videoCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      container.appendChild(clone);
+    });
+  }
+
+  // Mettre à jour la liste des vidéos après duplication
+  const allVideos = document.querySelectorAll('.video-player');
+
+  // Intersection Observer pour jouer/arrêter les vidéos selon leur visibilité
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        video.play().catch(() => {}); // Jouer la vidéo si visible
+        if (bgAudio) {
+          wasBgPlaying = !bgAudio.paused;
+          bgAudio.pause(); // Mettre en pause le son de fond
+        }
+      } else {
+        video.pause(); // Arrêter la vidéo si non visible
+        if (bgAudio && wasBgPlaying) {
+          bgAudio.play().catch(() => {});
+        }
+      }
+    });
+  }, { threshold: 0.8 }); // Seuil de 80% de visibilité
+
+  allVideos.forEach(video => {
+    observer.observe(video);
+    // Désactiver les contrôles et le clic droit
+    video.setAttribute('controlsList', 'nodownload nofullscreen noremoteplayback');
+    video.setAttribute('disablePictureInPicture', '');
+    video.addEventListener('contextmenu', e => {
+      e.preventDefault();
+      alert("Clic droit désactivé sur la vidéo.");
+    });
+  });
+})();
+</script>
+<style>
+ .videos-story-container {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  overflow: hidden;
+}
+
+.videos-story {
+  display: flex;
+  gap: 1.5rem;
+  animation: scroll 20s linear infinite; /* Défilement continu, durée ajustable */
+  will-change: transform; /* Optimisation pour l'animation */
+  min-width: max-content; /* Assure que le conteneur est assez large */
+}
+
+.video-card {
+  flex: 0 0 auto;
+  width: 300px; /* Ajustez selon vos besoins */
+  background: linear-gradient(180deg, #fff, #f6f8fb);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(10,35,66,0.12);
+  position: relative;
+}
+
+.video-player {
+  width: 100%;
+  height: 180px; /* Ajustez selon vos besoins */
+  object-fit: cover;
+  display: block;
+  background: linear-gradient(180deg, rgba(12,10,20,0.12), rgba(0,0,0,0.18));
+}
+
+.video-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0.8rem;
+  font-weight: 700;
+  color: #0a2342;
+  font-size: 0.9rem;
+  background: rgba(255,255,255,0.9);
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100% + 1100px)); } /* Défile jusqu'à la fin moins la largeur du conteneur */
+}
+
+@media (max-width: 768px) {
+  .video-card {
+    width: 240px;
+  }
+  .video-player {
+    height: 140px;
+  }
+  .videos-story {
+    animation-duration: 15s; /* Défilement plus rapide sur mobile */
+  }
+}
+</style>
+<footer id="footer" class="section-dark" data-visible="false">
+  <p>&copy; 2025 Institut International des Sciences Sociales. Tous droits réservés.</p>
+  <img src="IISS logo.jpg" alt="Logo Institut ISS" style="margin-top: 1rem; width: 120px;" />
+</footer>
+<style>
+footer {
+  padding: 2rem 1rem;
+  background: linear-gradient(120deg, var(--bleu-primaire), var(--bleu-vert-ocean));
+  text-align: center;
+  color: var(--blanc);
+  font-size: 1rem;
+}
+footer img {
+  margin-top: 1rem;
+  width: 120px;
+  border-radius: 8px;
+}
+</style>
+<section id="contact" class="section-thematic fade-in" data-visible="false">
+  <h2 class="animated-zoom">Contact & Localisation 📍</h2>
+  <div class="contact-container">
+    <div class="contact-info">
+      <div class="contact-item">
+        <i class="fa-solid fa-map-marker-alt"></i>
+        <p><strong>Adresse :</strong> Tsiadana, Antananarivo, Immeuble Pouce Fitness, 2ème étage</p>
+      </div>
+      <div class="contact-item">
+        <i class="fa-solid fa-envelope"></i>
+        <p><strong>Email :</strong> <a href="mailto:institutisscontact@gmail.com" aria-label="Envoyer un email">institutisscontact@gmail.com</a></p>
+      </div>
+      <div class="contact-item">
+        <i class="fa-solid fa-phone"></i>
+        <p><strong>Téléphone :</strong> <a href="tel:+261384333187" aria-label="Appeler l'institut">+261 38 43 331 87</a></p>
+      </div>
+      <div class="contact-qr">
+        <p class="qr-caption">Scannez pour plus d'informations</p>
+      </div>
+      <a href="inscription.html" class="btn-contact-cta">S'inscrire maintenant</a>
+    </div>
+    <div class="contact-map">
+      <iframe 
+<img src="QR.jpg"  
+        width="100%" 
+        height="100%" 
+        style="border:0; border-radius: 12px;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        aria-label="Carte de localisation de l'Institut ISS">
+      </iframe>
+    </div>
+  </div>
+</section>
   <!-- Contact & Localisation -->
     <style>
+      #contact {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, var(--bleu-primaire), var(--bleu-vert-ocean));
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(10, 35, 66, 0.5);
+  color: var(--blanc);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#contact h2 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--or-excellence);
+  text-shadow: 0 0 8px var(--or-excellence);
+  margin-bottom: 2rem;
+}
+
+.contact-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.contact-info {
+  flex: 1 1 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(249, 197, 28, 0.3);
+}
+
+.contact-item i {
+  font-size: 1.5rem;
+  color: var(--or-excellence);
+}
+
+.contact-item p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--blanc);
+}
+
+.contact-item a {
+  color: var(--or-excellence);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+  color: #fff;
+}
+
+.contact-qr {
+  text-align: center;
+}
+
+.qr-code {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.qr-code:hover {
+  transform: scale(1.05);
+}
+
+.qr-caption {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 0.5rem;
+}
+
+.btn-contact-cta {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--or-excellence), #eec32a);
+  color: var(--bleu-primaire);
+  font-weight: 700;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 6px 18px rgba(11, 42, 68, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-contact-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(11, 42, 68, 0.3);
+}
+
+.contact-map {
+  flex: 1 1 400px;
+  min-height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(10, 35, 66, 0.2);
+}
+
+@media (max-width: 768px) {
+  #contact {
+    padding: 2rem 1rem;
+  }
+  #contact h2 {
+    font-size: 2.2rem;
+  }
+  .contact-container {
+    flex-direction: column;
+  }
+  .contact-info, .contact-map {
+    flex: 1 1 100%;
+  }
+  .contact-item p {
+    font-size: 1rem;
+  }
+  .qr-code {
+    width: 100px;
+    height: 100px;
+  }
+}
   /* Featured videos styles */
   .videos-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:1rem; }
   .video-card { background: linear-gradient(180deg, #fff, #f6f8fb); border-radius:12px; overflow:hidden; cursor:pointer; box-shadow:0 8px 30px rgba(10,35,66,0.08); position:relative; min-height:160px; display:flex; flex-direction:column; }
@@ -2371,6 +2735,20 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 </script>
 <script>
+(function(){
+  const qrCode = document.getElementById('qrCode');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  if (qrCode) {
+    qrCode.addEventListener('click', () => {
+      lightboxImg.src = qrCode.src;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+})();
   // Video lightbox handler
   (function(){
     const cards = document.querySelectorAll('.video-card');
@@ -2589,7 +2967,6 @@ window.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-
 
 
 
