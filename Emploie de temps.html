@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Emploi du temps premium - Fullscreen</title>
 <style>
-  /* Reset & fonts */
+  /* Garder tout ton style initial intact */
   body, html {
     margin: 0; padding: 0; height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,7 +10,7 @@
     justify-content: center;
     align-items: center;
   }
-  /* Animated digital gradient background */
+
   body::before {
     content: "";
     position: fixed;
@@ -27,7 +21,7 @@
     filter: brightness(0.7);
     z-index: -2;
   }
-  /* Moving digital lines */
+
   .digital-lines {
     position: fixed;
     top: 0; left: 0;
@@ -36,6 +30,7 @@
     overflow: hidden;
     z-index: -1;
   }
+
   .line {
     position: absolute;
     width: 2px;
@@ -43,20 +38,24 @@
     background: linear-gradient(to bottom, rgba(100, 190, 255, 0.8), rgba(50, 90, 160, 0.2));
     animation: lineMove 25s linear infinite;
   }
+
   .line:nth-child(odd) {
     animation-direction: reverse;
   }
+
   @keyframes lineMove {
     0% { transform: translateX(-10%); opacity: 0.1; }
     50% { opacity: 0.6; }
     100% { transform: translateX(110%); opacity: 0.1; }
   }
+
   @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
-  /* Main container */
+
+  /* Container principal */
   .container {
     max-width: 980px;
     width: 90vw;
@@ -66,7 +65,9 @@
     box-shadow: 0 0 60px rgba(40, 130, 220, 0.7);
     overflow-y: auto;
     max-height: 90vh;
+    color: #cdf1ff;
   }
+
   h1 {
     font-size: 3.8rem;
     font-weight: 900;
@@ -76,6 +77,7 @@
     color: #a2d0ff;
     text-shadow: 0 0 12px #2894ff;
   }
+
   .intro-text {
     font-size: 1.3rem;
     font-weight: 600;
@@ -84,43 +86,113 @@
     margin-bottom: 2rem;
     text-align: center;
   }
-  /* Table styling */
+
   table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0 20px;
     font-size: 1.25rem;
     color: #d0e9ff;
+    border-radius: 15px;
+    overflow: hidden;
   }
+
   thead tr {
     background: linear-gradient(135deg, #1352b9, #0a2d72);
     box-shadow: 0 8px 15px rgba(19, 82, 185, 0.5);
   }
+
   th {
     padding: 1.2rem 1.5rem;
     font-weight: 900;
     text-align: left;
     border-radius: 20px 20px 0 0;
   }
+
   tbody tr {
     background: linear-gradient(90deg, #0c1d3a, #022847);
     border-radius: 0 0 20px 20px;
     box-shadow: 0 3px 15px rgba(14, 56, 102, 0.8);
     transition: background 0.4s ease, box-shadow 0.4s ease;
   }
+
   tbody tr:hover {
     background: linear-gradient(90deg, #1c3d77, #3a73d4);
     box-shadow: 0 8px 30px rgba(58, 115, 212, 0.7);
     color: #e2f0ff;
     cursor: default;
   }
+
   td {
     padding: 1.2rem 1.5rem;
     font-weight: 600;
   }
+
+  /* Details récap section */
+  details {
+    background: rgba(5,30,60,0.85);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(40,130,220,0.7);
+    margin: 2rem 0;
+    padding: 1.5rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  details summary {
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    padding-right: 1rem;
+    text-shadow: 0 0 8px #2980ff;
+  }
+
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details button {
+    font-size: 0.9rem;
+    padding: 3px 12px;
+    background-color: #2980ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  details button:hover {
+    background-color: #1e53d1;
+  }
+
+  details div {
+    margin-top: 1rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 600px) {
+    .container {
+      padding: 1rem 1.5rem;
+      max-height: 80vh;
+    }
+
+    details summary {
+      font-size: 1.2rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    details button {
+      align-self: flex-end;
+    }
+  }
 </style>
-</head>
-<body>
 
 <div class="digital-lines">
   <!-- Generate lines in JS or manually add a few -->
@@ -133,37 +205,39 @@
   <div class="line" style="left: 80%; animation-delay: 24s;"></div>
   <div class="line" style="left: 93%; animation-delay: 28s;"></div>
 </div>
-<!-- Bouton Retour -->
-<div style="text-align:center; margin-top: 2rem;">
+<div style="text-align:center; margin: 2rem 0;">
   <button id="btn-return" style="
     background: linear-gradient(135deg, #2563eb, #4aa3ff);
     border: none;
-    padding: 1rem 2.5rem;
-    font-size: 1.3rem;
-    font-weight: 700;
+    padding: 1rem 3rem;
+    font-size: 1.4rem;
+    font-weight: 900;
     color: white;
-    border-radius: 30px;
+    border-radius: 40px;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(58, 115, 212, 0.7);
-    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 6px 20px rgba(58, 115, 212, 0.75);
+    transition: background 0.35s ease, transform 0.25s ease;
+    letter-spacing: 0.05em;
   ">
     ← Retour à la page principale
   </button>
 </div>
 
+
 <script>
-  document.getElementById("btn-return").addEventListener("click", function() {
-    window.history.back();
+  const btnReturn = document.getElementById('btn-return');
+  btnReturn.addEventListener('click', () => {
+    window.location.href = 'index.html'; // Mets ici l'URL de ta page principale
   });
 
-  // Optionnel : effet au survol
-  document.getElementById("btn-return").addEventListener("mouseover", function() {
-    this.style.background = "linear-gradient(135deg, #1e40af, #2563eb)";
-    this.style.transform = "scale(1.05)";
+  btnReturn.addEventListener('mouseover', () => {
+    btnReturn.style.background = 'linear-gradient(135deg, #1e40af, #2563eb)';
+    btnReturn.style.transform = 'scale(1.05)';
   });
-  document.getElementById("btn-return").addEventListener("mouseout", function() {
-    this.style.background = "linear-gradient(135deg, #2563eb, #4aa3ff)";
-    this.style.transform = "scale(1)";
+
+  btnReturn.addEventListener('mouseout', () => {
+    btnReturn.style.background = 'linear-gradient(135deg, #2563eb, #4aa3ff)';
+    btnReturn.style.transform = 'scale(1)';
   });
 </script>
 
@@ -172,77 +246,152 @@
   <h1>Emploi du temps des conférences hebdomadaires</h1>
   <p class="intro-text">Un programme pensé pour vous immerger dans l’excellence et l’innovation de l’Institut ISS.</p>
   <table aria-label="Emploi du temps conférences">
-    <thead>
-      <tr>
-        <th>Jour</th>
-        <th>Heure</th>
-        <th>Conférence / Sujet</th>
-      </tr>
-    </thead>
+    <thead><tr><th>Jour</th><th>Heure</th><th>Conférence / Sujet</th></tr></thead>
     <tbody>
-      <tr><td>Lundi</td><td>12:30h - 13h30</td><td>Management en couleur, Andy</td></tr>
-      <tr><td>Mardi</td><td>12:30h - 13h30</td><td>Le pitch éclair,  Md Harinoro</td></tr>
-      <tr><td>Mercredi</td><td>12:30h - 13h30</td><td> Gestion de Temps</td></tr>
-      <tr><td>Jeudi</td><td>12:30h - 13h30</td><td><em>Oups, mon collègue m'attire</em></td></tr>
-      <tr><td>Vendredi</td><td>12:30h - 13h30</td><td>Generation gap, junior entreprise</td></tr>
+      <tr><td>Lundi</td><td>12:30h - 13h</td><td>Commerce B2B, Andy</td></tr>
+      <tr><td>Mardi</td><td>12:30h - 13h</td><td>Le pitch éclair,  Md Harinoro</td></tr>
+      <tr><td>Mercredi</td><td>12:30h - 13h</td><td> Gestion de temps </td></tr>
+      <tr><td>Jeudi</td><td>12:30h - 13h</td><td><em>Oups, mon collègue m'attire</em></td></tr>
+      <tr><td>Vendredi</td><td>12:30h - 13h</td><td>Generation gap, junior entreprise</td></tr>
     </tbody>
   </table>
+
+  <details open>
+    <summary>Récapitulatif 1 - COMMERCE B2B 
+      <button onclick="this.closest('details').removeAttribute('open')">Fermer</button>
+    </summary>
+    <div>
+      <p><strong>Thème :</strong> Le commerce B2B – Une nouvelle vision portée par la jeunesse.</p>
+      <p>L’Institut ISS a démontré son engagement à travers une intervention passionnante présentée par un consultant dynamique, mettant en lumière les dynamiques et opportunités du BtoB dans un contexte économique en plein renouveau.</p>
+      <p>Cette présentation illustre le rôle stratégique du BtoB dans la croissance économique et souligne l’importance d’une coopération professionnelle intelligente portée par la jeunesse de Madagascar.</p>
+      <p>Le conférencier a partagé des exemples concrets, des stratégies innovantes, et un regard pragmatique sur la collaboration interentreprises.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Récapitulatif 2 - PITCH ECLAIR 
+      <button onclick="this.closest('details').removeAttribute('open')">Fermer</button>
+    </summary>
+    <div>
+      <p>
+        Le Pitch Éclair : Convaincre en 60 secondes ! 🚀
+
+Hier, on s’est amusés à maîtriser le Pitch Éclair, l’art de vendre une idée folle en 1 minute ! 😄 Voici les 4 étapes clés :
+🔥 Accroche (15 sec) : Captez l’attention avec une question ou une image. Ex. : « Et si vos plantes parlaient ? » Astuce : Soyez théâtral !
+🔥 Problème (15 sec) : Montrez un besoin. Ex. : « Vos plantes fanent sans explication ! » Astuce : Exagérez le drame.
+🔥 Solution (20 sec) : Présentez votre idée géniale. Ex. : « PlantWhisper, l’appli qui traduit les besoins des plantes ! » Astuce : Mimez l’idée !
+🔥 Appel à l’action (10 sec) : Poussez à agir. Ex. : « Téléchargez et parlez aux plantes ! » Astuce : Lancez un défi à l’audience.
+
+💡 Avec énergie et humour, un pitch éclair marque les esprits ! On a vu des idées délirantes : tongs pour pingouins, resto dans le noir… 🐧🌚
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Récapitulatif 3 
+      <button onclick="this.closest('details').removeAttribute('open')">Fermer</button>
+    </summary>
+    <div>
+      <p>Un panel de jeunes entrepreneurs a partagé leur expérience et leur vision pour moderniser les pratiques professionnelles à Madagascar.</p>
+      <p>L’accent a été mis sur le leadership éthique et la responsabilité sociale.</p>
+    </div>
+  </details>
+   <details>
+    <summary>Récapitulatif 4
+      <button onclick="this.closest('details').removeAttribute('open')">Fermer</button>
+    </summary>
+    <div>
+      <p>Un panel de jeunes entrepreneurs a partagé leur expérience et leur vision pour moderniser les pratiques professionnelles à Madagascar.</p>
+      <p>L’accent a été mis sur le leadership éthique et la responsabilité sociale.</p>
+    </div>
+  </details>
+   <details>
+    <summary>Récapitulatif 5
+      <button onclick="this.closest('details').removeAttribute('open')">Fermer</button>
+    </summary>
+    <div>
+      <p>Un panel de jeunes entrepreneurs a partagé leur expérience et leur vision pour moderniser les pratiques professionnelles à Madagascar.</p>
+      <p>L’accent a été mis sur le leadership éthique et la responsabilité sociale.</p>
+    </div>
+  </details>
+
+  <!-- Tu peux ajouter d'autres récapitulatifs en copiant ce bloc -->
 </div>
 
 <script>
-  // Désactiver le clic droit
-  document.addEventListener('contextmenu', event => event.preventDefault());
-
-  // Désactiver la sélection
-  document.addEventListener('selectstart', event => event.preventDefault());
-
-  // Désactiver certains raccourcis clavier populaires de copie et inspection
-  document.addEventListener('keydown', function(event) {
-    if (
-      event.ctrlKey &&
-      ['c', 'v', 'x', 'u', 's', 'p', 'a', 'i'].includes(event.key.toLowerCase())
-    ) {
-      event.preventDefault();
-    }
-
-    // Désactiver F12 (devtools)
-    if(event.key === "F12") {
-      event.preventDefault();
-    }
+  // Désactiver clic droit, sélection et certains raccourcis déjà dans ton code
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('selectstart', e => e.preventDefault());
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey && ['c','v','x','u','s','p','a','i'].includes(e.key.toLowerCase())) e.preventDefault();
+    if(e.key === "F12") e.preventDefault();
   });
+  if (window.top !== window.self) { window.top.location = window.self.location; }
+  document.addEventListener('dragstart', e => e.preventDefault());
+  document.addEventListener('drop', e => e.preventDefault());
 </script>
 <script>
+  // Désactive clic droit partout
+  document.addEventListener('contextmenu', e => {
+    e.preventDefault();
+    alert("Clic droit désactivé pour protéger le contenu.");
+  });
+
+  // Empêche sélection texte, drag and drop, copy-paste et certains raccourcis courants
+  ['selectstart', 'dragstart', 'drop'].forEach(event =>
+    document.addEventListener(event, e => e.preventDefault()));
+
+  document.addEventListener('keydown', e => {
+    const forbiddenKeys = ['c', 'v', 'x', 'u', 's', 'a', 'p', 'i'];
+    if (e.ctrlKey && forbiddenKeys.includes(e.key.toLowerCase())) {
+      e.preventDefault();
+      alert("Cette action est désactivée pour protéger le contenu.");
+    }
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i')) {
+      e.preventDefault();
+      alert("Outils de développement désactivés.");
+    }
+    if (e.key === 'PrintScreen') {
+      try { navigator.clipboard.writeText(''); } catch {}
+      e.preventDefault();
+      alert("Capture d'écran désactivée.");
+    }
+  });
+
+  // Protection vidéos HTML5
+  document.querySelectorAll('video').forEach(video => {
+    video.setAttribute('controlsList', 'nodownload nofullscreen noremoteplayback');
+    video.setAttribute('disablePictureInPicture', '');
+    video.addEventListener('contextmenu', e => {
+      e.preventDefault();
+      alert("Clic droit désactivé sur la vidéo.");
+    });
+  });
+
+  // Overlay transparent anti-capture (peut gêner utilisateurs)
+  const overlay = document.createElement('div');
+  overlay.style.position = 'fixed';
+  overlay.style.top = '0'; overlay.style.left = '0';
+  overlay.style.width = '100%'; overlay.style.height = '100%';
+  overlay.style.zIndex = '9999999';
+  overlay.style.pointerEvents = 'none';
+  overlay.style.backgroundColor = 'transparent';
+  document.body.appendChild(overlay);
+
+  // Politique CSP à configurer côté serveur (exemple)
+  /*
+  Content-Security-Policy:
+    default-src 'self';
+    script-src 'self';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data:;
+    media-src 'self';
+    object-src 'none';
+  */
+
+  // Empêche l'accès iframe (clickjacking)
   if (window.top !== window.self) {
     window.top.location = window.self.location;
   }
 </script>
-<script>
-  document.addEventListener('dragstart', event => event.preventDefault());
-  document.addEventListener('drop', event => event.preventDefault());
-</script>
-<script>
-  document.addEventListener('contextmenu', event => event.preventDefault());
-  document.addEventListener('selectstart', event => event.preventDefault());
-  document.addEventListener('dragstart', event => event.preventDefault());
-  document.addEventListener('drop', event => event.preventDefault());
-
-  document.addEventListener('keydown', function(event) {
-    if (
-      event.ctrlKey &&
-      ['c', 'v', 'x', 'u', 's', 'p', 'a', 'i'].includes(event.key.toLowerCase())
-    ) {
-      event.preventDefault();
-    }
-    if(event.key === "F12") {
-      event.preventDefault();
-    }
-  });
-
-  if (window.top !== window.self) {
-    window.top.location = window.self.location;
-  }
-</script>
-</body>
-</html>
-
 
