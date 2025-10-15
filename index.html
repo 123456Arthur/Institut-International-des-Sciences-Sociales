@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Institut ISS - Excellence & Innovation</title>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self' data:; style-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline';">
-<head>
   <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
-</head>
 <body>
   <div id="zoom-wrapper">
   </div>
@@ -143,249 +141,358 @@ nav ul li a:focus {
     display: flex;
   }
 }
+@media (max-width: 768px) {
+  #heroCanvas, #iiss-preloader-canvas {
+    display: none;
+  }
+}
+/* Variables de style */
+:root {
+  --bleu-primaire: #21507a;
+  --bleu-second: #4aa3ff;
+  --bleu-vert-ocean: #72c3e6;
+  --or-excellence: #f9c51c;
+  --blanc: #fbfdff;
+  --gris-clair: #f4f7fa;
+  --iiss-neon-violet: #7c4dff;
+  --iiss-neon-blue: #00b3ff;
+  --iiss-bg: rgba(0, 0, 0, 0.9);
+  --iiss-text-white: #ffffff;
+  --iiss-pink: #ff5ec7;
+  --iiss-green: #b7ffd9;
+  --iiss-max-z: 999999;
+  --iiss-frame-radius: 16px;
+  --iiss-fade-time: 1000ms;
+}
 
+/* Style de base pour le body pendant le chargement */
+body.iiss-preloading {
+  overflow: hidden;
+}
+/* Variables de style */
+:root {
+  --bleu-primaire: #21507a;
+  --bleu-second: #4aa3ff;
+  --bleu-vert-ocean: #72c3e6;
+  --or-excellence: #f9c51c;
+  --blanc: #fbfdff;
+  --gris-clair: #f4f7fa;
+  --iiss-neon-violet: #7c4dff;
+  --iiss-neon-blue: #00b3ff;
+  --iiss-bg: rgba(0, 0, 0, 0.95);
+  --iiss-text-white: #ffffff;
+  --iiss-pink: #ff5ec7;
+  --iiss-green: #b7ffd9;
+  --iiss-max-z: 999999;
+  --iiss-frame-radius: 16px;
+  --iiss-fade-time: 1000ms;
+}
+
+/* Style de base pour le body pendant le chargement */
+body.iiss-preloading {
+  overflow: hidden;
+}
+
+/* Conteneur du preloader */
+#iiss-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--iiss-bg);
+  z-index: var(--iiss-max-z);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity var(--iiss-fade-time) ease;
+}
+
+/* Fond avec dégradé animé premium */
+.iiss-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    var(--iiss-neon-blue) 0%,
+    var(--iiss-neon-violet) 50%,
+    var(--or-excellence) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientFlow 8s ease infinite;
+  opacity: 0.7;
+  filter: blur(8px);
+}
+
+/* Animation du dégradé */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Canvas pour les particules */
+#iiss-preloader-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+/* Conteneur du titre et logo */
+.iiss-center {
+  position: relative;
+  z-index: 20;
+  text-align: center;
+}
+
+/* Conteneur du titre */
+.iiss-title {
+  font-size: 2.5rem;
+  color: var(--iiss-text-white);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 900;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  position: relative;
+}
+
+/* Style et animation des lettres */
+.iiss-title span {
+  opacity: 0;
+  display: inline-block;
+  text-shadow: 0 0 10px var(--iiss-neon-blue), 0 0 20px var(--iiss-neon-violet);
+  animation: fallingLetter 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  transform: translateY(-100vh);
+}
+
+/* Animation de chute avec rebond */
+@keyframes fallingLetter {
+  0% {
+    opacity: 0;
+    transform: translateY(-100vh);
+    filter: blur(5px);
+  }
+  60% {
+    opacity: 0.8;
+    transform: translateY(20px);
+    filter: blur(0);
+  }
+  80% {
+    transform: translateY(-10px);
+    text-shadow: 0 0 15px var(--iiss-neon-blue), 0 0 30px var(--iiss-neon-violet);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 10px var(--iiss-neon-blue), 0 0 20px var(--iiss-neon-violet);
+  }
+}
+
+/* Délais pour chaque lettre (ajustés pour 2.65s total) */
+.iiss-title span:nth-child(1) { animation-delay: 0.05s; }
+.iiss-title span:nth-child(2) { animation-delay: 0.10s; }
+.iiss-title span:nth-child(3) { animation-delay: 0.15s; }
+.iiss-title span:nth-child(4) { animation-delay: 0.20s; }
+.iiss-title span:nth-child(5) { animation-delay: 0.25s; }
+.iiss-title span:nth-child(6) { animation-delay: 0.30s; }
+.iiss-title span:nth-child(7) { animation-delay: 0.35s; }
+.iiss-title span:nth-child(8) { animation-delay: 0.40s; }
+.iiss-title span:nth-child(9) { animation-delay: 0.45s; }
+.iiss-title span:nth-child(10) { animation-delay: 0.50s; }
+.iiss-title span:nth-child(11) { animation-delay: 0.55s; }
+.iiss-title span:nth-child(12) { animation-delay: 0.60s; }
+.iiss-title span:nth-child(13) { animation-delay: 0.65s; }
+.iiss-title span:nth-child(14) { animation-delay: 0.70s; }
+.iiss-title span:nth-child(15) { animation-delay: 0.75s; }
+.iiss-title span:nth-child(16) { animation-delay: 0.80s; }
+.iiss-title span:nth-child(17) { animation-delay: 0.85s; }
+.iiss-title span:nth-child(18) { animation-delay: 0.90s; }
+.iiss-title span:nth-child(19) { animation-delay: 0.95s; }
+.iiss-title span:nth-child(20) { animation-delay: 1.00s; }
+.iiss-title span:nth-child(21) { animation-delay: 1.05s; }
+.iiss-title span:nth-child(22) { animation-delay: 1.10s; }
+.iiss-title span:nth-child(23) { animation-delay: 1.15s; }
+.iiss-title span:nth-child(24) { animation-delay: 1.20s; }
+.iiss-title span:nth-child(25) { animation-delay: 1.25s; }
+.iiss-title span:nth-child(26) { animation-delay: 1.30s; }
+.iiss-title span:nth-child(27) { animation-delay: 1.35s; }
+.iiss-title span:nth-child(28) { animation-delay: 1.40s; }
+.iiss-title span:nth-child(29) { animation-delay: 1.45s; }
+.iiss-title span:nth-child(30) { animation-delay: 1.50s; }
+.iiss-title span:nth-child(31) { animation-delay: 1.55s; }
+.iiss-title span:nth-child(32) { animation-delay: 1.60s; }
+.iiss-title span:nth-child(33) { animation-delay: 1.65s; }
+.iiss-title span:nth-child(34) { animation-delay: 1.70s; }
+.iiss-title span:nth-child(35) { animation-delay: 1.75s; }
+.iiss-title span:nth-child(36) { animation-delay: 1.80s; }
+.iiss-title span:nth-child(37) { animation-delay: 1.85s; }
+.iiss-title span:nth-child(38) { animation-delay: 1.90s; }
+.iiss-title span:nth-child(39) { animation-delay: 1.95s; }
+.iiss-title span:nth-child(40) { animation-delay: 2.00s; }
+.iiss-title span:nth-child(41) { animation-delay: 2.05s; }
+.iiss-title span:nth-child(42) { animation-delay: 2.10s; }
+.iiss-title span:nth-child(43) { animation-delay: 2.15s; }
+.iiss-title span:nth-child(44) { animation-delay: 2.20s; }
+.iiss-title span:nth-child(45) { animation-delay: 2.25s; }
+.iiss-title span:nth-child(46) { animation-delay: 2.30s; }
+.iiss-title span:nth-child(47) { animation-delay: 2.35s; }
+.iiss-title span:nth-child(48) { animation-delay: 2.40s; }
+.iiss-title span:nth-child(49) { animation-delay: 2.45s; }
+.iiss-title span:nth-child(50) { animation-delay: 2.50s; }
+.iiss-title span:nth-child(51) { animation-delay: 2.55s; }
+.iiss-title span:nth-child(52) { animation-delay: 2.60s; }
+.iiss-title span:nth-child(53) { animation-delay: 2.65s; }
+
+/* Logo ISS avec entrée spectaculaire */
+.iiss-logo-bubble {
+  width: 120px;
+  height: 120px;
+  margin: 20px auto;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.1) rotate(-180deg);
+  box-shadow: 0 0 20px var(--iiss-neon-blue), 0 0 40px var(--iiss-neon-violet);
+  animation: logoEntrance 1.5s ease-out 2s forwards, glowPulse 1.5s ease-in-out infinite 3.5s;
+}
+
+/* Animation d'entrée du logo */
+@keyframes logoEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.1) rotate(-180deg);
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.3) rotate(20deg);
+    filter: blur(0);
+    box-shadow: 0 0 40px var(--iiss-neon-blue), 0 0 80px var(--iiss-neon-violet);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+    box-shadow: 0 0 20px var(--iiss-neon-blue), 0 0 40px var(--iiss-neon-violet);
+  }
+}
+
+/* Animation d'éclat lumineux */
+@keyframes glowPulse {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.8);
+    box-shadow: 0 0 30px var(--iiss-neon-blue), 0 0 60px var(--iiss-neon-violet), 0 0 80px var(--iiss-pink);
+  }
+}
+
+/* Effet d'éclat lumineux */
+.iiss-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  animation: burstEffect 0.6s ease-out forwards;
+  animation-delay: 3.2s;
+}
+
+@keyframes burstEffect {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .iiss-title {
+    font-size: 1.5rem;
+  }
+  .iiss-logo-bubble {
+    width: 80px;
+    height: 80px;
+  }
+  .iiss-title span {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  #iiss-preloader-canvas {
+    display: none;
+  }
+}
+/* Désactiver les animations pour prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .iiss-title span {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .iiss-logo-bubble {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .iiss-burst {
+    animation: none;
+    display: none;
+  }
+  .iiss-frame {
+    animation: none;
+  }
+  #iiss-preloader {
+    transition: none;
+  }
+}
 </style>
 </head>
-<!-- IISS Preloader CSS (inserted) -->
-<style>
-:root {
-    --iiss-neon-violet: #7c4dff;
-    --iiss-neon-blue: #00b3ff;
-    --iiss-bg: rgba(0, 0, 0, 0.9); /* Slightly darker for premium feel */
-    --iiss-text-white: #ffffff;
-    --iiss-pink: #ff5ec7;
-    --iiss-green: #b7ffd9;
-    --iiss-max-z: 999999;
-    --iiss-frame-radius: 16px; /* Slightly larger radius for elegance */
-    --iiss-fade-time: 800ms; /* Longer fade for smoother transition */
-}
-
-#iiss-preloader {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    background: var(--iiss-bg);
-    z-index: var(--iiss-max-z);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow: hidden;
-    backdrop-filter: blur(2px); /* Subtle blur for depth */
-}
-
-#iiss-preloader .iiss-frame {
-    position: absolute;
-    inset: 4vh;
-    border-radius: var(--iiss-frame-radius);
-    pointer-events: none;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.03));
-    border: 2px solid rgba(255, 255, 255, 0.05); /* Thicker border for premium look */
-    box-shadow: 0 0 40px rgba(124, 77, 255, 0.3), 0 0 100px rgba(0, 179, 255, 0.18), inset 0 0 50px rgba(124, 77, 255, 0.08);
-    background-image: linear-gradient(90deg, rgba(124, 77, 255, 0.03), rgba(0, 179, 255, 0.03));
-}
-
-#iiss-preloader .iiss-frame::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    pointer-events: none;
-    mix-blend-mode: screen;
-    background: linear-gradient(90deg, rgba(124, 77, 255, 0.15), rgba(0, 195, 255, 0.12));
-    box-shadow: 0 0 60px rgba(124, 77, 255, 0.35), 0 0 150px rgba(0, 195, 255, 0.2), inset 0 0 50px rgba(255, 210, 60, 0.08);
-}
-
-#iiss-preloader .iiss-frame::after {
-    content: '';
-    position: absolute;
-    inset: 12%;
-    border-radius: calc(var(--iiss-frame-radius) - 4px);
-    background: url('IISS logo.jpg') center/center no-repeat;
-    background-size: 70%; /* Slightly larger logo for prominence */
-    opacity: 0.08;
-    filter: blur(8px) saturate(0.6); /* Enhanced blur and saturation */
-    mix-blend-mode: overlay;
-    pointer-events: none;
-    animation: logoPulse 3s ease-in-out infinite; /* Subtle logo pulse */
-}
-
-@keyframes logoPulse {
-    0%, 100% { transform: scale(1); opacity: 0.08; }
-    50% { transform: scale(1.05); opacity: 0.12; }
-}
-
-/* Enhanced Marvel-like enhancements */
-#iiss-preloader .iiss-scanlines {
-    position: absolute;
-    inset: 6vh;
-    border-radius: calc(var(--iiss-frame-radius) - 6px);
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 100% 4px; /* Tighter scanlines for premium effect */
-    opacity: 0.08;
-    pointer-events: none;
-    mix-blend-mode: screen;
-    animation: scan-move 4s linear infinite; /* Faster scan for dynamism */
-}
-
-@keyframes scan-move {
-    from { background-position-y: 0; }
-    to { background-position-y: 4px; }
-}
-
-/* Enhanced Pulsing frame */
-#iiss-preloader.pulse-frame .iiss-frame {
-    box-shadow: 0 0 100px rgba(124, 77, 255, 0.4), 0 0 200px rgba(0, 195, 255, 0.25), inset 0 0 70px rgba(255, 210, 60, 0.1);
-    transform: scale(1.02);
-    transition: transform 600ms cubic-bezier(0.2, 0.9, 0.2, 1);
-}
-
-#iiss-preloader.pulse-frame .iiss-frame::before {
-    box-shadow: 0 0 80px rgba(124, 77, 255, 0.45), 0 0 180px rgba(0, 195, 255, 0.25);
-}
-
-/* Enhanced radial light burst */
-#iiss-preloader .iiss-burst {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    mix-blend-mode: screen;
-    opacity: 0;
-    transition: opacity 500ms ease;
-}
-
-#iiss-preloader.burst-on .iiss-burst {
-    opacity: 0.15;
-}
-
-#iiss-preloader .iiss-burst::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    width: 35vmax;
-    height: 35vmax;
-    background: radial-gradient(circle at center, rgba(255, 215, 80, 0.2), rgba(124, 77, 255, 0.08) 30%, rgba(0, 229, 255, 0.03) 60%, transparent 80%);
-    transform: translate(-50%, -50%);
-    filter: blur(30px);
-    animation: burstGlow 5s ease-in-out infinite;
-}
-
-@keyframes burstGlow {
-    0%, 100% { opacity: 0.15; }
-    50% { opacity: 0.25; }
-}
-
-/* Enhanced Logo spotlight */
-#iiss-preloader.logo-pulse .iiss-frame::after {
-    opacity: 0.15;
-    transform: scale(1.06);
-    transition: opacity 500ms ease, transform 600ms ease;
-}
-
-/* Enhanced text effects */
-#iiss-preloader .iiss-center {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 1.5rem; /* Increased gap for spacing */
-    padding: 2.5rem;
-}
-
-#iiss-preloader .iiss-title {
-    font-family: "Inter", "Montserrat", "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    font-size: clamp(32px, 7vw, 90px); /* Slightly larger text range */
-    letter-spacing: 0.2em;
-    color: var(--iiss-text-white);
-    font-weight: 900;
-    line-height: 1.05;
-    text-transform: uppercase;
-    text-shadow: 0 0 3px rgba(255, 255, 255, 0.98), 0 0 15px rgba(255, 255, 255, 0.9), 0 0 35px rgba(180, 110, 255, 0.85), 10px 0 50px rgba(0, 195, 255, 0.5), -10px 0 50px rgba(255, 40, 140, 0.35), 0 12px 70px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(90deg, #ff2d95, #7c4dff, #00e5ff, #ffd100);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    position: relative;
-    display: inline-block;
-    letter-spacing: 0.16em;
-    transform: translateZ(0);
-    animation: titleGlow 3s ease-in-out infinite;
-}
-
-@keyframes titleGlow {
-    0%, 100% { text-shadow: 0 0 3px rgba(255, 255, 255, 0.98), 0 0 15px rgba(255, 255, 255, 0.9); }
-    50% { text-shadow: 0 0 5px rgba(255, 255, 255, 1), 0 0 20px rgba(124, 77, 255, 0.9); }
-}
-
-#iiss-preloader .iiss-title::before {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    color: var(--iiss-text-white);
-    z-index: -1;
-    transform: translateZ(0);
-    mix-blend-mode: screen;
-    opacity: 0.9;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 40px rgba(124, 77, 255, 0.7), 0 0 70px rgba(0, 229, 255, 0.5);
-    filter: blur(1.2px);
-}
-
-#iiss-preloader .iiss-title::after {
-    content: '';
-    position: absolute;
-    left: -35%;
-    top: 0;
-    width: 70%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transform: skewX(-20deg);
-    opacity: 0.85;
-    animation: iiss-shimmer 2.4s linear infinite;
-}
-
-@keyframes iiss-shimmer {
-    0% { left: -70%; }
-    50% { left: 100%; }
-    100% { left: 100%; }
-}
-
-#iiss-preloader .iiss-sub {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: clamp(14px, 1.6vw, 18px);
-    margin-top: 0.7rem;
-    letter-spacing: 0.15em;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-}
-
-#iiss-preloader.iiss-fadeout {
-    opacity: 0;
-    transition: opacity var(--iiss-fade-time) ease;
-    pointer-events: none;
-}
-
-body.iiss-preloading > *:not(#iiss-preloader) {
-    display: none !important;
-}
-</style>
-
 <body>
-<script>document.body.classList.add('iiss-preloading');</script>
-<!-- IISS Preloader markup (first child of body) -->
-<div id="iiss-preloader" role="status" aria-live="polite" aria-label="Welcome to IISS preloader">
+  <script>document.body.classList.add('iiss-preloading');</script>
+  <div id="iiss-preloader" role="status" aria-live="polite" aria-label="Welcome to IISS preloader">
   <div class="iiss-frame" aria-hidden="true"></div>
   <canvas id="iiss-preloader-canvas" aria-hidden="true"></canvas>
-  <div class="iiss-center" aria-hidden="true">
-  <h1 class="iiss-title" data-text="WELCOME TO INSTITUT INTERNATIONAL DES SCIENCES SOCIALES">WELCOME TO INSTITUT INTERNATIONAL DES SCIENCES SOCIALES</h1>
+  <div class="iiss-center">
+    <div class="iiss-burst" aria-hidden="true"></div>
+    <h1 class="iiss-title">
+      <span>W</span><span>E</span><span>L</span><span>C</span><span>O</span><span>M</span><span>E</span><span> </span>
+      <span>T</span><span>O</span><span> </span>
+      <span>I</span><span>N</span><span>S</span><span>T</span><span>I</span><span>T</span><span>U</span><span>T</span><span> </span>
+      <span>I</span><span>N</span><span>T</span><span>E</span><span>R</span><span>N</span><span>A</span><span>T</span><span>I</span><span>O</span><span>N</span><span>A</span><span>L</span><span> </span>
+      <span>D</span><span>E</span><span>S</span><span> </span>
+      <span>S</span><span>C</span><span>I</span><span>E</span><span>N</span><span>C</span><span>E</span><span>S</span><span> </span>
+      <span>S</span><span>O</span><span>C</span><span>I</span><span>A</span><span>L</span><span>E</span><span>S</span>
+    </h1>
+    <img src="IISS logo.jpg" alt="Logo ISS" class="iiss-logo-bubble" aria-hidden="true" />
   </div>
 </div>
+  </div>
 <header>
   <div class="logo">Institut ISS</div>
   <div class="header-icons" style="display:flex; gap:10px; align-items:center;">
@@ -405,6 +512,7 @@ body.iiss-preloading > *:not(#iiss-preloader) {
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
+</body>
   <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0" aria-expanded="false" aria-controls="menu">
     <div></div>
     <div></div>
@@ -474,119 +582,112 @@ body.iiss-preloading > *:not(#iiss-preloader) {
   })();
 </script>
 <script>
-  (function(){
-    const canvas = document.getElementById('heroCanvas');
-    if(!canvas) return;
+ document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById('iiss-preloader-canvas');
+  if (canvas) {
     const ctx = canvas.getContext('2d');
-    const off = document.createElement('canvas');
-    const offCtx = off.getContext('2d');
-    let w=0,h=0, balls=[];
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-    function resize(){
-      w = canvas.width = canvas.clientWidth || canvas.offsetWidth;
-      h = canvas.height = canvas.clientHeight || canvas.offsetHeight;
-      off.width = w; off.height = h;
-    }
-    window.addEventListener('resize', resize);
-    resize();
+    const particlesArray = [];
+    const colors = ['#ff2d95', '#7c4dff', '#00e5ff', '#f9c51c', '#b7ffd9'];
+    const numberOfParticles = Math.max(60, Math.round((window.innerWidth * window.innerHeight) / 10000));
 
-    function rand(min,max){ return Math.random()*(max-min)+min; }
-
-    function createBalls(){
-      balls = [];
-      const count = Math.max(6, Math.min(18, Math.floor((w*h)/150000)));
-      for(let i=0;i<count;i++){
-        balls.push({
-          x: rand(0,w), y: rand(0,h),
-          r: rand(Math.max(30,w*0.03), Math.max(60,w*0.06)),
-          vx: rand(-0.6,0.6), vy: rand(-0.25,0.25)
-        });
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 10 + 5;
+        this.speedX = Math.random() * 2 - 1;
+        this.speedY = Math.random() * 2 - 1;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+        this.opacity = Math.random() * 0.5 + 0.4;
+        this.phase = Math.random() * Math.PI * 2;
+        this.tailLength = Math.random() * 20 + 10;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.phase += 0.05;
+        this.size = Math.max(2, this.size - 0.05);
+        this.opacity = Math.max(0.1, this.opacity - 0.002);
+        if (this.x < 0) this.x = canvas.width;
+        if (this.x > canvas.width) this.x = 0;
+        if (this.y < 0) this.y = canvas.height;
+        if (this.y > canvas.height) this.y = 0;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        const gradient = ctx.createLinearGradient(
+          this.x,
+          this.y,
+          this.x - this.speedX * this.tailLength,
+          this.y - this.speedY * this.tailLength
+        );
+        gradient.addColorStop(0, `${this.color}${Math.round(this.opacity * 255).toString(16).padStart(2, '0')}`);
+        gradient.addColorStop(1, `${this.color}00`);
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = this.size;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = this.opacity;
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = this.color;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        ctx.shadowBlur = 0;
       }
     }
-    createBalls();
-    const mouse = {x: -9999, y: -9999, active: false};
-    canvas.addEventListener('mousemove', (e)=>{
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left; mouse.y = e.clientY - rect.top; mouse.active = true;
-    });
-    canvas.addEventListener('mouseleave', ()=>{ mouse.active = false; });
 
-    function step(){
-      offCtx.clearRect(0,0,w,h);
-      for(const b of balls){
-        b.x += b.vx; b.y += b.vy;
-        if(b.x < -b.r) b.x = w + b.r;
-        if(b.x > w + b.r) b.x = -b.r;
-        if(b.y < -b.r) b.y = h + b.r;
-        if(b.y > h + b.r) b.y = -b.r;
-        if(mouse.active){
-          const dx = mouse.x - b.x, dy = mouse.y - b.y;
-          const dist = Math.sqrt(dx*dx+dy*dy) || 1;
-          const force = Math.min(120, 8000 / (dist*dist));
-          b.vx += (dx/dist) * (force*0.00005);
-          b.vy += (dy/dist) * (force*0.00005);
+    function initParticles() {
+      particlesArray.length = 0;
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+        particlesArray[i].draw();
+        if (particlesArray[i].size <= 2 || particlesArray[i].opacity <= 0.1) {
+          particlesArray.splice(i, 1);
+          i--;
+          particlesArray.push(new Particle());
         }
-
-  offCtx.fillStyle = 'rgba(255,255,255,0.08)';
-  const g = offCtx.createRadialGradient(b.x,b.y, b.r*0.12, b.x,b.y, b.r);
-  g.addColorStop(0, 'rgba(250,255,255,0.85)');
-  g.addColorStop(0.3, 'rgba(74,163,255,0.28)');
-  g.addColorStop(1, 'rgba(0,0,0,0)');
-        offCtx.beginPath();
-        offCtx.fillStyle = g;
-        offCtx.arc(b.x,b.y,b.r,0,Math.PI*2);
-        offCtx.fill();
       }
-      const img = offCtx.getImageData(0,0,w,h);
-      const data = img.data;
-      for(let i=3;i<data.length;i+=4){
-        const alpha = data[i];
-        if(alpha > 18){ 
-          data[i-3] = 120; data[i-2] = 185; data[i-1] = 240; data[i] = 200;
-        } else {
-          data[i] = 0;
-        }
-      }
-      ctx.clearRect(0,0,w,h);
-      ctx.putImageData(img,0,0);
-      ctx.globalCompositeOperation = 'lighter';
-      const grad = ctx.createLinearGradient(0,0,w,h);
-  grad.addColorStop(0,'rgba(74,163,255,0.04)');
-  grad.addColorStop(1,'rgba(11,42,68,0.04)');
-      ctx.fillStyle = grad;
-      ctx.fillRect(0,0,w,h);
-      ctx.globalCompositeOperation = 'source-over';
-
-      requestAnimationFrame(step);
+      requestAnimationFrame(animateParticles);
     }
-    step();
-    window.addEventListener('resize', ()=>{ createBalls(); });
-  })();
-  (function(){
-    const btn = document.querySelector('.btn-magnetic');
-    if(!btn) return;
-    btn.addEventListener('mousemove', e => {
-      const rect = btn.getBoundingClientRect();
-      const dx = e.clientX - (rect.left + rect.width/2);
-      const dy = e.clientY - (rect.top + rect.height/2);
-      btn.style.transform = `translate(${dx*0.06}px, ${dy*0.06}px) scale(1.02)`;
+
+    initParticles();
+    animateParticles();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
     });
-    btn.addEventListener('mouseleave', ()=> btn.style.transform = '');
-  })();
-  (function(){
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.addEventListener('selectstart', e => e.preventDefault());
-    document.addEventListener('keydown', e => {
-      if((e.ctrlKey || e.metaKey) && ['c','s','u','a','p'].includes(e.key.toLowerCase())){
-        e.preventDefault();
-        return false;
-      }
-      if(e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.shiftKey && ['I','J'].includes(e.key.toUpperCase()))){
-        e.preventDefault();
-        return false;
-      }
-    });
-  })();
+  }
+
+  // Gestion du preloader (3-4s total)
+  window.addEventListener('load', () => {
+    const preloader = document.getElementById('iiss-preloader');
+    if (preloader) {
+      setTimeout(() => {
+        preloader.style.opacity = '0';
+        setTimeout(() => {
+          preloader.style.display = 'none';
+          document.body.classList.remove('iiss-preloading');
+        }, 1000);
+      }, 3650); // 2.65s lettres + 1s logo + 1s fondu
+    }
+  });
+});
 </script>
 <div class="lightbox-overlay" id="lightbox">
   <div class="lightbox-close" id="lightboxClose">✕</div>
@@ -1130,12 +1231,11 @@ body.iiss-preloading > *:not(#iiss-preloader) {
     window.top.location = window.self.location;
   }
 </script>
-
 </head>
 <body>
   <header class="hero">
     <video autoplay muted loop playsinline>
-      <source src="pub iss fn.mp4" type="video/mp4" />
+      <source src="PUB .mp4" type="video/mp4" />
       Votre navigateur ne supporte pas la vidéo.
     </video>
    <audio id="monson" autoplay loop style="display:none">
@@ -1208,9 +1308,7 @@ body.iiss-preloading > *:not(#iiss-preloader) {
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
   }
-
     </style>
- 
     <div class="scanline" aria-hidden="true"></div>
   </header>
   <section id="about" class="section-light" data-visible="false">
@@ -2511,7 +2609,7 @@ footer img {
     </div>
     <div class="contact-map">
       <iframe 
-<img src="QR.jpg"  
+id="qr-frame" src="QR.jpg"  
         width="90%" 
         height="90%" 
         style="border:0; border-radius: 12px;" 
@@ -2967,7 +3065,6 @@ window.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-
 
 
 
