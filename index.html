@@ -11,7 +11,6 @@
   </div>
 </body>
 <style>
-  /* Wrapper autour du body ou contenu principal */
 #zoom-wrapper {
   transform-origin: top center;
   transition: transform 0.5s ease;
@@ -146,7 +145,6 @@ nav ul li a:focus {
     display: none;
   }
 }
-/* Variables de style */
 :root {
   --bleu-primaire: #21507a;
   --bleu-second: #4aa3ff;
@@ -164,12 +162,9 @@ nav ul li a:focus {
   --iiss-frame-radius: 16px;
   --iiss-fade-time: 1000ms;
 }
-
-/* Style de base pour le body pendant le chargement */
 body.iiss-preloading {
   overflow: hidden;
 }
-/* Variables de style */
 :root {
   --bleu-primaire: #21507a;
   --bleu-second: #4aa3ff;
@@ -187,12 +182,9 @@ body.iiss-preloading {
   --iiss-frame-radius: 16px;
   --iiss-fade-time: 1000ms;
 }
-
-/* Style de base pour le body pendant le chargement */
 body.iiss-preloading {
   overflow: hidden;
 }
-/* Variables de style */
 :root {
   --bleu-primaire: #21507a;
   --bleu-second: #4aa3ff;
@@ -210,16 +202,13 @@ body.iiss-preloading {
   --iiss-frame-radius: 16px;
   --iiss-fade-time: 1000ms;
 }
-
-/* Style de base pour le body pendant le chargement */
 body.iiss-preloading {
   overflow: hidden;
 }
-/* Variables de style */
 :root {
-  --bleu-primaire: #1a2a44; /* Bleu profond, plus professionnel */
-  --argent: #d9e4ec; /* Argent pour une touche élégante */
-  --or-discret: #e6b800; /* Or subtil */
+  --bleu-primaire: #1a2a44; 
+  --argent: #d9e4ec; 
+  --or-discret: #e6b800; 
   --blanc: #ffffff;
   --gris-clair: #f4f7fa;
   --iiss-bg: rgba(0, 0, 0, 0.9);
@@ -230,13 +219,9 @@ body.iiss-preloading {
   --iiss-frame-radius: 16px;
   --iiss-fade-time: 1000ms;
 }
-
-/* Style de base pour le body pendant le chargement */
 body.iiss-preloading {
   overflow: hidden;
 }
-
-/* Conteneur du preloader */
 #iiss-preloader {
   position: fixed;
   top: 0;
@@ -250,8 +235,6 @@ body.iiss-preloading {
   justify-content: center;
   transition: opacity var(--iiss-fade-time) ease;
 }
-
-/* Fond avec dégradé animé premium */
 .iiss-frame {
   position: absolute;
   top: 0;
@@ -268,8 +251,6 @@ body.iiss-preloading {
   animation: gradientFlow 10s ease infinite;
   opacity: 0.85;
 }
-
-/* Animation du dégradé */
 @keyframes gradientFlow {
   0% {
     background-position: 0% 50%;
@@ -281,8 +262,6 @@ body.iiss-preloading {
     background-position: 0% 50%;
   }
 }
-
-/* Canvas pour les particules */
 #iiss-preloader-canvas {
   position: absolute;
   top: 0;
@@ -291,15 +270,11 @@ body.iiss-preloading {
   height: 100%;
   z-index: 10;
 }
-
-/* Conteneur du titre et logo */
 .iiss-center {
   position: relative;
   z-index: 20;
   text-align: center;
 }
-
-/* Conteneur du titre */
 .iiss-title {
   font-size: 2.2rem;
   color: var(--iiss-text-white);
@@ -310,11 +285,9 @@ body.iiss-preloading {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px; /* Plus d'espace entre les lettres */
+  gap: 10px; 
   position: relative;
 }
-
-/* Style et animation des lettres */
 .iiss-title span {
   opacity: 0;
   display: inline-block;
@@ -322,8 +295,6 @@ body.iiss-preloading {
   animation: fallingLetter 0.8s ease-out forwards;
   transform: translateY(-100vh);
 }
-
-/* Animation de chute professionnelle */
 @keyframes fallingLetter {
   0% {
     opacity: 0;
@@ -339,8 +310,6 @@ body.iiss-preloading {
     text-shadow: 0 0 8px var(--argent);
   }
 }
-
-/* Délais pour chaque lettre (14 caractères, 0.05s par lettre) */
 .iiss-title span:nth-child(1) { animation-delay: 0.05s; } /* W */
 .iiss-title span:nth-child(2) { animation-delay: 0.10s; } /* E */
 .iiss-title span:nth-child(3) { animation-delay: 0.15s; } /* L */
@@ -355,8 +324,6 @@ body.iiss-preloading {
 .iiss-title span:nth-child(12) { animation-delay: 0.60s; } /* I */
 .iiss-title span:nth-child(13) { animation-delay: 0.65s; } /* S */
 .iiss-title span:nth-child(14) { animation-delay: 0.70s; } /* S */
-
-/* Logo ISS avec entrée spectaculaire */
 .iiss-logo-bubble {
   width: 100px;
   height: 100px;
@@ -367,8 +334,6 @@ body.iiss-preloading {
   box-shadow: 0 0 15px var(--argent), 0 0 30px var(--iiss-light-blue);
   animation: logoEntrance 1s ease-out 0.8s forwards, glowPulse 2s ease-in-out infinite 1.8s;
 }
-
-/* Animation d'entrée du logo */
 @keyframes logoEntrance {
   0% {
     opacity: 0;
@@ -385,8 +350,6 @@ body.iiss-preloading {
     box-shadow: 0 0 15px var(--argent), 0 0 30px var(--iiss-light-blue);
   }
 }
-
-/* Animation d'éclat lumineux subtil */
 @keyframes glowPulse {
   0%, 100% {
     filter: brightness(1);
@@ -396,8 +359,6 @@ body.iiss-preloading {
     box-shadow: 0 0 20px var(--argent), 0 0 40px var(--iiss-light-blue);
   }
 }
-
-/* Effet d'éclat lumineux */
 .iiss-burst {
   position: absolute;
   top: 50%;
@@ -424,8 +385,6 @@ body.iiss-preloading {
     opacity: 0;
   }
 }
-
-/* Responsive */
 @media (max-width: 768px) {
   .iiss-title {
     font-size: 1.4rem;
@@ -445,8 +404,6 @@ body.iiss-preloading {
     display: none;
   }
 }
-
-/* Désactiver les animations pour prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .iiss-title span {
     animation: none;
@@ -532,7 +489,6 @@ body.iiss-preloading {
   });
 </script>
 <script>
-  // Smooth scroll to anchors and close mobile menu if open
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', function(e){
       const href = this.getAttribute('href');
@@ -540,7 +496,6 @@ body.iiss-preloading {
         const target = document.querySelector(href);
         if(target){
           e.preventDefault();
-          // close mobile menu if visible
           const menu = document.getElementById('menu');
           const hamburger = document.getElementById('hamburger');
           if(menu.classList.contains('active')){
@@ -548,7 +503,7 @@ body.iiss-preloading {
             hamburger.classList.remove('open');
             hamburger.setAttribute('aria-expanded','false');
           }
-          const topOffset = 84; // approximate header height
+          const topOffset = 84;
           const rect = target.getBoundingClientRect();
           const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
           window.scrollTo({ top: scrollTop + rect.top - topOffset, behavior: 'smooth' });
@@ -665,8 +620,6 @@ body.iiss-preloading {
       initParticles();
     });
   }
-
-  // Gestion du preloader (3-4s total)
   window.addEventListener('load', () => {
     const preloader = document.getElementById('iiss-preloader');
     if (preloader) {
@@ -676,7 +629,7 @@ body.iiss-preloading {
           preloader.style.display = 'none';
           document.body.classList.remove('iiss-preloading');
         }, 1000);
-      }, 3500); // 0.7s lettres + 1.5s logo + 0.3s éclat + 1s fondu
+      }, 3500);
     }
   });
 </script>
@@ -716,9 +669,7 @@ body.iiss-preloading {
     });
   })();
 </script>
-
 <style>
-  /* Animation 3D survol carte (effet professionnel léger) */
   .card {
     transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s;
   }
@@ -1151,9 +1102,8 @@ body.iiss-preloading {
       flex-direction: column;
       align-items: center;
     }
-    /* Ensure anchor to #formateurs is not hidden under the fixed header */
     #formateurs {
-      scroll-margin-top: 96px; /* offset for fixed header */
+      scroll-margin-top: 96px; 
       z-index: 5;
     }
   }
@@ -1249,7 +1199,6 @@ body.iiss-preloading {
     <style>
  /* Mobile-specific improvements */
   @media (max-width: 768px) {
-    /* make header fixed and compact for easier navigation */
     header {
       position: fixed;
       top: 0;
@@ -1264,8 +1213,6 @@ body.iiss-preloading {
     .hero { height: 56vh; }
     .hero h1 { font-size: 1.8rem; }
     .hero p { font-size: 0.95rem; }
-
-    /* mobile menu appearance */
     nav ul {
       background: linear-gradient(180deg, rgba(11,34,58,0.94), rgba(11,34,58,0.88));
       top: 56px;
@@ -1286,16 +1233,10 @@ body.iiss-preloading {
       border-bottom: 1px solid rgba(255,255,255,0.03);
     }
     nav ul li a:hover { background: rgba(255,255,255,0.02); }
-
-    /* ensure image frames fit mobile screens */
     .img-frame { width: 98%; max-width: 100%; padding: 6px; }
-
-    /* reduce metaballs and heavy visuals on small devices */
     .hero-canvas { display: none; }
     .scanline { opacity: 0.06; }
   }
-
-  /* Respect users who prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
   }
@@ -1614,10 +1555,8 @@ no-cours {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    /* Prevent it from overflowing horizontally on small screens by allowing the container
-       to scroll if needed. The container already centers items. */
     max-height: none;
-    object-fit: contain; /* ensure the image is not cropped and all content is visible */
+    object-fit: contain; 
   }
   /* Lightbox / modal to view image at readable size */
   .lightbox-overlay {
@@ -1848,7 +1787,7 @@ no-cours {
   position: absolute;
   inset: 0;
   background: url("IISS logo.jpg") center/cover no-repeat;
-  filter: blur(6px) brightness(0.5); /* flou + atténuation */
+  filter: blur(6px) brightness(0.5);
   z-index: -1;
 }
 
@@ -2042,11 +1981,11 @@ no-cours {
 }
 
 .ecosystem-items img {
-  width: 100%;          /* occupe toute la largeur du cadre */
-  height: auto;         /* hauteur automatique pour garder proportions */
-  max-width: 280px;     /* largeur maximale fixe pour uniformité */
-  border-radius: 14px;  /* coins arrondis pour effet premium */
-  object-fit: contain;  /* affiche toute l’image sans la couper */
+  width: 100%;      
+  height: auto;        
+  max-width: 280px;     
+  border-radius: 14px;  
+  object-fit: contain;  
   box-shadow: 0 8px 25px rgba(42, 109, 255, 0.3);
   transition: box-shadow 0.4s ease, transform 0.3s ease;
 }
@@ -2229,7 +2168,7 @@ no-cours {
       </div>
         </div>
        <div class="card">
-        <h3>Euler Math Groupe 👨‍🏫</h3>
+        <h3>Euler Math Groupe 👨‍🏫 (Mardi 17h-15 à 18h 00) et Vendredi (17h-18h)</h3>
         <p> Club entre jeune,brise glâce et conctact entre étudiant Math-financière,comptabilité,cours, apprentissage .</p>
          <div style="text-align:center;">
  <img src="Math.jpg" alt="is studio" style="height: 200px;  margin: bottom 0.7em;" />
@@ -2298,7 +2237,7 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
   <a href="Emploie de temps.html"
      class="btn-premium-emploi-temps-glow"
      aria-label="Voir l'emploi du temps des conférences hebdomadaires">
-    Emploi du temps  et résumer des conférences hebdomadaires
+    Emploi du temps  et résumé des conférences hebdomadaires
   </a>
 </div>
 <style>
@@ -2398,167 +2337,6 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
           <img src="isl.jpg" alt="ESP BIG" style="height:60px; margin-bottom:0.5rem;" />
           <div>ISL</div>
     </div>
- <section id="featured-videos" class="section-white" data-visible="false" style="padding-top:2rem; padding-bottom:2rem;">
-  <h2 class="animated-zoom">Vidéos en vedette 🎬</h2>
-  <p style="text-align:center; max-width:900px; margin:0.5rem auto 1.2rem auto; color: #333;">Découvrez nos présentations et reportages en défilement continu.</p>
-  <div class="videos-story-container">
-    <div class="videos-story" id="videos-story">
-      <!-- Les vidéos originales -->
-      <div class="video-card" data-src="Présentation Iss.mp4">
-        <video class="video-player" muted playsinline loop data-title="Présentation ISS" data-duration="0:37">
-          <source src="Présentation Iss.mp4" type="video/mp4">
-          Votre navigateur ne supporte pas la vidéo.
-        </video>
-        <div class="video-meta"><strong>Présentation ISS</strong><span>0:37</span></div>
-      </div>
-      <div class="video-card" data-src="Adresse Iss.mp4">
-        <video class="video-player" muted playsinline loop data-title="Lieu" data-duration="0:15">
-          <source src="Adresse Iss.mp4" type="video/mp4">
-          Votre navigateur ne supporte pas la vidéo.
-        </video>
-        <div class="video-meta"><strong>Lieu</strong><span>0:15</span></div>
-      </div>
-      <div class="video-card" data-src="Communauté.mp4">
-        <video class="video-player" muted playsinline loop data-title="Communauté IISS" data-duration="2:17">
-          <source src="Communauté.mp4" type="video/mp4">
-          Votre navigateur ne supporte pas la vidéo.
-        </video>
-        <div class="video-meta"><strong>Communauté IISS</strong><span>2:17</span></div>
-      </div>
-      <div class="video-card" data-src="Dossier à fournir .mp4">
-        <video class="video-player" muted playsinline loop data-title="Dossier à fournir" data-duration="0:46">
-          <source src="Dossier à fournir .mp4" type="video/mp4">
-          Votre navigateur ne supporte pas la vidéo.
-        </video>
-        <div class="video-meta"><strong>Dossier à fournir</strong><span>0:46</span></div>
-      </div>
-      <!-- Les copies seront ajoutées dynamiquement via JavaScript -->
-    </div>
-  </div>
-</section>
-<script>
-(function(){
-  const container = document.querySelector('#videos-story');
-  const videos = document.querySelectorAll('.video-player');
-  const videoCards = document.querySelectorAll('.video-card');
-
-  if (!container || !videos.length || !videoCards.length) return;
-
-  // Gestion du son de fond
-  const bgAudio = document.getElementById('monson');
-  let wasBgPlaying = false;
-
-  // Duplication des vidéos pour un défilement continu
-  const originalWidth = Array.from(videoCards).reduce((total, card) => {
-    return total + card.offsetWidth + 24; // Largeur de la carte + gap (1.5rem = 24px)
-  }, 0);
-  const containerWidth = document.querySelector('.videos-story-container').offsetWidth;
-  const copiesNeeded = Math.ceil(containerWidth / originalWidth) + 1; // Nombre de copies nécessaires
-
-  for (let i = 0; i < copiesNeeded; i++) {
-    videoCards.forEach(card => {
-      const clone = card.cloneNode(true);
-      container.appendChild(clone);
-    });
-  }
-
-  // Mettre à jour la liste des vidéos après duplication
-  const allVideos = document.querySelectorAll('.video-player');
-
-  // Intersection Observer pour jouer/arrêter les vidéos selon leur visibilité
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const video = entry.target;
-      if (entry.isIntersecting) {
-        video.play().catch(() => {}); // Jouer la vidéo si visible
-        if (bgAudio) {
-          wasBgPlaying = !bgAudio.paused;
-          bgAudio.pause(); // Mettre en pause le son de fond
-        }
-      } else {
-        video.pause(); // Arrêter la vidéo si non visible
-        if (bgAudio && wasBgPlaying) {
-          bgAudio.play().catch(() => {});
-        }
-      }
-    });
-  }, { threshold: 0.8 }); // Seuil de 80% de visibilité
-
-  allVideos.forEach(video => {
-    observer.observe(video);
-    // Désactiver les contrôles et le clic droit
-    video.setAttribute('controlsList', 'nodownload nofullscreen noremoteplayback');
-    video.setAttribute('disablePictureInPicture', '');
-    video.addEventListener('contextmenu', e => {
-      e.preventDefault();
-      alert("Clic droit désactivé sur la vidéo.");
-    });
-  });
-})();
-</script>
-<style>
- .videos-story-container {
-  position: relative;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  overflow: hidden;
-}
-
-.videos-story {
-  display: flex;
-  gap: 1.5rem;
-  animation: scroll 20s linear infinite; /* Défilement continu, durée ajustable */
-  will-change: transform; /* Optimisation pour l'animation */
-  min-width: max-content; /* Assure que le conteneur est assez large */
-}
-
-.video-card {
-  flex: 0 0 auto;
-  width: 300px; /* Ajustez selon vos besoins */
-  background: linear-gradient(180deg, #fff, #f6f8fb);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 30px rgba(10,35,66,0.12);
-  position: relative;
-}
-
-.video-player {
-  width: 100%;
-  height: 180px; /* Ajustez selon vos besoins */
-  object-fit: cover;
-  display: block;
-  background: linear-gradient(180deg, rgba(12,10,20,0.12), rgba(0,0,0,0.18));
-}
-
-.video-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.6rem 0.8rem;
-  font-weight: 700;
-  color: #0a2342;
-  font-size: 0.9rem;
-  background: rgba(255,255,255,0.9);
-}
-
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-100% + 1100px)); } /* Défile jusqu'à la fin moins la largeur du conteneur */
-}
-
-@media (max-width: 768px) {
-  .video-card {
-    width: 240px;
-  }
-  .video-player {
-    height: 140px;
-  }
-  .videos-story {
-    animation-duration: 15s; /* Défilement plus rapide sur mobile */
-  }
-}
-</style>
 <footer id="footer" class="section-dark" data-visible="false">
   <p>&copy; 2025 Institut International des Sciences Sociales. Tous droits réservés.</p>
   <img src="IISS logo.jpg" alt="Logo Institut ISS" style="margin-top: 1rem; width: 120px;" />
@@ -2593,26 +2371,21 @@ footer img {
         <i class="fa-solid fa-phone"></i>
         <p><strong>Téléphone :</strong> <a href="tel:+261384333187" aria-label="Appeler l'institut">+261 38 43 331 87</a></p>
       </div>
-      <div class="contact-qr">
-        <p class="qr-caption">Scannez pour plus d'informations</p>
+      <div class="contact-qr" style="text-align: center; margin-top: 1rem;">
+        <img src="QR.jpg" alt="Code QR pour scanner" style="width: 200px; height: 200px; border: 2px solid var(--or-excellence); border-radius: 8px; box-shadow: 0 4px 12px rgba(249,197,28,0.3); cursor: pointer;" onclick="this.style.transform='scale(1.5)'; setTimeout(() => this.style.transform='scale(1)', 2000);">
+        <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--blanc);">Scannez pour plus d'infos</p>
       </div>
-      <a href="inscription.html" class="btn-contact-cta">S'inscrire maintenant</a>
     </div>
-    <div class="contact-map">
-      <iframe 
-id="qr-frame" src="QR.jpg"  
-        width="90%" 
-        height="90%" 
-        style="border:0; border-radius: 12px;" 
-        allowfullscreen="" 
-        loading="lazy" 
-        aria-label="Carte de localisation de l'Institut ISS">
-      </iframe>
-    </div>
-  </div>
 </section>
   <!-- Contact & Localisation -->
     <style>
+      .contact-container { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: space-between; align-items: stretch; }
+.contact-info { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-item { display: flex; align-items: center; gap: 1rem; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 1.2rem; border: 1px solid var(--or-excellence); transition: transform 0.3s, box-shadow 0.3s; }
+.contact-item:hover { transform: translateY(-4px); box-shadow: 0 6px 18px rgba(249,197,28,0.4); }
+.contact-item i { font-size: 1.8rem; color: var(--or-excellence); }
+.contact-map { flex: 1; min-width: 300px; height: 300px; border-radius: 12px; overflow: hidden; border: 2px solid var(--or-excellence); box-shadow: 0 6px 18px rgba(10,35,66,0.2); }
+@media (max-width: 768px) { .contact-container { flex-direction: column; } .contact-map { height: 250px; } }
       #contact {
   max-width: 1100px;
   margin: 4rem auto;
@@ -2690,25 +2463,6 @@ id="qr-frame" src="QR.jpg"
 .contact-qr {
   text-align: center;
 }
-
-.qr-code {
-  width: 120px;
-  height: 120px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.qr-code:hover {
-  transform: scale(1.05);
-}
-
-.qr-caption {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin-top: 0.5rem;
-}
-
 .btn-contact-cta {
   display: inline-block;
   background: linear-gradient(90deg, var(--or-excellence), #eec32a);
@@ -2756,35 +2510,8 @@ id="qr-frame" src="QR.jpg"
     height: 100px;
   }
 }
-  /* Featured videos styles */
-  .videos-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:1rem; }
-  .video-card { background: linear-gradient(180deg, #fff, #f6f8fb); border-radius:12px; overflow:hidden; cursor:pointer; box-shadow:0 8px 30px rgba(10,35,66,0.08); position:relative; min-height:160px; display:flex; flex-direction:column; }
-  .video-card .video-thumb{ background-size:cover; background-position:center; height:140px; width:100%; display:flex; align-items:center; justify-content:center; position:relative; }
-  /* IISS-branded thumbnail: subtle logo filigree + gradient overlay + centered mark */
-  .iiss-thumb{ background-image: linear-gradient(180deg, rgba(12,10,20,0.12), rgba(0,0,0,0.18)), url('IISS logo.jpg'); background-blend-mode:overlay; background-size: 240px auto; background-repeat:no-repeat; background-position:center; filter: contrast(1.05) saturate(0.95); }
-  .iiss-thumb::before{ content:attr(data-title); position:absolute; left:12px; bottom:12px; right:12px; color: #fff; font-weight:800; text-shadow: 0 6px 18px rgba(0,0,0,0.6); font-size:clamp(12px,1.6vw,16px); display:block; }
-  .iiss-thumb::after{ content:attr(data-duration); position:absolute; right:10px; top:10px; background:rgba(0,0,0,0.45); color:#fff; padding:4px 8px; border-radius:8px; font-size:12px; font-weight:700; }
-  /* center play icon */
-  .video-card .playmark{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; }
-  .video-card .playmark svg{ width:64px; height:64px; filter: drop-shadow(0 10px 25px rgba(0,0,0,0.45)); }
-  .video-meta{ display:flex; justify-content:space-between; align-items:center; padding:0.7rem 0.9rem; font-weight:700; color:#0a2342; }
-  @media(max-width:900px){ .videos-grid{ grid-template-columns: 1fr; } }
-
-      /* Lightbox modal for video playback */
-      .video-lightbox{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.8); z-index:100000; }
-      .video-lightbox.active{ display:flex; }
-      .video-lightbox .inner{ width:clamp(320px,80vw,1100px); max-height:90vh; background:transparent; display:flex; align-items:center; justify-content:center; }
-      .video-lightbox video{ width:100%; height:auto; max-height:90vh; border-radius:10px; box-shadow:0 20px 80px rgba(0,0,0,0.6); }
-      .video-lightbox .close{ position:absolute; right:18px; top:16px; font-size:28px; color:white; cursor:pointer; z-index:100001; }
     </style>
 
-    <!-- Video lightbox markup -->
-    <div class="video-lightbox" id="videoLightbox" aria-hidden="true">
-      <div class="close" id="videoLightboxClose" aria-label="Fermer">✕</div>
-      <div class="inner">
-        <video id="lightboxVideo" controls playsinline></video>
-      </div>
-    </div>
 <script>
 // Tentative d'activation automatique du son (certains navigateurs peuvent bloquer l'autoplay sans interaction)
 window.addEventListener('DOMContentLoaded', function() {
@@ -2846,24 +2573,17 @@ window.addEventListener('DOMContentLoaded', function() {
     const closeBtn = document.getElementById('videoLightboxClose');
 
     if(!cards.length || !lightbox || !videoEl) return;
-
-  // keep reference to background audio (if present)
   const bgAudio = document.getElementById('monson');
-  let wasBgPlaying = false; // track if bg audio was playing before opening video
+  let wasBgPlaying = false; 
 
     function open(src){
-  // pause background audio to avoid competing sound; remember if it was playing
   try{ if(bgAudio){ wasBgPlaying = !bgAudio.paused; if(wasBgPlaying) bgAudio.pause(); } }catch(e){}
-
       videoEl.src = src;
-      // ensure audio allowed and audible
       videoEl.muted = false;
       try{ videoEl.volume = 0.9; }catch(e){}
       lightbox.classList.add('active');
       lightbox.setAttribute('aria-hidden','false');
-      // try to play; browsers may block autoplay with audio if user never interacted
       videoEl.play().catch(()=>{
-        // if blocked, show controls and leave to user
         videoEl.controls = true;
       });
     }
@@ -2873,7 +2593,6 @@ window.addEventListener('DOMContentLoaded', function() {
       try{ videoEl.removeAttribute('src'); videoEl.load(); }catch(e){}
       lightbox.classList.remove('active');
       lightbox.setAttribute('aria-hidden','true');
-      // resume background audio only if it was playing before
       try{ if(bgAudio && wasBgPlaying){ bgAudio.play().catch(()=>{}); } }catch(e){}
     }
 
@@ -2882,7 +2601,6 @@ window.addEventListener('DOMContentLoaded', function() {
         const src = c.getAttribute('data-src');
         if(src) open(src);
       });
-      // keyboard accessibility: open on Enter or Space
       c.setAttribute('tabindex','0');
       c.addEventListener('keydown', (ev)=>{
         if(ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar'){
@@ -2892,10 +2610,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
       });
     });
-
-    // Ensure iiss-thumb elements have an accessible fallback and roles
     document.querySelectorAll('.iiss-thumb').forEach(t => {
-      // if background image fails, use a subtle gradient fallback
       t.setAttribute('role','img');
       const title = t.getAttribute('data-title') || 'Vidéo';
       t.setAttribute('aria-label', title + ' - vignette IISS');
@@ -2905,13 +2620,7 @@ window.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') close(); });
   })();
 </script>
-<script>
-  // Audio control UI wiring for #monson
-  (function(){
-    const bg = document.getElementById('monson');
-    const toggle = document.getElementById('audioToggle');
-    const range = document.getElementById('audioRange');
-    if(!bg || !toggle || !range) return;
+<script>;
 
     // initialize from element
     try{ bg.volume = parseFloat(range.value); bg.muted = false; }catch(e){}
@@ -2938,7 +2647,7 @@ window.addEventListener('DOMContentLoaded', function() {
   const COLORS = ['#ff2d95','#7c4dff','#00e5ff','#ffd100'];
 
   let canvas = document.getElementById(CANVAS_ID);
-  if(!canvas) return; // nothing to do
+  if(!canvas) return; 
   const ctx = canvas.getContext('2d', { alpha: true });
   let dpr = Math.max(1, window.devicePixelRatio || 1);
   let particles = [], rafId = null, running = true;
@@ -3015,26 +2724,19 @@ window.addEventListener('DOMContentLoaded', function() {
   setSize(true); createParticles(); running = true; loop(performance.now()); window.addEventListener('resize', onResize, { passive:true }); document.addEventListener('visibilitychange', ()=>{ if(document.hidden){ if(rafId) { cancelAnimationFrame(rafId); rafId=null; } } else { if(!rafId) loop(performance.now()); } });
 
   const displayTime = Math.floor(Math.random()*(MAX_SHOW-MIN_SHOW+1))+MIN_SHOW;
-  // Before fade, trigger cinematic pulse/burst/logo shine for a short flourish
   setTimeout(()=>{
-    // small pre-burst: add classes to animate frame and logo
     const root = document.getElementById(PRELOADER_ID);
     if(root){
       root.classList.add('pulse-frame');
-      // show subtle light burst
       root.classList.add('burst-on');
-      // slightly enhance logo visibility
       root.classList.add('logo-pulse');
-      // remove cinematic classes shortly before fade to avoid abrupt leftover
       setTimeout(()=>{
         root.classList.remove('pulse-frame');
       }, 520);
     }
-    // then fade out
+  
     setTimeout(beginFade, 420);
   }, displayTime - 420 > 0 ? displayTime - 420 : Math.max(200, displayTime-200));
-
-  // safety cleanup fallback
   forcedTimer = setTimeout(cleanup, SAFETY);
 
 })();
@@ -3045,14 +2747,6 @@ window.addEventListener('DOMContentLoaded', function() {
       zoomWrapper.style.transform = 'scale(0.6)';
     }
   });
-
-  // Optionnel : Pour restaurer zoom à 100% sur interaction (exemple)
-  // document.addEventListener('click', () => {
-  //   const zoomWrapper = document.getElementById('zoom-wrapper');
-  //   if(zoomWrapper.style.transform !== 'scale(1)') {
-  //     zoomWrapper.style.transform = 'scale(1)';
-  //   }
-  // });
 </script>
 </body>
 </html>
