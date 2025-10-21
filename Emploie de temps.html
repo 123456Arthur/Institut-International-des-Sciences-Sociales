@@ -124,8 +124,6 @@
     padding: 1.2rem 1.5rem;
     font-weight: 600;
   }
-
-  /* Details récap section */
   details {
     background: rgba(5,30,60,0.85);
     border-radius: 20px;
@@ -192,7 +190,6 @@
 </style>
 
 <div class="digital-lines">
-  <!-- Generate lines in JS or manually add a few -->
   <div class="line" style="left: 3%; animation-delay: 0s;"></div>
   <div class="line" style="left: 15%; animation-delay: 4s;"></div>
   <div class="line" style="left: 28%; animation-delay: 8s;"></div>
@@ -245,7 +242,7 @@
   <table aria-label="Emploi du temps conférences">
     <thead><tr><th>Jour</th><th>Heure</th><th>Conférence / Thème </th></tr></thead>
     <tbody>
-      <tr><td>Lundi</td><td>12:30h - 13h</td><td>Les fondamentaux  de la Gestion agile </td></tr>
+      <tr><td>Lundi</td><td>12:30h - 13h</td><td></td></tr>
       <tr><td>Mardi</td><td>12:30h - 13h</td><td>Base de l'économie</td></tr>
       <tr><td>Mercredi</td><td>12:30h - 13h</td><td>Touche à tout ou polyvalent ou perdu  </td></tr>
       <tr><td>Jeudi</td><td>12:30h - 13h</td><td><em>Qui est ce qui vous  dit que Madagascar est pauvre ?</em></td></tr>
@@ -254,11 +251,41 @@
   </table>
 
   <details open>
-    <summary>Récapitulatif 1 - 
+    <summary>Récapitulatif 1 🎤 Conférence : Une belle aventure humaine autour de l’Agilité vécue par l’expérience !
       <button onclick="this.closest('details').removeAttribute('open')">Fermer</button>
     </summary>
     <div>
-      <p><strong>Thème :</strong>.........</p>
+      <p><strong>Thème : Les fondamentaux  de la Gestion agile </strong></p>
+      <p>
+ Une journée exceptionnelle placée sous le signe du partage 🤝, de l’apprentissage 📚 et de la collaboration 👥
+      </p>
+      <p>À l’IISS, nous croyons que l’expérience humaine est au cœur de tout processus d’apprentissage. Cette conférence a magnifiquement illustré l’esprit agile à travers :
+</p>
+<p>
+  <p>✨ Ateliers dynamiques</p>
+  <p>💬 Échanges sincères</p>
+  <p>🌱 Feedbacks bienveillants</p>
+</p>
+<p>
+Les participants ont vécu l’Agilité en action :
+<p>➡️ Apprendre à collaborer autrement</p>
+<p>➡️ S’adapter collectivement aux changements</p>
+<p>➡️ Construire des solutions durables dans un cadre participatif</p>
+</p>
+<p>
+Encadrés par des formateurs IISS et consultants expérimentés, les participants ont exploré la gestion de projet Agile via mises en situation, jeux de rôles et réflexions collectives.
+</p>
+<p>
+Cette journée a montré la puissance du collectif : des apprentissages riches, des rires partagés 😄, et surtout, une belle prise de conscience sur la force de la coopération et de l’adaptation.
+</p>
+À l’IISS, chaque conférence est un laboratoire social et pédagogique où théorie et pratique se rencontrent, permettant aux étudiants, professionnels et intervenants de créer de la valeur dans un monde complexe.
+
+« L’agilité n’est pas une méthode, c’est une culture de confiance et de collaboration. »
+<p>IISS - Ici, construis ta vie. 🏗️</p>
+
+</p>
+<p>
+  </p>
     </div>
   </details>
 
@@ -401,5 +428,4 @@
     window.top.location = window.self.location;
   }
 </script>
-
 
