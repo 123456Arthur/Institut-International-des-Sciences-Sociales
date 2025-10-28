@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UE6 : Développement durable, Environnement et Sécurité</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-galaxy: #0a0e1a;
+      --bg-deep: #0f1629;
+      --card-gradient: linear-gradient(145deg, #1a2340 0%, #0f1a33 100%);
+      --primary: #00d4ff;     
+      --secondary: #ff6b9d;   
+      --accent: #7c3aed;    
+      --gold: #ffd700;        
+      --text: #f0f4ff;
+      --text-soft: #c0d4ff;
+      --glow-primary: 0 0 30px rgba(0, 212, 255, 0.6);
+      --glow-secondary: 0 0 25px rgba(255, 107, 157, 0.5);
+      --glow-accent: 0 0 20px rgba(124, 58, 237, 0.5);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg-galaxy);
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1), transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 107, 157, 0.08), transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.06), transparent 50%);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--card-gradient);
+      border-radius: 28px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      position: relative;
+      margin-bottom: 3.5rem;
+      box-shadow: 
+        0 0 60px rgba(0, 212, 255, 0.2),
+        0 25px 80px rgba(0, 0, 0, 0.5),
+        inset 0 0 40px rgba(255, 255, 255, 0.05);
+      overflow: hidden;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 30px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+      background-size: 300% 300%;
+      z-index: -1;
+      animation: borderPulse 8s ease infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes borderPulse {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .ue-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.8rem;
+      text-shadow: var(--glow-primary);
+      letter-spacing: 1px;
+    }
+
+    .ue-credits {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,215,0,0.1));
+      display: inline-block;
+      padding: 0.6rem 1.6rem;
+      border-radius: 50px;
+      border: 1.5px solid rgba(255,215,0,0.4);
+      margin: 1.2rem 0;
+      box-shadow: var(--glow-secondary);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 1.8rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.8rem 2rem;
+      background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(124,58,237,0.15));
+      border-radius: 50px;
+      border: 1.5px solid rgba(0,212,255,0.3);
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .back-link:hover {
+      background: linear-gradient(135deg, rgba(0,212,255,0.3), rgba(124,58,237,0.3));
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(0,212,255,0.4);
+    }
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .module-card {
+      background: var(--card-gradient);
+      padding: 1.8rem 1.6rem;
+      border-radius: 22px;
+      border: 1.5px solid transparent;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 
+        0 12px 35px rgba(0,0,0,0.4),
+        inset 0 0 20px rgba(255,255,255,0.03);
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      cursor: pointer;
+      transform-style: preserve-3d;
+    }
+
+    .module-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, 
+        rgba(0,212,255,0.15), 
+        rgba(255,107,157,0.1), 
+        rgba(124,58,237,0.15));
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      border-radius: 22px;
+      z-index: 0;
+    }
+
+    .module-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .module-card:hover {
+      transform: translateY(-15px) scale(1.03) rotateX(5deg);
+      border-color: var(--primary);
+      box-shadow: 
+        0 30px 70px rgba(0,212,255,0.3),
+        0 0 50px rgba(0,212,255,0.25),
+        0 0 80px rgba(255,107,157,0.15);
+    }
+
+    .module-card:hover::before {
+      opacity: 1;
+    }
+
+    .module-card:hover::after {
+      opacity: 1;
+    }
+
+    .module-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+      transition: color 0.4s ease;
+    }
+
+    .module-card:hover .module-title {
+      color: #ffffff;
+      text-shadow: 0 0 15px rgba(0,212,255,0.8);
+    }
+
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,212,255,0.6), transparent);
+      transform: scale(0);
+      animation: rippleBlast 0.8s ease-out;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes rippleBlast {
+      to {
+        transform: scale(5);
+        opacity: 0;
+      }
+    }
+    @media (max-width: 992px) {
+      .ue-title { font-size: 2.6rem; }
+      .modules-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .ue-title { font-size: 2.2rem; }
+      .modules-grid { grid-template-columns: 1fr; }
+      .header { padding: 2rem 1.5rem; }
+      .module-card { padding: 1.5rem; }
+    }
+  </style>
+   <style>
+    /* === 100% VISIBILITÉ & RESPONSIVE FIX === */
+    html, body { width: 100%; overflow-x: hidden; }
+    .container { width: 100%; padding: 1rem; max-width: 1400px; margin: 0 auto; }
+    .modules-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important; gap: 1.5rem !important; padding: 0 0.5rem; }
+    .module-card { min-height: 80px; padding: 1.4rem 1.2rem !important; font-size: 1.05rem !important; word-wrap: break-word; }
+    .module-title { font-size: 1.05rem !important; line-height: 1.5 !important; }
+    @media (max-width: 768px) {
+      .ue-title { font-size: 2.3rem !important; }
+      .ue-credits { font-size: 1.3rem !important; padding: 0.5rem 1.2rem !important; }
+      .header { padding: 2rem 1.2rem !important; }
+      .back-link { font-size: 1rem !important; padding: 0.6rem 1.5rem !important; }
+      .modules-grid { grid-template-columns: 1fr !important; gap: 1.2rem !important; }
+    }
+    @media (max-width: 480px) {
+      .ue-title { font-size: 1.9rem !important; }
+      .module-title { font-size: 1rem !important; }
+    }
+    .module-card * { visibility: visible !important; opacity: 1 !important; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header">
+      <h1 class="ue-title">UE6 : Développement durable, Environnement et Sécurité</h1>
+      <div class="ue-credits">15 crédits</div>
+      <a href="index.html" class="back-link">Retour à l'accueil</a>
+    </div>
+
+    <div class="modules-grid">
+      <div class="module-card"><div class="module-title">Bonne gouvernance</div></div>
+      <div class="module-card"><div class="module-title">Communication et développement durable</div></div>
+      <div class="module-card"><div class="module-title">Développement durable</div></div>
+      <div class="module-card"><div class="module-title">Ecologie et développement durable</div></div>
+      <div class="module-card"><div class="module-title">Gestion de chantier et des risques</div></div>
+      <div class="module-card"><div class="module-title">Gestion des risques naturels</div></div>
+      <div class="module-card"><div class="module-title">Gestion des risques technologiques et installations classées</div></div>
+      <div class="module-card"><div class="module-title">Hygiène et Santé au Travail</div></div>
+      <div class="module-card"><div class="module-title">Introduction à la gestion de risque</div></div>
+      <div class="module-card"><div class="module-title">La démarche environnementale</div></div>
+      <div class="module-card"><div class="module-title">Le système de management qualité et les référentiels de qualité</div></div>
+      <div class="module-card"><div class="module-title">Notion sur l'Economie verte / bleue</div></div>
+      <div class="module-card"><div class="module-title">Risque technologiques et environnementaux</div></div>
+      <div class="module-card"><div class="module-title">Sécurité incendie</div></div>
+      <div class="module-card"><div class="module-title">Système de Management Environnemental</div></div>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.module-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height) * 2;
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 800);
+      });
+    });
+  </script>
+</body>
+</html>
