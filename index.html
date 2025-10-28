@@ -1107,6 +1107,61 @@ body.iiss-preloading {
       z-index: 5;
     }
   }
+  .hero-bg {
+  position: absolute;
+  inset: 0;
+  background: center/cover no-repeat;
+  background-image: url('PhotoGroupe.jpg'); /* Au cas où le style inline ne passe pas */
+  z-index: 0;
+  filter: brightness(0.78) contrast(1.08) saturate(1.1);
+  transition: all 0.6s ease;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(11, 42, 68, 0.65), 
+    rgba(33, 80, 122, 0.35), 
+    rgba(249, 197, 28, 0.15)
+  );
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 15% 25%, rgba(74, 163, 255, 0.22), transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(249, 197, 28, 0.18), transparent 50%);
+  z-index: 2;
+  animation: breathe 10s ease-in-out infinite;
+}
+
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(249, 197, 28, 0.1), transparent 65%);
+  z-index: 1;
+  animation: glowPulse 14s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.95; }
+}
+
+@keyframes glowPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+
+/* Effet au survol (optionnel, premium) */
+.hero:hover .hero-bg {
+  filter: brightness(0.88) contrast(1.12) saturate(1.15);
+}
 </style>
 <script>
   // Désactive clic droit partout
@@ -1175,25 +1230,23 @@ body.iiss-preloading {
 </head>
 <body>
   <header class="hero">
-    <video autoplay muted loop playsinline>
-      <source src="PUB .mp4" type="video/mp4" />
-      Votre navigateur ne supporte pas la vidéo.
-    </video>
-   <audio id="monson" autoplay loop style="display:none">
-  <source src="audio/issaudio (online-audio-converter.com).mp3" type="audio/mpeg">
-  <source src="audio/issaudio (online-audio-converter.com).ogg" type="audio/ogg">
-</audio>
-<!-- Main audio control UI -->
-<div id="audioControl" aria-label="Contrôle audio principal" style="position:fixed; right:18px; bottom:18px; z-index:99999; display:flex; gap:10px; align-items:center; background:rgba(0,0,0,0.45); padding:8px 10px; border-radius:30px; box-shadow:0 6px 18px rgba(0,0,0,0.4);">
-  <button id="audioToggle" aria-label="Activer / Désactiver son" style="background:transparent;border:0;color:#fff;font-size:18px;cursor:pointer;">🔊</button>
-  <input id="audioRange" type="range" min="0" max="1" step="0.01" value="0.7" style="width:120px;">
-</div>
-  
-    <div class="hero-content">
-  <h1 class="animated-bounce neon glitch" data-text="Institut ISS – Excellence & Innovation">Institut ISS – Excellence & Innovation </h1>
-      <p>Intégrez notre pédagogie interdisciplinaire et plongez dans le monde professionnel, </p>
-      <a href="#contact" class="btn-primary btn-magnetic">ICI CONSTRUIS TA VIE</a>
-    </div>
+  <!-- Image de fond premium -->
+  <div class="hero-bg" style="background-image: url(' Groupe photo .jpg');" aria-hidden="true">
+    <div class="hero-overlay"></div>
+    <div class="hero-glow"></div>
+  </div>
+  <!-- Effets visuels -->
+  <div class="glow-gradient"></div>
+  <div class="scanline" aria-hidden="true"></div>
+  <!-- Contenu texte -->
+  <div class="hero-content">
+    <h1 class="animated-bounce neon glitch" data-text="Institut ISS – Excellence & Innovation">
+      Institut ISS – Excellence & Innovation
+    </h1>
+    <p>Intégrez notre pédagogie interdisciplinaire et plongez dans le monde professionnel,</p>
+    <a href="#contact" class="btn-primary btn-magnetic">ICI CONSTRUIS TA VIE</a>
+  </div>
+</header>
     <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
     <div class="glow-gradient"></div>
     <style>
@@ -1565,180 +1618,193 @@ no-cours {
     </tbody>
   </table>
 </section>
-  <section id="l1-highlight" class="highlight-section-vertical">
-  <div class="highlight-content">
-    <h2>Plongez au cœur de l'excellence et de l'innovation</h2>
-    <p>
-      Découvrez un programme pensé pour vous immerger dans les réalités actuelles, développer vos compétences 
-      et nourrir votre curiosité. Chaque cours, chaque atelier, chaque rencontre est une étape vers votre réussite professionnelle et personnelle.
-    </p>
-    <p class="highlight-cta"><strong>Ne vous contentez pas du savoir, <em>viviez-le</em> pleinement avec nous !</strong></p>
-    <p><em>Explorez, innovez, inspirez-vous — votre avenir commence ici.</em></p>
-    <button class="btn-toggle-images">Savoir Plus</button>
-  </div>
+<!-- SECTION UES - TITRE H1 CLAIR & PREMIUM -->
+<section class="ues-premium-section">
+  <div class="ues-premium-container">
 
-  <div class="highlight-images-vertical" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
-  <!-- Les  images de Modules -->
-  <!-- Utiliser l'image 'L1 réel' pour que toutes les informations soient visibles -->
-  <img src="Licence 1 .jpg"  alt="L1 réel" class="highlight-img" />
-    <img src="L2.jpg" alt="Image descriptive 2" class="highlight-img" />
-    <img src="L2 suite .jpg" alt="Image descriptive 3" class="highlight-img" />
-     <img src="L3 1.jpg" alt="Image descriptive 1" class="highlight-img" />
-    <img src="L3 2.jpg" alt="Image descriptive 2" class="highlight-img" />
-    <img src="L3 3.jpg" alt="Image descriptive 3" class="highlight-img" />
+    <!-- TITRE H1 SIMPLE & IMPACTANT -->
+    <h1 class="ues-h1-title">Nos Unités d'Enseignement</h1>
+    <p class="ues-subtitle">Cliquez sur une UE pour découvrir son programme détaillé</p>
+
+    <!-- GRILLE UEs -->
+    <div class="ues-grid">
+      <a href="ue1.html" class="ue-card">
+        <div class="ue-code">UE1</div>
+        <div class="ue-name">Langues, Cultures et Communications</div>
+        <div class="ue-credits">16 crédits</div>
+      </a>
+
+      <a href="ue2.html" class="ue-card">
+        <div class="ue-code">UE2</div>
+        <div class="ue-name">Soft skills et Développement Humain</div>
+        <div class="ue-credits">11 crédits</div>
+      </a>
+
+      <a href="ue3.html" class="ue-card">
+        <div class="ue-code">UE3</div>
+        <div class="ue-name">Sciences humaines, Sociales et Éthiques</div>
+        <div class="ue-credits">18 crédits</div>
+      </a>
+
+      <a href="ue4.html" class="ue-card">
+        <div class="ue-code">UE4</div>
+        <div class="ue-name">Économie, Finance et Gestion</div>
+        <div class="ue-credits">32 crédits</div>
+      </a>
+
+      <a href="ue5.html" class="ue-card">
+        <div class="ue-code">UE5</div>
+        <div class="ue-name">Management, Stratégie et Entrepreneuriat</div>
+        <div class="ue-credits">18 crédits</div>
+      </a>
+
+      <a href="ue6.html" class="ue-card">
+        <div class="ue-code">UE6</div>
+        <div class="ue-name">Développement durable, Environnement et Sécurité</div>
+        <div class="ue-credits">15 crédits</div>
+      </a>
+
+      <a href="ue7.html" class="ue-card">
+        <div class="ue-code">UE7</div>
+        <div class="ue-name">Compétence numérique et Gestion de Projet</div>
+        <div class="ue-credits">18 crédits</div>
+      </a>
+    </div>
   </div>
 </section>
+
 <style>
-  .highlight-section-vertical {
-    max-width: 1000px;
-    margin: 4rem auto;
-    padding: 2rem 3rem;
-    background: linear-gradient(135deg, var(--bleu-primaire), #f9c51c);
-    color: white;
-    border-radius: 14px;
-    box-shadow: 0 10px 36px rgba(249, 197, 28, 0.8);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    animation: pulseGlow 4s ease-in-out infinite;
+  /* === SECTION UES - PREMIUM SOBRE === */
+  .ues-premium-section {
+    padding: 5rem 1rem;
+    background: #0a1828;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ues-premium-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(74, 144, 226, 0.08), transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(114, 195, 230, 0.06), transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .ues-premium-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
     text-align: center;
-    
   }
-  @keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 10px 36px rgba(249, 197, 28, 0.8); }
-    50% { box-shadow: 0 10px 48px rgba(249, 197, 28, 1); }
+
+  /* H1 - SIMPLE, CLAIR, PREMIUM */
+  .ues-h1-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #e6f1ff;
+    margin: 0 0 1rem;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
   }
-  .highlight-content h2 {
-    font-size: 2.8rem;
-    font-weight: 900;
-    margin-bottom: 1.2rem;
-    text-shadow: 2px 2px 10px rgba(21, 93, 99, 0.7);
+
+  .ues-subtitle {
+    color: #a0c4ff;
+    font-size: 1.15rem;
+    margin-bottom: 3rem;
+    font-weight: 500;
   }
-  .highlight-content p {
-    font-size: 1.2rem;
-    margin: 1rem 0;
-    text-shadow: 1px 1px 6px rgba(21, 93, 99, 0.5);
+
+  /* GRILLE */
+  .ues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.8rem;
   }
-  .highlight-cta {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--bleu-primaire);
-    background: #f9c51c;
-    padding: 0.8rem 1.5rem;
-    border-radius: 9px;
-    display: inline-block;
-    text-shadow: none;
-  }
-  .btn-toggle-images {
-    margin-top: 1.5rem;
-    padding: 0.8rem 1.6rem;
-    border-radius: 8px;
-    background-color: #155d63;
-    color: white;
-    border: none;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s ease;
-  }
-  .btn-toggle-images:hover {
-    background-color: #114247;
-  }
-  .highlight-images-vertical {
+
+  .ue-card {
+    background: linear-gradient(135deg, #0f1f33 0%, #1a2a44 100%);
+    padding: 1.8rem 1.5rem;
+    border-radius: 18px;
+    text-decoration: none;
+    color: #e6f1ff;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    align-items: center;
-  }
-  /* Styles pour les images de la section highlight */
-  .highlight-images-vertical .highlight-img {
-    width: 90%;
-    max-width: 600px;
-    height: auto;
-    border-radius: 14px;
-    box-shadow: 0 10px 48px rgba(0, 0, 0, 0.45);
-    transition: transform 0.3s ease, filter 0.3s ease, opacity 0.35s ease;
-    opacity: 1;
-    display: block;
-  }
-  .highlight-images-vertical .highlight-img:hover {
-    transform: translateY(-6px) scale(1.02);
-    filter: saturate(1.05) contrast(1.03);
-  }
-  /* Keep the FIRST image at its native size (no forced width/max-width)
-     This ensures the first photo in the "Plongez" section displays at
-     its intrinsic pixel dimensions while other images keep the responsive rules. */
-  .highlight-images-vertical .highlight-img:first-of-type {
-    width: auto;
-    max-width: none;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-height: none;
-    object-fit: contain; 
-  }
-  /* Lightbox / modal to view image at readable size */
-  .lightbox-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    display: none;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
-    padding: 20px;
+    min-height: 150px;
+    border: 1.5px solid rgba(74, 144, 226, 0.25);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   }
-  .lightbox-overlay.active {
-    display: flex;
-  }
-  .lightbox-content {
-    max-width: 90vw;
-    max-height: 90vh;
-    overflow: auto;
-  }
-  .lightbox-content img {
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    border-radius: 6px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-  }
-  .lightbox-close {
+
+  .ue-card::before {
+    content: '';
     position: absolute;
-    top: 18px;
-    right: 20px;
-    color: #fff;
-    font-size: 28px;
-    cursor: pointer;
-    z-index: 10000;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.12), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: 18px;
   }
-  /* Frame wrapper for large images to allow scrolling on small screens */
-  .img-frame {
-    width: 100%;
-    max-width: 100%;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-    display: flex;
-    justify-content: center;
-    padding: 6px 0;
+
+  .ue-card:hover::before {
+    opacity: 1;
+  }
+
+  .ue-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: #4a90e2;
+    box-shadow: 
+      0 20px 50px rgba(74, 144, 226, 0.25),
+      0 0 35px rgba(74, 144, 226, 0.2);
+    z-index: 5;
+  }
+
+  .ue-code {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #4a90e2;
+    margin-bottom: 0.6rem;
+    text-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+  }
+
+  .ue-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.5;
+    color: #d0e4ff;
+    margin: 0.5rem 0;
+  }
+
+  .ue-credits {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #72c3e6;
+    background: rgba(74, 144, 226, 0.15);
+    padding: 0.4rem 1rem;
+    border-radius: 30px;
+    margin-top: 0.8rem;
+    border: 1px solid rgba(74, 144, 226, 0.3);
+  }
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    .ues-grid { grid-template-columns: repeat(2, 1fr); }
+    .ues-h1-title { font-size: 2.5rem; }
+  }
+  @media (max-width: 600px) {
+    .ues-grid { grid-template-columns: 1fr; }
+    .ues-h1-title { font-size: 2.2rem; }
+    .ue-card { padding: 1.5rem; }
   }
 </style>
-<script>
-  const btnToggle = document.querySelector('.btn-toggle-images');
-  const imagesContainer = document.querySelector('.highlight-images-vertical');
-
-  btnToggle.addEventListener('click', () => {
-    if (imagesContainer.style.maxHeight && imagesContainer.style.maxHeight !== '0px') {
-      imagesContainer.style.maxHeight = '0';
-      btnToggle.textContent = 'Savoir Plus';
-    } else {
-      imagesContainer.style.maxHeight = imagesContainer.scrollHeight + 'px';
-      btnToggle.textContent = 'Réduire';
-    }
-  });
-</script>
  <section id="ecosystem" class="section-light" data-visible="false" aria-label="Notre Écosystème">
   <h2 class="animated-zoom">Notre Écosystème 🤝</h2>
   <div class="ecosystem-items">
@@ -2868,5 +2934,4 @@ window.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-
 
