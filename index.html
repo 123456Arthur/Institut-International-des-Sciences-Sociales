@@ -2497,29 +2497,28 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
   color: #e6f1ff;
   text-align: center;
 }
-
-.spotlight-3d::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: 
-    radial-gradient(circle at 30% 40%, rgba(74, 163, 255, 0.15), transparent 50%),
-    radial-gradient(circle at 70% 60%, rgba(249, 197, 28, 0.12), transparent 50%);
-  animation: floatBg 20s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 0;
+.spotlight-3d {
+  min-height: 100vh;
+  padding: 8rem 2rem;
+  background: #0a1428; 
+  color: #e6f1ff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
-
-@keyframes floatBg {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-30px) scale(1.05); }
-}
-
 .spotlight-container {
-  max-width: 1300px;
+  max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .spotlight-title {
@@ -2541,17 +2540,17 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
   font-weight: 500;
 }
 
-/* SCÈNE 3D */
 .spotlight-stage {
   perspective: 1200px;
-  height: 320px;
-  position: relative;
+  height: 380px;
+  width: 100%;
+  max-width: 400px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
-
 .spotlight-card {
   position: absolute;
   width: 280px;
@@ -2734,7 +2733,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: "ESP BIG", img: "ESP BIG.png" },
     { name: "APMFC", img: "apmfc.png" },
     { name: "ISL", img: "isl.jpg" },
-    { name: "Malagasy Chess Game", img: "Jeu d'échecs malgache .jpg" },
+    { name: "Malagasy Chess Game", img: "MCG.jpg" },
     { name: "K4M", img: "K4M.jpg" },
     { name: "CO42", img: "Co42.png" },
     { name: "IS Studio", img: "Is studio.png" },
@@ -3281,5 +3280,4 @@ window.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-
 
