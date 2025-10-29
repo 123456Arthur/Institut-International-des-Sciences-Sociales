@@ -1476,7 +1476,7 @@ body.iiss-preloading {
       <tr style="background-color: #f9fbff;">
         <td>Jeudi 30 octobre 2025</td>
         <td>La Gestion de projet 1 (7h - 11h)</td>
-         <td class="no-cours">Travaux Pratiques (TP)</td>
+        <td class="no-cours">Travaux Pratiques (TP)</td>
       </tr>
       <tr style="background-color: #fbfdff;">
         <td>Vendredi 31 octobre 2025</td>
@@ -1975,7 +1975,6 @@ no-cours {
   z-index: -1;
 }
 
-  /* --- Section Nos Valeurs --- */
 #valeurs {
   background: linear-gradient(135deg, #0a2342 0%, #155d63 100%);
   color: #fafafa;
@@ -1984,8 +1983,6 @@ no-cours {
   position: relative;
   overflow: hidden;
 }
-
-/* Lueur dynamique autour du titre */
 #valeurs h2 {
   font-size: 2.8rem;
   color: #f9c51c;
@@ -2490,37 +2487,387 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
   100% { background-position: 0% 50%; }
 }
 </style>
+<style>
+/* ==================== SPOTLIGHT 3D – CSS PREMIUM ==================== */
+.spotlight-3d {
+  padding: 6rem 2rem;
+  background: radial-gradient(circle at center, #0f1b33 0%, #0a1428 100%);
+  position: relative;
+  overflow: hidden;
+  color: #e6f1ff;
+  text-align: center;
+}
 
-  </section>
-  <!-- Partenaires -->
-  <section id="partners" class="section-light" data-visible="false">
-  <h2 class="animated-rotate">Partenaires 🤝</h2>
-    <div class="carousel">
-      <div style="display: flex; gap: 2rem; align-items: center; justify-content: center; flex-wrap: wrap;">
-        <div style="text-align:center;">
-          <img src="PAMF.png" alt="PAMF" style="height:60px; margin-bottom:0.5rem;" />
-          <div>PAMF</div>
-        </div>
-        <div style="text-align:center;">
-          <img src="JCI.png" alt="JCI" style="height:60px; margin-bottom:0.5rem;" />
-          <div>JCI</div>
-        </div>
-        <div style="text-align:center;">
-          <img src="Alliance_française.png" alt="Alliance Française" style="height:60px; margin-bottom:0.5rem;" />
-          <div>Alliance Française</div>
-        </div>
-        <div style="text-align:center;">
-          <img src="ESP BIG.png" alt="ESP BIG" style="height:60px; margin-bottom:0.5rem;" />
-          <div>ESP BIG</div>
-        </div>
-          <div style="text-align:center;">
-          <img src="apmfc.png" alt="ESP BIG" style="height:60px; margin-bottom:0.5rem;" />
-          <div>APMFC</div>
+.spotlight-3d::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(74, 163, 255, 0.15), transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(249, 197, 28, 0.12), transparent 50%);
+  animation: floatBg 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatBg {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+.spotlight-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.spotlight-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  background: linear-gradient(90deg, #4a90e2, #f9c51c, #4a90e2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(249, 197, 28, 0.4);
+  margin-bottom: 1rem;
+  letter-spacing: 1.5px;
+}
+
+.spotlight-subtitle {
+  font-size: 1.25rem;
+  color: #a0c4ff;
+  margin-bottom: 4rem;
+  font-weight: 500;
+}
+
+/* SCÈNE 3D */
+.spotlight-stage {
+  perspective: 1200px;
+  height: 320px;
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spotlight-card {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  padding: 2rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid rgba(74, 163, 255, 0.4);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(74, 163, 255, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  opacity: 0;
+  transform: scale(0.3) rotateY(60deg) translateZ(-200px);
+  pointer-events: none;
+}
+
+/* CARTE ACTIVE */
+.spotlight-card.active {
+  opacity: 1;
+  transform: scale(1) rotateY(0deg) translateZ(0);
+  border-color: #f9c51c;
+  box-shadow: 
+    0 0 80px rgba(249, 197, 28, 0.7),
+    0 0 120px rgba(74, 163, 255, 0.5),
+    0 30px 70px rgba(0, 0, 0, 0.5),
+    inset 0 0 30px rgba(255, 255, 255, 0.2);
+  z-index: 100;
+  pointer-events: auto;
+}
+
+/* CARTE SUIVANTE / PRÉCÉDENTE */
+.spotlight-card.next {
+  opacity: 0.7;
+  transform: scale(0.75) rotateY(-25deg) translateZ(-80px) translateX(180px);
+  filter: blur(1px);
+}
+.spotlight-card.prev {
+  opacity: 0.7;
+  transform: scale(0.75) rotateY(25deg) translateZ(-80px) translateX(-180px);
+  filter: blur(1px);
+}
+
+/* AUTRES CARTES */
+.spotlight-card.far {
+  opacity: 0.3;
+  transform: scale(0.5) translateZ(-180px);
+  filter: blur(3px);
+}
+
+/* LOGO */
+.spotlight-logo {
+  width: 110px;
+  height: 110px;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+  transition: all 0.6s ease;
+}
+
+.spotlight-card.active .spotlight-logo {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 20px rgba(249, 197, 28, 0.6));
+}
+
+.spotlight-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: filter 0.6s ease;
+}
+
+.spotlight-card.active .spotlight-logo img {
+  filter: brightness(1.1) contrast(1.1);
+}
+
+/* NOM */
+.spotlight-name {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.spotlight-card.active .spotlight-name {
+  color: #f9c51c;
+  text-shadow: 0 0 20px rgba(249, 197, 28, 0.8);
+}
+
+/* CONTROLES */
+.spotlight-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.control-btn {
+  width: 56px;
+  height: 56px;
+  background: rgba(74, 163, 255, 0.2);
+  border: 2px solid rgba(74, 163, 255, 0.5);
+  border-radius: 50%;
+  color: #4a90e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.control-btn:hover {
+  background: rgba(249, 197, 28, 0.3);
+  border-color: #f9c51c;
+  color: #f9c51c;
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(249, 197, 28, 0.5);
+}
+
+/* DOTS */
+.spotlight-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 2rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #f9c51c;
+  transform: scale(1.4);
+  box-shadow: 0 0 15px rgba(249, 197, 28, 0.7);
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .spotlight-card, .spotlight-card.active { width: 240px; height: 240px; }
+  .spotlight-logo { width: 90px; height: 90px; }
+}
+
+@media (max-width: 768px) {
+  .spotlight-title { font-size: 2.8rem; }
+  .spotlight-card, .spotlight-card.active { width: 200px; height: 200px; padding: 1.5rem; }
+  .spotlight-logo { width: 75px; height: 75px; }
+  .spotlight-name { font-size: 1.2rem; }
+  .control-btn { width: 48px; height: 48px; }
+}
+
+@media (max-width: 480px) {
+  .spotlight-3d { padding: 4rem 1rem; }
+  .spotlight-card, .spotlight-card.active { width: 180px; height: 180px; }
+  .spotlight-controls { gap: 1rem; }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const partners = [
+    { name: "PAMF", img: "PAMF.png" },
+    { name: "JCI", img: "JCI.png" },
+    { name: "Alliance Française", img: "Alliance_française.png" },
+    { name: "ESP BIG", img: "ESP BIG.png" },
+    { name: "APMFC", img: "apmfc.png" },
+    { name: "ISL", img: "isl.jpg" },
+    { name: "Malagasy Chess Game", img: "Malagasy chess Game .jpg" },
+    { name: "K4M", img: "K4M.jpg" },
+    { name: "CO42", img: "Co42.png" },
+    { name: "IS Studio", img: "Is studio.png" },
+    { name: "BTC", img: "BTC.jpg" }
+  ];
+
+  const stage = document.getElementById('spotlightStage');
+  const dotsContainer = document.getElementById('spotlightDots');
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+
+  let currentIndex = 0;
+  let autoRotate;
+  let isPaused = false;
+  partners.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'spotlight-card';
+    card.innerHTML = `
+      <div class="spotlight-logo">
+        <img src="${p.img}" alt="${p.name}">
       </div>
-       <div style="text-align:center;">
-          <img src="isl.jpg" alt="ESP BIG" style="height:60px; margin-bottom:0.5rem;" />
-          <div>ISL</div>
+      <div class="spotlight-name">${p.name}</div>
+    `;
+    stage.appendChild(card);
+
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    dot.addEventListener('click', () => goToIndex(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  const cards = document.querySelectorAll('.spotlight-card');
+  const dots = document.querySelectorAll('.dot');
+
+
+  function updateDisplay() {
+    cards.forEach((card, i) => {
+      card.classList.remove('active', 'next', 'prev', 'far');
+      dots[i].classList.remove('active');
+
+      if (i === currentIndex) {
+        card.classList.add('active');
+        dots[i].classList.add('active');
+      } else if (i === (currentIndex + 1) % partners.length) {
+        card.classList.add('next');
+      } else if (i === (currentIndex - 1 + partners.length) % partners.length) {
+        card.classList.add('prev');
+      } else {
+        card.classList.add('far');
+      }
+    });
+  }
+
+  function goToIndex(index) {
+    currentIndex = index;
+    updateDisplay();
+    resetAutoRotate();
+  }
+
+  
+  function next() {
+    currentIndex = (currentIndex + 1) % partners.length;
+    updateDisplay();
+  }
+
+  function prev() {
+    currentIndex = (currentIndex - 1 + partners.length) % partners.length;
+    updateDisplay();
+  }
+
+  
+  function startAutoRotate() {
+    autoRotate = setInterval(next, 1800);
+  }
+
+  function resetAutoRotate() {
+    clearInterval(autoRotate);
+    if (!isPaused) startAutoRotate();
+  }
+  nextBtn.addEventListener('click', () => {
+    next();
+    resetAutoRotate();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    prev();
+    resetAutoRotate();
+  });
+
+  stage.addEventListener('mouseenter', () => {
+    isPaused = true;
+    clearInterval(autoRotate);
+  });
+
+  stage.addEventListener('mouseleave', () => {
+    isPaused = false;
+    startAutoRotate();
+  });
+
+  updateDisplay();
+  startAutoRotate();
+});
+</script>
+  </section>
+  <!-- ==================== SPOTLIGHT 3D ROTATIF – TOUS VISIBLES ==================== -->
+<section id="partners" class="spotlight-3d" data-visible="false">
+  <div class="spotlight-container">
+    <h2 class="spotlight-title">Nos Partenaires </h2>
+    <p class="spotlight-subtitle">Institutions & entreprises qui soutiennent notre vision</p>
+
+    <!-- SCÈNE 3D -->
+    <div class="spotlight-stage" id="spotlightStage">
+      <!-- Cartes injectées par JS -->
     </div>
+
+    <!-- BOUTONS DE NAVIGATION -->
+    <div class="spotlight-controls">
+      <button class="control-btn prev-btn" aria-label="Précédent">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <button class="control-btn next-btn" aria-label="Suivant">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- INDICATEURS -->
+    <div class="spotlight-dots" id="spotlightDots"></div>
+  </div>
+</section>
 <footer id="footer" class="section-dark" data-visible="false">
   <p>&copy; 2025 Institut International des Sciences Sociales. Tous droits réservés.</p>
   <img src="IISS logo.jpg" alt="Logo Institut ISS" style="margin-top: 1rem; width: 120px;" />
@@ -2904,7 +3251,7 @@ window.addEventListener('DOMContentLoaded', function() {
   function beginFade(){ const root = document.getElementById(PRELOADER_ID); if(!root) return; root.classList.add('iiss-fadeout'); setTimeout(cleanup, 720); }
   function cleanup(){ if(rafId) cancelAnimationFrame(rafId); if(forcedTimer){ clearTimeout(forcedTimer); forcedTimer=null; } const root = document.getElementById(PRELOADER_ID); try{ if(root && root.parentNode) root.parentNode.removeChild(root); }catch(e){} document.body.classList.remove('iiss-preloading'); window.removeEventListener('resize', onResize); }
 
-  // start
+
   setSize(true); createParticles(); running = true; loop(performance.now()); window.addEventListener('resize', onResize, { passive:true }); document.addEventListener('visibilitychange', ()=>{ if(document.hidden){ if(rafId) { cancelAnimationFrame(rafId); rafId=null; } } else { if(!rafId) loop(performance.now()); } });
 
   const displayTime = Math.floor(Math.random()*(MAX_SHOW-MIN_SHOW+1))+MIN_SHOW;
@@ -2934,5 +3281,4 @@ window.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-
 
