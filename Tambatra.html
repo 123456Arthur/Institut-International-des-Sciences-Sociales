@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IISS - TAMBATRA | Cérémonie d'Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --deep-gold: #b8931e;
+            --navy: #0f1b3a;
+            --midnight: #0a1428;
+            --light-gold: #f9f1e2;
+            --cream: #fdfbf7;
+            --charcoal: #2d2d2d;
+            --gradient-gold: linear-gradient(135deg, #d4af37 0%, #b8931e 50%, #8b6f47 100%);
+            --gradient-navy: linear-gradient(135deg, #0f1b3a 0%, #0a1428 100%);
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.9;
+            color: var(--charcoal);
+            background: #000;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(15, 27, 58, 0.08) 0%, transparent 50%),
+                linear-gradient(to bottom, #000 0%, #0a0a0a 100%);
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.3; }
+            50% { opacity: 0.1; }
+            90% { opacity: 0; }
+            100% { transform: translateY(-100px) scale(1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-navy);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23d4af37" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .logo-animated {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 30px;
+            position: relative;
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(3deg); }
+        }
+
+        .logo-animated svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: titleReveal 2s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes titleReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-out 0.5s forwards;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 0.9; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(20px); }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 60px;
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            width: 6px;
+            height: 12px;
+            background: var(--gold);
+            border-radius: 3px;
+            margin-top: 12px;
+            animation: scroll 2s infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(20px); opacity: 0; }
+        }
+
+        /* Content Sections */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--cream);
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+            z-index: -1;
+        }
+
+        .section:nth-child(even) .section-bg {
+            background: #f8f5f0;
+        }
+/* === PROTECTION DU TITRE AU-DESSUS DES CARTES === */
+.section-title + .text-block + .highlight-box + .students-grid {
+    margin-top: 100px !important;
+}
+
+/* Séparation visuelle douce */
+.students-section .section-title {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 20px;
+}
+
+.students-section .section-title::after {
+    width: 100px;
+    height: 5px;
+    background: var(--gradient-gold);
+    border-radius: 3px;
+}
+
+.students-section {
+    position: relative;
+    padding-top: 40px;
+}
+
+.students-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent);
+    border-radius: 1px;
+    z-index: 1;
+}
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.2rem;
+            color: var(--navy);
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-gold);
+            border-radius: 2px;
+        }
+
+        .text-block {
+            font-size: 1.2rem;
+            max-width: 1000px;
+            margin: 0 auto 50px;
+            text-align: justify;
+            line-height: 2;
+            position: relative;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(15, 27, 58, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: all 0.4s ease;
+        }
+
+        .text-block:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(15, 27, 58, 0.15);
+            border-color: var(--gold);
+        }
+
+        .text-block::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--gradient-gold);
+            opacity: 0.03;
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(139, 111, 71, 0.05));
+            padding: 50px;
+            border-radius: 25px;
+            border-left: 6px solid var(--gold);
+            margin: 60px auto;
+            max-width: 1000px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="%23d4af37" opacity="0.05" d="M100,0 L200,100 L100,200 L0,100 Z"/></svg>') center/contain no-repeat;
+        }
+.students-section > .section-title {
+    background: white;
+    padding: 15px 30px;
+    border-radius: 15px;
+    display: inline-block;
+    box-shadow: 0 8px 25px rgba(15, 27, 58, 0.08);
+    margin-bottom: 30px;
+}
+        .quote-section {
+            position: relative;
+            padding: 160px 0;
+            background: var(--gradient-navy);
+            color: white;
+            overflow: hidden;
+        }
+
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+        }
+
+        .quote-mark {
+            position: absolute;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20rem;
+            color: var(--gold);
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .quote-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .quote-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, #fff, var(--light-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .quote-author {
+            font-size: 1.4rem;
+            color: var(--gold);
+            font-weight: 500;
+        }
+.students-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 40px;
+    margin: 80px 0;
+    padding: 0 20px;
+}
+
+.student-card {
+    background: white;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(15, 27, 58, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    transition: all 0.5s ease;
+    position: relative;
+}
+
+.student-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: var(--gradient-gold);
+    border-radius: 28px 28px 0 0;
+}
+
+.student-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 45px rgba(15, 27, 58, 0.15);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+.student-photo {
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.student-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 20px auto;
+    display: block;
+    width: calc(100% - 40px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.6s ease;
+}
+
+.student-card:hover .student-photo-img {
+    transform: scale(1.08);
+    box-shadow: 0 12px 35px rgba(212, 175, 55, 0.3);
+}
+
+.student-card:hover .student-photo::after {
+    opacity: 1;
+}
+
+.student-info {
+    padding: 28px 20px 32px;
+    text-align: center;
+    background: white;
+}
+
+.student-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 10px;
+    letter-spacing: 0.3px;
+    line-height: 1.3;
+}
+
+.student-name span {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-top: 4px;
+    font-family: 'Inter', sans-serif;
+}
+
+.student-diplome {
+    background: var(--gradient-gold);
+    color: white;
+    padding: 9px 24px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    transition: all 0.3s ease;
+}
+
+.student-card:hover .student-diplome {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4);
+}
+
+/* Fallback si photo manquante */
+.student-photo:not(:has(img[src]))::before,
+.student-photo img[src=""] + .photo-fallback {
+    content: "\f19d";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3.5rem;
+    color: #ccc;
+    z-index: 1;
+}
+
+.photo-fallback {
+    display: none;
+}
+        /* Footer */
+        .footer {
+            background: var(--midnight);
+            color: white;
+            padding: 120px 0 60px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 6px;
+            background: var(--gradient-gold);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .partners {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin: 80px 0;
+            flex-wrap: wrap;
+        }
+
+        .partner {
+            text-align: center;
+            max-width: 200px;
+        }
+
+        .partner-logo {
+            width: 80px;
+            height: 80px;
+            background: var(--gold);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--navy);
+            font-size: 1.5rem;
+        }
+
+        .closing-statement {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            margin: 60px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3.5rem; }
+            .section-title { font-size: 2.5rem; }
+            .quote-text { font-size: 1.8rem; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .text-block { padding: 25px; font-size: 1.1rem; }
+            .students-grid { grid-template-columns: 1fr; }
+            .container { padding: 0 20px; }
+        }
+        /* ESPACEMENT & PROTECTION DU TITRE */
+.section-title + .text-block + .highlight-box + .students-grid {
+    margin-top: 100px !important;
+}
+
+/* SUPPRESSION DE TOUT EFFET PERTURBATEUR */
+.student-card:hover {
+    transform: none !important;
+    box-shadow: 0 12px 35px rgba(15, 27, 58, 0.1);
+    border-color: rgba(212, 175, 55, 0.15);
+}
+
+.student-card:hover .student-photo-img {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.student-photo::after,
+.photo-border {
+    display: none !important;
+}
+/* === VERSION MOBILE ULTRA-FLUIDE & CLAIRE - COMME UNE AFFICHE === */
+@media (max-width: 768px) {
+    /* Conteneur centré et large */
+    .container {
+        padding: 0 20px !important;
+    }
+
+    /* Hero : texte grand, lisible, centré */
+    .hero h1 {
+        font-size: 2.4rem !important;
+        line-height: 1.2;
+        padding: 0 10px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem !important;
+        line-height: 1.6;
+        padding: 0 15px;
+    }
+
+    /* Titres de section : grands, clairs */
+    .section-title {
+        font-size: 2.2rem !important;
+        text-align: center;
+        margin: 0 auto 30px;
+    }
+
+    .section-title::after {
+        left: 50% !important;
+        transform: translateX(-50%);
+    }
+
+    /* Textes : lisibles, espacés */
+    .text-block,
+    .highlight-box {
+        font-size: 1.05rem !important;
+        line-height: 1.8 !important;
+        padding: 25px 20px !important;
+        margin: 30px auto !important;
+    }
+
+    .highlight-box p {
+        font-size: 1.1rem !important;
+        font-weight: 600;
+    }
+
+    /* Photos : rondes, centrées, bien espacées */
+    .students-grid {
+        grid-template-columns: 1fr !important;
+        gap: 50px !important;
+        margin: 80px 0 !important;
+    }
+
+    .student-card {
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .student-photo {
+        height: 260px !important;
+    }
+
+    .student-photo-img {
+        width: calc(100% - 50px) !important;
+        height: calc(100% - 50px) !important;
+    }
+
+    .student-name {
+        font-size: 1.4rem !important;
+    }
+
+    .student-diplome {
+        font-size: 0.75rem !important;
+        padding: 8px 18px !important;
+    }
+
+    /* Footer : propre */
+    .footer-content {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .closing-statement {
+        font-size: 1.9rem !important;
+        padding: 0 20px;
+    }
+
+    /* Scroll fluide */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Police plus lisible sur petit écran */
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="bg-animation" id="particles"></div>
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="logo-animated">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#d4af37"/>
+                            <stop offset="100%" stop-color="#b8931e"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M50,10 L70,35 L65,60 L50,75 L35,60 L30,35 Z" fill="url(#grad1)" stroke="#fff" stroke-width="2"/>
+                    <circle cx="50" cy="45" r="12" fill="white"/>
+                    <text x="50" y="90" text-anchor="middle" fill="white" font-size="14" font-weight="bold"></text>
+                </svg>
+            </div>
+            <h1>TOMPOKOLAHY SY TOMPOKOVAVY AMIN’NY ANARAN’NY MPAMPIANTRANO, NY (IISS)</h1>
+            <p class="hero-subtitle">INSTITUT INTERNATIONAL DES SCIENCES SOCIALES NO IARAHABANA ANTSIKA REHETRA TONGASOA ETO AMIN’ITY LANONANA MANAN-TANTARA ITY, LANONANA FANKALAZANA NY FIVOAHAN’NY ANDIANY VOALOHANY NAMPITONDRAINA NY ANARANA HOE “TAMBATRA”, IZAY NIANATRA MOMBA NY FINANCE – OPTION MÉTIER BANCAIRE.</p>
+            <div class="scroll-indicator"></div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="section-bg"></div>
+        <div class="container">
+            <h2 class="section-title">ARAHABA SY FITIAVANA</h2>
+            <div class="highlight-box">
+                <p>ARAHABA AM-PANAJANA SY FENO FITIAVANA HO AN’NY SOLONTENAN’NY PAMF – PREMIÈRE AGENCE DE MICROFINANCE DE MADAGASCAR IZAY TARIHIN’ANDRIAMATOA TALE JENERALY, IANAREO MPAMPIANATRA SY MPANABE AVY ATO AMIN’NY IISS, IANAREO RAY AMAN-DRENY SY FIANAKAVIANA, IANAREO VAHINY MANAN-KAJA TONGA ETO HANOTRONA SY HIZARA HAFALIANA AMIN’ITY ANDRO LEHIBE ITY. ARY INDRINDRA IANAREO MPIANATRA 10 MENDRIKA IZAY HANDRAY NY MARIM-PANKASITRAHANA ANDROANY ANTONY HIVORIANTSIKA ETO ANIO.</p>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="section-bg"></div>
+        <div class="container">
+            <h2 class="section-title">RY HAVANA,</h2>
+            <div class="text-block">
+                <p>NY LANONANA ANDROANY DIA TSY FAMARANANA FIOFANANA FOTSINY, FA VOKATRA HITA MASO AMIN’NY FIARAHA-MIASA TEO AMIN’NY IISS SY NY PAMF, IZAY NANAMAFY NY FAMPIFANDRAISANA NY TEORIA SY NY FAMPIHARANA, NY FIANARANA SY NY ASA, ARY NY FANABEAZANA SY NY FIARAHA-MIENTANA.</p>
+            </div>
+            <div class="text-block">
+                <p>NY IISS MOA IZAY TOERAM-PANABEAZANA NISOKATRA TAMIN’NY TAONA 2019 ARY MANANA NY FANKATOAVANA AVY AMIN’NY MINISTERA MPIAHY, EO AMIN’NY SEHATRY NY GESTION DE PROJET/ECONOMIE/COMMUNICATION ET SOCIETE/HSET ARY INDRINDRA NY FINANCE IZAY SAMPANA MISY IREO VOKATRA HATREHANTSIKA ANIO;</p>
+            </div>
+            <div class="text-block">
+                <p>TAMIN’NY ALALAN’NY CONVENTION DE PARTENARIAT NIFANEKEN’NY ROA TONTA DIA NAMOLAVOLA FIOFANANA MANOKANA ISIKA HO AN’NY TANORA AMIN’NY SEHATRA ARA-BOLA, MBA HAHAFAHAN’IZY IREO MIDITRA AMIN’NY TONTOLON’NY BANKY SY MICROFINANCE AM-PAHATOKISANA SY AM-PAHAIZANA.</p>
+            </div>
+        </div>
+    </section>
+    <section class="quote-section">
+        <div class="quote-mark">“</div>
+        <div class="container quote-content">
+            <p class="quote-text">IO FIARAHA-MIASA IO DIA TARATRY NY VINA IOMBONANA: NY IISS AMIN’NY FANOMEZANA FAHAIZA-MANAO AKADEMIKA SY PEDAGOJIKA, ARY NY PAMF AMIN’NY FANOMEZANA TRAIKEFA MIVANTANA SY TONTOLO IASANA MANAN-KERY. IZANY NO FOTOTRA NAHATERAHAN’NY ANDIANY “TAMBATRA”.</p>
+            <p class="quote-author">— FOTOTRA NAHATERAHAN’NY ANDIANY TAMBATRA —</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="section-bg"></div>
+        <div class="container">
+            <h2 class="section-title">MÉTIER BANCAIRE</h2>
+            <div class="text-block">
+                <p>REHEFA LAZAINA NY HOE MÉTIER BANCAIRE, DIA TSY MIDIKA HOE MIASA AMIN’NY BANKY FOTSINY. MIDIKA IZANY HOE FITANTANANA AM-PITANDREMANA NY VOLA SY NY FITOKISANA, FANAPAHAN-KEVITRA HENTITRA SY MARINA, ARY FANOMPOANA NY MPIARA-BELONA AMIN’NY FAHAIZA-MANAO SY FAHITSIANA.</p>
+            </div>
+            <div class="text-block">
+                <p>IREO MPIANATRA NAHAVITA ITY FIOFANANA ITY DIA NANDALO DINGANA ROA LEHIBE: FIOFANANA ARA-TEORIA SY AKADEMIKA TATO AMIN’NY IISS AR ANDRIAMATOA FAMPIHARANA SY TRAIKEFA MIVANTANA TAO AMIN’NY PAMF. IZANY NO MAHATONGA AZY IREO HO VONONA AMIN’NY FIAINAM-PIASANA SY NY TONTOLO ARA-BOLA MISY ANKEHITRINY.</p>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="section-bg"></div>
+        <div class="container">
+            <h2 class="section-title">RY MPIANATRA – ANDIANY TAMBATRA</h2>
+            <div class="text-block">
+                <p>NY ANARANA “TAMBATRA” DIA TSY NOFIDINAREO TAMIN’NY KISENDRASENDRA. MIDIKA IZANY HOE FIRAISANKINA, FIARAHA-MIENTANA ARY FANOLORAN-TENA HO AMIN’NY FAHOMBIAZANA.</p>
+            </div>
+            <div class="highlight-box">
+                <p>IO NO TENA MAHA-SAMIHAFA ANAREO AMIN’NY ANDIANY HAFA: NAMPIRAISINA NY FAHAIZA-MANAO ARA-TSAINA, NY TRAIKEFA ARY NY TOETRA MAHA-OLONA, KA NAHATONGA VOKATRA MENDRIKA SY AVO LENTA.</p>
+            </div>
+            <div class="students-grid">
+    <!-- Étudiant 1 -->
+    <div class="student-card">
+        <div class="student-photo">
+            <img src="Etudiant 1.jpg" alt="RAMANITRINIONY Hajamihaingo Kaella  " class="student-photo-img">
+            <div class="photo-border"></div>
+        </div>
+        <div class="student-info">
+            <div class="student-name">RAMANITRINIONY Hajamihaingo Kaella</div>
+            <div class="student-diplome">TAMBATRA 2025</div>
+        </div>
+    </div>
+
+    <!-- Étudiant 2 -->
+    <div class="student-card">
+        <div class="student-photo">
+            <img src="Etudiant 2.jpg" alt="RAVELOARISOA Tsiorinirainy Sarobidy" class="student-photo-img">
+            <div class="photo-border"></div>
+        </div>
+        <div class="student-info">
+            <div class="student-name">RAVELOARISOA Tsiorinirainy Sarobidy</div>
+            <div class="student-diplome">TAMBATRA 2025</div>
+        </div>
+    </div>
+
+    <!-- Étudiant 3 -->
+    <div class="student-card">
+        <div class="student-photo">
+            <img src="Etudiant 3.jpg" alt="RAKOTOSOA Sandy Irinah Elodie" class="student-photo-img">
+            <div class="photo-border"></div>
+        </div>
+        <div class="student-info">
+            <div class="student-name">RAKOTOSOA Sandy Irinah Elodie</div>
+            <div class="student-diplome">TAMBATRA 2025</div>
+        </div>
+    </div>
+
+    <!-- Étudiant 4 -->
+    <div class="student-card">
+        <div class="student-photo">
+            <img src="Etudiant 4.jpg" alt="TOTO Ruvaldo Ricardo" class="student-photo-img">
+            <div class="photo-border"></div>
+        </div>
+        <div class="student-info">
+            <div class="student-name">TOTO Ruvaldo Ricardo</div>
+            <div class="student-diplome">TAMBATRA 2025</div>
+        </div>
+    </div>
+
+    <!-- Étudiant 5 -->
+    <div class="student-card">
+        <div class="student-photo">
+            <img src="Etudiant 5.jpg" alt="RAZANAMANGA Haingo Faraniaina" class="student-photo-img">
+            <div class="photo-border"></div>
+        </div>
+        <div class="student-info">
+            <div class="student-name">RAZANAMANGA Haingo Faraniaina</div>
+            <div class="student-diplome">TAMBATRA 2025</div>
+        </div>
+    </div>
+
+    <!-- Étudiant 6 -->
+    <div class="student-card">
+        <div class="student-photo">
+            <img src="Etudiant 6.jpg" alt="RANDIMBIARISON Nahariniantsa Laurencia" class="student-photo-img">
+            <div class="photo-border"></div>
+        </div>
+        <div class="student-info">
+            <div class="student-name">RANDIMBIARISON Nahariniantsa Laurencia</div>
+            <div class="student-diplome">TAMBATRA 2025</div>
+        </div>
+    </div>
+
+    <!-- Étudiant 7 -->
+    <div class="student-card">
+        <div class="student-photo">
+            <img src="Etudiant 7.jpg" alt="RAMBELOSON Nytiana Malala Penih" class="student-photo-img">
+            <div class="photo-border"></div>
+        </div>
+        <div class="student-info">
+            <div class="student-name">RAMBELOSON Nytiana Malala Penih</div>
+            <div class="student-diplome">TAMBATRA 2025</div>
+        </div>
+    </div>
+
+    <!-- Étudiant 8 -->
+    <div class="student-card">
+        <div class="student-photo">
+            <img src="Etudiant 8.jpg" alt="RAZAFINDRAMANANA Parfin" class="student-photo-img">
+            <div class="photo-border"></div>
+        </div>
+        <div class="student-info">
+            <div class="student-name">RAZAFINDRAMANANA Parfin</div>
+            <div class="student-diplome">TAMBATRA 2025</div>
+        </div>
+    </div>
+
+    <!-- Étudiant 9 -->
+    <div class="student-card">
+        <div class="student-photo">
+            <img src="Etudiant 9.jpg" alt="RAZAFINTSOLANY Elvisca Ménikah" class="student-photo-img">
+            <div class="photo-border"></div>
+        </div>
+        <div class="student-info">
+            <div class="student-name">RAZAFINTSOLANY Elvisca Ménikah</div>
+            <div class="student-diplome">TAMBATRA 2025</div>
+        </div>
+    </div>
+
+    <!-- Étudiant 10 -->
+    <div class="student-card">
+        <div class="student-photo">
+            <img src="Etudiant 10.jpg" alt="RANDRIAMAMPIANINA Mamiharinaval Nirina Elisé" class="student-photo-img">
+            <div class="photo-border"></div>
+        </div>
+        <div class="student-info">
+            <div class="student-name">RANDRIAMAMPIANINA Mamiharinaval Nirina Elisé</div>
+            <div class="student-diplome">TAMBATRA 2025</div>
+        </div>
+    </div>
+</div>
+    <section class="section">
+        <div class="section-bg"></div>
+        <div class="container">
+            <h2 class="section-title">FANKASITRAHANA</h2>
+            <div class="text-block">
+                <p>AMIN’NY ANARAN’NY IISS, DIA MANEHO FANKASITRAHANA SY FISAORANA LEHIBE HO AN’NY PAMF TAMIN’NY FITOKISANA SY NY FANOHANANA FENO. FISAORANA IHANY KOA HO AN’IREO MPAMPIANATRA, MPANABE, ARY IREO RAY AMAN-DRENY IZAY NITAIZA SY NANOHANA TSY TAPAKA.</p>
+            </div>
+            <div class="text-block">
+                <p>HO ANAREO MPIANATRA ANDIANY “TAMBATRA”, AOKA HITONDRA FAHENDRENA, FAHAIZANA ARY FITIAVANA NY ASA NY FIANARANA AZONAREO. AOKA HO OHATRA AMIN’NY TANORA MAHEFA SY MANAJA SOATOAVINA IANAREO EO AMIN’NY FIARAHA-MONINA.</p>
+            </div>
+            <div class="highlight-box">
+                <p style="font-size: 2rem; text-align: center; font-family: 'Cormorant Garamond', serif; background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    TAMBATRA ISIKA, KA REHEFA MIRAY, TSY MISY TSY TANTERAKA.
+                </p>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">IISS & PAMF</div>
+                <p style="opacity: 0.8; margin-top: 20px;">
+                    Fiara-miasa manan-tantara eo amin’ny sehatry ny fampianarana sy ny asa ara-bola. 
+                    Vokatra mendrika avy amin’ny firaika-mientana.
+                </p>
+            </div>
+            <div style="text-align: right;">
+                <p style="font-size: 1.1rem; opacity: 0.7;">Taona 2025 • Andiany Voalohany</p>
+                <p style="margin-top: 10px; color: var(--gold);">
+                    TAMBATRA – Firaika-mientana ho amin’ny fahombiazana
+                </p>
+            </div>
+        </div>
+
+        <div class="partners">
+            <div class="partner">
+                <div class="partner-logo">
+                    <img src="IISS logo.jpg" alt="Logo IISS" class="logo-img">
+                    <span class="logo-fallback"></span>
+                </div>
+                <p><strong>IISS</strong><br>
+                   <small>Institut International des Sciences Sociales</small>
+                </p>
+            </div>
+            <div class="partner">
+                <div class="partner-logo">
+                    <img src="PAMF.png" alt="Logo PAMF" class="logo-img">
+                    <span class="logo-fallback"></span>
+                </div>
+                <p><strong>PAMF</strong><br>
+                   <small>Première Agence de Microfinance de Madagascar</small>
+                </p>
+            </div>
+        </div>
+
+        <p class="closing-statement">
+            MISAOTRA TOMPOKO. MANKASITRAKA TOMPOKOLAHY MANKASITRAKA TOMPOKOVAVY.
+        </p>
+    </div>
+</footer>
+
+<!-- Styles à placer dans ton fichier CSS ou <head> -->
+<style>
+    .partners {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+    }
+    .partner {
+        text-align: center;
+        min-width: 180px;
+    }
+    .partner-logo {
+        position: relative;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+    }
+    .logo-img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+    .logo-fallback {
+        position: absolute;
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #ccc;
+        display: none;
+    }
+    /* Afficher le texte fallback si l'image échoue */
+    .partner-logo .logo-img:not(:valid) ~ .logo-fallback,
+    .partner-logo .logo-img[src=""] ~ .logo-fallback {
+        display: block;
+    }
+</style>
+    <script>
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 30;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.width = Math.random() * 4 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.text-block, .highlight-box, .student-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+    <script>
+    // === SÉCURITÉ LÉGÈRE + Ctrl+S BLOQUÉ - TAMBATRA 2025 ===
+
+    // 1. Bloquer Ctrl+S (sauvegarder), F12, Ctrl+Shift+I
+    document.addEventListener('keydown', function(e) {
+        if (
+            e.key === 'F12' || 
+            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+            (e.ctrlKey && e.key === 's')  // ← Ctrl+S bloqué
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    }, false);
+
+    // 2. Clic droit bloqué (uniquement desktop)
+    document.addEventListener('contextmenu', function(e) {
+        if (window.innerWidth > 768) {
+            e.preventDefault();
+        }
+    }, false);
+
+    // 3. Empêcher le drag des images
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('dragstart', e => e.preventDefault());
+    });
+
+    // 4. Désactiver sélection de texte
+    document.body.style.userSelect = 'none';
+    document.body.style.webkitUserSelect = 'none';
+
+    // 5. Message élégant en console
+    console.log('%cTAMBATRA 2025\n%cSécurisé avec excellence.', 
+        'color:#d4af37; font-size:1.5rem; font-family:Cormorant Garamond,serif;', 
+        'color:#0f1b3a; font-size:1rem;'
+    );
+</script>
+</body>
+</html>
