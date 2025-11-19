@@ -357,6 +357,13 @@ body.iiss-preloading {
     box-shadow: 0 0 20px var(--argent), 0 0 40px var(--iiss-light-blue);
   }
 }
+
+/* extra glow class used by the JS entrance choreography */
+.iiss-logo-glow {
+  box-shadow: 0 0 48px rgba(249,197,28,0.95), 0 0 100px rgba(74,163,255,0.28) !important;
+  filter: drop-shadow(0 0 28px rgba(249,197,28,0.85));
+  transition: box-shadow 0.6s ease, filter 0.6s ease;
+}
 .iiss-burst {
   position: absolute;
   top: 50%;
@@ -435,7 +442,7 @@ body.iiss-preloading {
     <h1 class="iiss-title">
       <span>W</span><span>E</span><span>L</span><span>C</span><span>O</span><span>M</span><span>E</span><span> </span>
       <span>T</span><span>O</span><span> </span>
-      <span>I</span><span>S</span><span>S</span>
+      <span>I</span><span>I</span><span>S</span><span>S</span>
     </h1>
     <img src="IISS logo.jpg" alt="Logo ISS" class="iiss-logo-bubble" aria-hidden="true" />
   </div>
@@ -3474,6 +3481,17 @@ window.addEventListener('DOMContentLoaded', function() {
 /* IISS preloader: particles, resize handling, fade and safety timeout */
 (function(){
   const PRELOADER_ID = 'iiss-preloader';
+  const PRELOADER_SHOWN_KEY = 'iiss_preloader_shown_v1';
+
+  // If the preloader was already shown before, remove it immediately and skip initialization
+  try{
+    if (localStorage && localStorage.getItem && localStorage.getItem(PRELOADER_SHOWN_KEY)){
+      const rootEl = document.getElementById(PRELOADER_ID);
+      if(rootEl && rootEl.parentNode) rootEl.parentNode.removeChild(rootEl);
+      document.body.classList.remove('iiss-preloading');
+      return;
+    }
+  }catch(e){ /* ignore storage errors */ }
   const CANVAS_ID = 'iiss-preloader-canvas';
   const MIN_SHOW = 3000, MAX_SHOW = 4000, SAFETY = 6000;
   const AREA_PER_PARTICLE = 16000;
@@ -3505,6 +3523,31 @@ window.addEventListener('DOMContentLoaded', function() {
     const area = Math.max(1, w*h);
     const count = Math.max(24, Math.min(150, Math.round(area/AREA_PER_PARTICLE)));
     for(let i=0;i<count;i++) particles.push(makeParticle(w,h));
+  }
+
+  // Entrance animation: stagger letters and reveal logo for a premium effect
+  function playEntranceAnimation(){
+    try{
+      const title = document.querySelector('.iiss-title');
+      const logo = document.querySelector('.iiss-logo-bubble');
+      if(title){
+        const spans = Array.from(title.querySelectorAll('span'));
+        spans.forEach((s, i) => {
+          s.style.opacity = '0';
+          s.style.transform = 'translateY(30px) scale(0.95)';
+          s.style.transition = 'transform 700ms cubic-bezier(.2,.9,.3,1), opacity 700ms ease';
+          setTimeout(() => { s.style.opacity = '1'; s.style.transform = 'translateY(0) scale(1)'; }, 120 + i * 70);
+        });
+      }
+      if(logo){
+        logo.style.opacity = '0';
+        logo.style.transform = 'scale(0.4)';
+        logo.style.transition = 'transform 900ms cubic-bezier(.2,.9,.3,1), opacity 900ms ease';
+        setTimeout(()=>{ logo.style.opacity = '1'; logo.style.transform = 'scale(1)'; }, 300);
+        // subtle glow pulse
+        setTimeout(()=>{ logo.classList.add('iiss-logo-glow'); setTimeout(()=> logo.classList.remove('iiss-logo-glow'), 2200); }, 900);
+      }
+    }catch(e){}
   }
 
   function makeParticle(w,h){
@@ -3555,6 +3598,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
   setSize(true); createParticles(); running = true; loop(performance.now()); window.addEventListener('resize', onResize, { passive:true }); document.addEventListener('visibilitychange', ()=>{ if(document.hidden){ if(rafId) { cancelAnimationFrame(rafId); rafId=null; } } else { if(!rafId) loop(performance.now()); } });
+  // play the entrance animation once at the start
+  try{ playEntranceAnimation(); }catch(e){}
 
   const displayTime = Math.floor(Math.random()*(MAX_SHOW-MIN_SHOW+1))+MIN_SHOW;
   setTimeout(()=>{
@@ -3571,7 +3616,8 @@ window.addEventListener('DOMContentLoaded', function() {
     setTimeout(beginFade, 420);
   }, displayTime - 420 > 0 ? displayTime - 420 : Math.max(200, displayTime-200));
   forcedTimer = setTimeout(cleanup, SAFETY);
-
+  // Mark preloader as shown so it won't run again on future visits
+  try{ if (localStorage && localStorage.setItem) localStorage.setItem(PRELOADER_SHOWN_KEY, '1'); }catch(e){}
 })();
   // Appliquer un zoom initial à 60%
   document.addEventListener('DOMContentLoaded', () => {
