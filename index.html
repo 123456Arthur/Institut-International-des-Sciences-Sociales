@@ -357,8 +357,6 @@ body.iiss-preloading {
     box-shadow: 0 0 20px var(--argent), 0 0 40px var(--iiss-light-blue);
   }
 }
-
-/* extra glow class used by the JS entrance choreography */
 .iiss-logo-glow {
   box-shadow: 0 0 48px rgba(249,197,28,0.95), 0 0 100px rgba(74,163,255,0.28) !important;
   filter: drop-shadow(0 0 28px rgba(249,197,28,0.85));
@@ -1117,7 +1115,7 @@ body.iiss-preloading {
   position: absolute;
   inset: 0;
   background: center/cover no-repeat;
-  background-image: url('PhotoGroupe.jpg'); /* Au cas où le style inline ne passe pas */
+  background-image: url('PhotoGroupe.jpg');
   z-index: 0;
   filter: brightness(0.78) contrast(1.08) saturate(1.1);
   transition: all 0.6s ease;
@@ -1479,7 +1477,6 @@ body.iiss-preloading {
     100% { transform: translateY(0); }
   }
   .promotion-photo-placeholder img { animation: floatSlow 8s ease-in-out infinite; }
-
   @media (max-width: 900px) {
     .promotion-content { grid-template-columns: 1fr; text-align: center; }
     .promotion-ribbon { right: 8px; transform: rotate(-4deg) scale(0.86); }
@@ -1703,9 +1700,9 @@ tbody tr:hover { background: #ebf4ff; }
       <thead><tr><th>Jour</th><th>Matin (7h - 11h)</th><th>Après-midi (13h30 - 17h30)</th></tr></thead>
       <tbody>
         <tr><td>Lundi 24 novembre</td><td class="no-cours">Travaux Pratique</td><td>Logique</td></tr>
-        <tr><td>Mardi 25 novembre</td><td>Faisabilité de Projet</td><td>Communication verbale : Introduction à la prise de parole en publics</td></tr>
+        <tr><td>Mardi 25 novembre</td><td class="no-cours">Travaux Pratique</td><td>Communication verbale : Introduction à la prise de parole en publics</td></tr>
         <tr><td>Mercredi 26 novembre</td><td class="no-cours">Travaux Pratique </td><td class="no-cours">Travaux Pratiques </td></tr>
-        <tr><td>Jeudi 27 novembre</td><td>Faisabilité de Projet</td><td>Communication verbale : Introduction à la prise de parole en publics</td></tr>
+        <tr><td>Jeudi 27 novembre</td><td class="no-cours">Travaux Pratique</td><td>Communication verbale : Introduction à la prise de parole en publics</td></tr>
         <tr><td>Vendredi 28 novembre</td><td class="no-cours">Travaux Pratiques </td><td>Logique</td></tr>
       </tbody>
     </table>
@@ -1765,7 +1762,6 @@ tbody tr:hover { background: #ebf4ff; }
     </table>
   </div>
 </div>
-
 <script>
   function openTab(evt, niveau) {
     const sections = document.getElementsByClassName("edt-section");
@@ -1880,7 +1876,6 @@ tbody tr:hover { background: #ebf4ff; }
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.8rem;
   }
-
   .ue-card {
     background: linear-gradient(135deg, #0f1f33 0%, #1a2a44 100%);
     padding: 1.8rem 1.5rem;
@@ -2008,7 +2003,6 @@ tbody tr:hover { background: #ebf4ff; }
     </div>
   </div>
   <hr class="section-divider" />
-
   <style>
     #ecosystem {
   max-width: 1100px;
@@ -2021,7 +2015,6 @@ tbody tr:hover { background: #ebf4ff; }
   color: #012F41;
   text-align: center;
 }
-
 #ecosystem h2 {
   font-size: 3.2rem;
   font-weight: 900;
@@ -2029,14 +2022,12 @@ tbody tr:hover { background: #ebf4ff; }
   color: #D4AF37;
   text-shadow: 1px 1px 8px rgba(212, 175, 55, 0.7);
 }
-
 .ecosystem-items {
   display: flex;
   flex-wrap: wrap;
   gap: 2.5rem;
   justify-content: center;
 }
-
 .ecosystem-items > div {
   background: #FAFAFA;
   border-radius: 16px;
@@ -2053,12 +2044,10 @@ tbody tr:hover { background: #ebf4ff; }
   text-align: center;
   color: #012F41;
 }
-
 .ecosystem-items > div:hover {
   transform: translateY(-8px);
   box-shadow: 0 18px 44px rgba(212, 175, 55, 0.4);
 }
-
 .ecosystem-items h4 {
   font-size: 1.7rem;
   font-weight: 900;
@@ -2066,14 +2055,12 @@ tbody tr:hover { background: #ebf4ff; }
   color: #026B7B;
   text-shadow: 1px 1px 3px rgba(2, 107, 123, 0.4);
 }
-
 .ecosystem-items p {
   font-size: 1.15rem;
   line-height: 1.6;
   color: #012F41;
   margin-bottom: 1.7rem;
 }
-
 .ecosystem-items img {
   height: 100px;
   border-radius: 14px;
@@ -2081,13 +2068,11 @@ tbody tr:hover { background: #ebf4ff; }
   box-shadow: 0 8px 20px rgba(1, 99, 119, 0.22);
   transition: box-shadow 0.3s ease;
 }
-
 .ecosystem-items img:hover {
   box-shadow: 0 14px 28px rgba(212, 175, 55, 0.5);
 }
   </style>
 </section>
-
 <!-- Section Nos Valeurs -->
 <section id="valeurs" class=" fade-in" data-visible="false">
   <div class="wave-bg">
@@ -2121,7 +2106,6 @@ tbody tr:hover { background: #ebf4ff; }
   color: #fff;
   overflow: hidden;
 }
-
 #valeurs::before {
   content: "";
   position: absolute;
@@ -2130,7 +2114,6 @@ tbody tr:hover { background: #ebf4ff; }
   filter: blur(6px) brightness(0.5);
   z-index: -1;
 }
-
 #valeurs {
   background: linear-gradient(135deg, #0a2342 0%, #155d63 100%);
   color: #fafafa;
@@ -2156,7 +2139,6 @@ tbody tr:hover { background: #ebf4ff; }
   gap: 2rem;
   margin-top: 3rem;
 }
-
 .valeur-box {
   background: rgba(255, 255, 255, 0.08);
   border-radius: 16px;
@@ -2173,19 +2155,16 @@ tbody tr:hover { background: #ebf4ff; }
   transform: translateY(-10px) scale(1.03);
   box-shadow: 0 10px 28px rgba(249,197,28,0.4);
 }
-
 .valeur-box h3 {
   color: #f9c51c;
   font-size: 1.6rem;
   margin-bottom: 0.8rem;
 }
-
 .valeur-box p {
   color: #e6e6e6;
   line-height: 1.6;
   font-size: 1.1rem;
 }
-
 @keyframes fadeSlideUp {
   from {
     transform: translateY(50px);
@@ -2196,7 +2175,6 @@ tbody tr:hover { background: #ebf4ff; }
     opacity: 1;
   }
 }
-
 </style>
 <div style="text-align:center; margin: 3.5rem 0;">
   <a href="Formateurs.html" 
@@ -2205,7 +2183,6 @@ tbody tr:hover { background: #ebf4ff; }
     Voir tous nos formateurs
   </a>
 </div>
-
 <style>
   .btn-premium-formateurs {
     display: inline-block;
@@ -2245,7 +2222,6 @@ tbody tr:hover { background: #ebf4ff; }
   --shadow-blue: rgba(15, 50, 110, 0.16);
   --shadow-gold: rgba(212, 175, 55, 0.4);
 }
-
 #ecosystem {
   max-width: 1200px;
   margin: 4rem auto;
@@ -2258,11 +2234,9 @@ tbody tr:hover { background: #ebf4ff; }
   text-align: center;
   transition: box-shadow 0.4s ease;
 }
-
 #ecosystem:hover {
   box-shadow: 0 30px 70px rgba(212, 175, 55, 0.5);
 }
-
 #ecosystem h2 {
   font-size: 3.4rem;
   font-weight: 900;
@@ -2271,14 +2245,12 @@ tbody tr:hover { background: #ebf4ff; }
   text-shadow: 0 0 15px rgba(212, 175, 55, 0.85);
   letter-spacing: 1.1px;
 }
-
 .ecosystem-items {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 3rem;
 }
-
 .ecosystem-items > div {
   background: var(--white-cream);
   border-radius: 26px;
@@ -2294,12 +2266,10 @@ tbody tr:hover { background: #ebf4ff; }
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   cursor: default;
 }
-
 .ecosystem-items > div:hover {
   transform: translateY(-12px);
   box-shadow: 0 20px 45px var(--shadow-gold);
 }
-
 .ecosystem-items h4 {
   font-size: 1.75rem;
   font-weight: 900;
@@ -2308,7 +2278,6 @@ tbody tr:hover { background: #ebf4ff; }
   text-shadow: 0 0 5px rgba(2, 107, 123, 0.5);
   letter-spacing: 0.04em;
 }
-
 .ecosystem-items p {
   font-size: 1.15rem;
   line-height: 1.6;
@@ -2316,7 +2285,6 @@ tbody tr:hover { background: #ebf4ff; }
   margin-bottom: 2rem;
   font-style: italic;
 }
-
 .ecosystem-items img {
   width: 100%;      
   height: auto;        
@@ -2326,13 +2294,10 @@ tbody tr:hover { background: #ebf4ff; }
   box-shadow: 0 8px 25px rgba(42, 109, 255, 0.3);
   transition: box-shadow 0.4s ease, transform 0.3s ease;
 }
-
 .ecosystem-items img:hover {
   box-shadow: 0 14px 40px rgba(212, 175, 55, 0.6);
   transform: scale(1.05);
 }
-
-
 @media (max-width: 768px) {
   .ecosystem-items > div {
     width: 90%;
@@ -2622,7 +2587,6 @@ tbody tr:hover { background: #ebf4ff; }
   color: #f9c51c;
   box-sizing: border-box;
 }
-
 .section-thematic h2 {
   font-weight: 900;
   font-size: 2.6rem;
@@ -2630,14 +2594,12 @@ tbody tr:hover { background: #ebf4ff; }
   margin-bottom: 2rem;
   text-shadow: 0 0 5px #f9c51c;
 }
-
 .section-thematic div {
   text-align: center;
   font-size: 1.4rem;
   font-weight: 600;
   line-height: 1.5;
 }
-
 @media (max-width: 768px) {
   .section-thematic {
     padding: 2rem 1rem;
@@ -2758,7 +2720,6 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
 .btn-premium-emploi-temps-glow-container {
   perspective: 800px;
 }
-
 .btn-premium-emploi-temps-glow {
   display: inline-block;
   position: relative;
@@ -2784,7 +2745,6 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
   transform-style: preserve-3d;
 }
-
 .btn-premium-emploi-temps-glow::before {
   content: "";
   position: absolute;
@@ -2796,7 +2756,6 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
   z-index: -1;
   animation: gradientShift 15s ease infinite;
 }
-
 .btn-premium-emploi-temps-glow:hover {
   transform: scale(1.12) rotateX(10deg) rotateY(5deg);
   box-shadow: 0 0 30px #3b82f6,
@@ -2805,7 +2764,6 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
               0 0 85px #2563eb,
               0 0 98px #14b8a6;
 }
-
 .btn-premium-emploi-temps-glow:active {
   transform: scale(0.95) rotateX(0deg) rotateY(0deg);
   box-shadow: 0 0 15px #3b82f6,
@@ -2850,7 +2808,6 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
   flex-direction: column;
   align-items: center;
 }
-
 .spotlight-title {
   font-size: 3.5rem;
   font-weight: 900;
@@ -2862,14 +2819,12 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
   margin-bottom: 1rem;
   letter-spacing: 1.5px;
 }
-
 .spotlight-subtitle {
   font-size: 1.25rem;
   color: #a0c4ff;
   margin-bottom: 4rem;
   font-weight: 500;
 }
-
 .spotlight-stage {
   perspective: 1200px;
   height: 380px;
@@ -2964,12 +2919,10 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
   letter-spacing: 1.2px;
   text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
-
 .spotlight-card.active .spotlight-name {
   color: #f9c51c;
   text-shadow: 0 0 20px rgba(249, 197, 28, 0.8);
 }
-
 /* CONTROLES */
 .spotlight-controls {
   display: flex;
@@ -2977,7 +2930,6 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
   gap: 1.5rem;
   margin-top: 2.5rem;
 }
-
 .control-btn {
   width: 56px;
   height: 56px;
@@ -2992,7 +2944,6 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
   transition: all 0.4s ease;
   backdrop-filter: blur(10px);
 }
-
 .control-btn:hover {
   background: rgba(249, 197, 28, 0.3);
   border-color: #f9c51c;
@@ -3006,7 +2957,6 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
   gap: 0.6rem;
   margin-top: 2rem;
 }
-
 .dot {
   width: 10px;
   height: 10px;
@@ -3015,7 +2965,6 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
   transition: all 0.4s ease;
   cursor: pointer;
 }
-
 .dot.active {
   background: #f9c51c;
   transform: scale(1.4);
@@ -3025,7 +2974,6 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
   .spotlight-card, .spotlight-card.active { width: 240px; height: 240px; }
   .spotlight-logo { width: 90px; height: 90px; }
 }
-
 @media (max-width: 768px) {
   .spotlight-title { font-size: 2.8rem; }
   .spotlight-card, .spotlight-card.active { width: 200px; height: 200px; padding: 1.5rem; }
@@ -3033,7 +2981,6 @@ Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des t�
   .spotlight-name { font-size: 1.2rem; }
   .control-btn { width: 48px; height: 48px; }
 }
-
 @media (max-width: 480px) {
   .spotlight-3d { padding: 4rem 1rem; }
   .spotlight-card, .spotlight-card.active { width: 180px; height: 180px; }
@@ -3073,13 +3020,11 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="spotlight-name">${p.name}</div>
     `;
     stage.appendChild(card);
-
     const dot = document.createElement('div');
     dot.className = 'dot';
     dot.addEventListener('click', () => goToIndex(i));
     dotsContainer.appendChild(dot);
   });
-
   const cards = document.querySelectorAll('.spotlight-card');
   const dots = document.querySelectorAll('.dot');
   function updateDisplay() {
@@ -3099,7 +3044,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
   function goToIndex(index) {
     currentIndex = index;
     updateDisplay();
@@ -3109,17 +3053,13 @@ document.addEventListener('DOMContentLoaded', () => {
     currentIndex = (currentIndex + 1) % partners.length;
     updateDisplay();
   }
-
   function prev() {
     currentIndex = (currentIndex - 1 + partners.length) % partners.length;
     updateDisplay();
   }
-
-  
   function startAutoRotate() {
     autoRotate = setInterval(next, 1800);
   }
-
   function resetAutoRotate() {
     clearInterval(autoRotate);
     if (!isPaused) startAutoRotate();
@@ -3128,22 +3068,18 @@ document.addEventListener('DOMContentLoaded', () => {
     next();
     resetAutoRotate();
   });
-
   prevBtn.addEventListener('click', () => {
     prev();
     resetAutoRotate();
   });
-
   stage.addEventListener('mouseenter', () => {
     isPaused = true;
     clearInterval(autoRotate);
   });
-
   stage.addEventListener('mouseleave', () => {
     isPaused = false;
     startAutoRotate();
   });
-
   updateDisplay();
   startAutoRotate();
 });
@@ -3154,12 +3090,10 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class="spotlight-container">
     <h2 class="spotlight-title">Nos Partenaires </h2>
     <p class="spotlight-subtitle">Institutions & entreprises qui soutiennent notre vision</p>
-
     <!-- SCÈNE 3D -->
     <div class="spotlight-stage" id="spotlightStage">
       <!-- Cartes injectées par JS -->
     </div>
-
     <!-- BOUTONS DE NAVIGATION -->
     <div class="spotlight-controls">
       <button class="control-btn prev-btn" aria-label="Précédent">
@@ -3173,7 +3107,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </svg>
       </button>
     </div>
-
     <!-- INDICATEURS -->
     <div class="spotlight-dots" id="spotlightDots"></div>
   </div>
@@ -3239,7 +3172,6 @@ footer img {
   position: relative;
   overflow: hidden;
 }
-
 #contact h2 {
   font-size: 2.8rem;
   font-weight: 900;
@@ -3247,7 +3179,6 @@ footer img {
   text-shadow: 0 0 8px var(--or-excellence);
   margin-bottom: 2rem;
 }
-
 .contact-container {
   display: flex;
   gap: 2rem;
@@ -3255,7 +3186,6 @@ footer img {
   justify-content: center;
   align-items: stretch;
 }
-
 .contact-info {
   flex: 1 1 400px;
   display: flex;
@@ -3263,7 +3193,6 @@ footer img {
   gap: 1.5rem;
   padding: 1rem;
 }
-
 .contact-item {
   display: flex;
   align-items: center;
@@ -3273,34 +3202,28 @@ footer img {
   padding: 1rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .contact-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(249, 197, 28, 0.3);
 }
-
 .contact-item i {
   font-size: 1.5rem;
   color: var(--or-excellence);
 }
-
 .contact-item p {
   margin: 0;
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--blanc);
 }
-
 .contact-item a {
   color: var(--or-excellence);
   text-decoration: none;
   transition: color 0.3s ease;
 }
-
 .contact-item a:hover {
   color: #fff;
 }
-
 .contact-qr {
   text-align: center;
 }
@@ -3612,11 +3535,9 @@ window.addEventListener('DOMContentLoaded', function() {
         root.classList.remove('pulse-frame');
       }, 520);
     }
-  
     setTimeout(beginFade, 420);
   }, displayTime - 420 > 0 ? displayTime - 420 : Math.max(200, displayTime-200));
   forcedTimer = setTimeout(cleanup, SAFETY);
-  // Mark preloader as shown so it won't run again on future visits
   try{ if (localStorage && localStorage.setItem) localStorage.setItem(PRELOADER_SHOWN_KEY, '1'); }catch(e){}
 })();
   // Appliquer un zoom initial à 60%
