@@ -276,8 +276,20 @@
         <option value="Autre">Autre</option>
       </select>
 
+      <label for="horaire">Horaire souhaité</label>
+<select id="horaire" name="horaire" required aria-label="Horaire">
+  <option value="" disabled selected>Sélectionnez votre horaire</option>
+  <option value="8h30">8h30</option>
+  <option value="14h30">14h30</option>
+</select>
+
+
       <label for="commentaire">Pourquoi rejoindre PAMF ? (facultatif)</label>
       <textarea id="commentaire" name="commentaire" placeholder="Informations complémentaires" aria-label="Pourquoi rejoindre PAMF"></textarea>
+
+      <p style="margin-top: -10px; margin-bottom: 20px; font-size: 0.95em; color: #333;">
+  <strong>Date du test :</strong> Vendredi 12 décembre, à l’horaire que vous aurez choisi.
+</p>
 
       <button type="submit">S'inscrire</button>
     </form>
@@ -335,6 +347,63 @@
         status.classList.add('show');
       });
     });
+  // --- Liste locale des emails déjà inscrits (localStorage) ---
+  function getRegisteredEmails() {
+    const data = localStorage.getItem('pamf_registered_emails');
+    return data ? JSON.parse(data) : [];
+  }
+
+  function saveRegisteredEmail(email) {
+    const list = getRegisteredEmails();
+    if (!list.includes(email)) {
+      list.push(email);
+      localStorage.setItem('pamf_registered_emails', JSON.stringify(list));
+    }
+  }
+
+  document.getElementById('inscriptionForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const status = document.getElementById('status');
+    const form = document.getElementById('inscriptionForm');
+    const emailInput = document.getElementById('email');
+    const email = emailInput.value.trim().toLowerCase();
+
+    // 1) Vérifier si l'email est déjà enregistré en local
+    const registered = getRegisteredEmails();
+    if (registered.includes(email)) {
+      status.innerHTML = '<p class="error">Cette adresse email est déjà inscrite à la PAMF.</p>';
+      status.classList.add('show');
+      return;
+    }
+
+    status.innerHTML = '<p>Envoi en cours...</p>';
+    status.classList.add('show');
+
+    const formData = new FormData(form);
+
+    fetch('https://formspree.io/f/mldppjnq', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        // 2) Si l’envoi est OK, on enregistre l’email comme utilisé
+        saveRegisteredEmail(email);
+        status.innerHTML = '<p class="success">Inscription à la PAMF réussie ! Bienvenue parmi nous !</p>';
+        status.classList.add('show');
+        form.reset();
+        setTimeout(() => status.classList.remove('show'), 5000);
+      } else {
+        status.innerHTML = '<p class="error">Erreur lors de l’envoi. Veuillez réessayer plus tard.</p>';
+        status.classList.add('show');
+      }
+    })
+    .catch(error => {
+      status.innerHTML = '<p class="error">Erreur : ' + error.message + '</p>';
+      status.classList.add('show');
+    });
+  });
   </script>
 </body>
 </html>
