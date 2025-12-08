@@ -208,14 +208,6 @@
     }
   </style>
   <script>
-    document.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
-      alert('Clic droit désactivé pour protéger le contenu.');
-    });
-    ['selectstart', 'dragstart', 'drop'].forEach((event) =>
-      document.addEventListener(event, (e) => e.preventDefault())
-    );
-
     document.addEventListener('keydown', (e) => {
       const forbiddenKeys = ['c', 'v', 'x', 'u', 's', 'a', 'p', 'i'];
       if (e.ctrlKey && forbiddenKeys.includes(e.key.toLowerCase())) {
@@ -257,7 +249,7 @@
   <div class="form-container">
     <h2>Inscription SIPEM</h2>
     <p class="subtitle">Rejoignez l’avenir avec SIPEM – Votre parcours commence ici !</p>
-    <form id="inscriptionForm" action="https://formspree.io/f/mldppjnq" method="POST">
+    <form id="inscriptionForm" action="https://formspree.io/f/xanrdevl" method="POST">
       <label for="prenom">Prénom</label>
       <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required aria-label="Prénom" />
 
@@ -351,7 +343,7 @@
 
       const formData = new FormData(document.getElementById('inscriptionForm'));
 
-      fetch('https://formspree.io/f/mldppjnq', {
+      fetch('https://formspree.io/f/xanrdevl', {
         method: 'POST',
         body: formData,
         headers: { Accept: 'application/json' },
@@ -374,6 +366,63 @@
           status.classList.add('show');
         });
     });
+    // --- Liste locale des emails déjà inscrits (localStorage) ---
+  function getRegisteredEmails() {
+    const data = localStorage.getItem('pamf_registered_emails');
+    return data ? JSON.parse(data) : [];
+  }
+
+  function saveRegisteredEmail(email) {
+    const list = getRegisteredEmails();
+    if (!list.includes(email)) {
+      list.push(email);
+      localStorage.setItem('pamf_registered_emails', JSON.stringify(list));
+    }
+  }
+
+  document.getElementById('inscriptionForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const status = document.getElementById('status');
+    const form = document.getElementById('inscriptionForm');
+    const emailInput = document.getElementById('email');
+    const email = emailInput.value.trim().toLowerCase();
+
+    // 1) Vérifier si l'email est déjà enregistré en local
+    const registered = getRegisteredEmails();
+    if (registered.includes(email)) {
+      status.innerHTML = '<p class="error">Cette adresse email est déjà inscrite à la PAMF.</p>';
+      status.classList.add('show');
+      return;
+    }
+
+    status.innerHTML = '<p>Envoi en cours...</p>';
+    status.classList.add('show');
+
+    const formData = new FormData(form);
+
+    fetch('https://formspree.io/f/xanrdevl', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        // 2) Si l’envoi est OK, on enregistre l’email comme utilisé
+        saveRegisteredEmail(email);
+        status.innerHTML = '<p class="success">Inscription à la PAMF réussie ! Bienvenue parmi nous !</p>';
+        status.classList.add('show');
+        form.reset();
+        setTimeout(() => status.classList.remove('show'), 5000);
+      } else {
+        status.innerHTML = '<p class="error">Erreur lors de l’envoi. Veuillez réessayer plus tard.</p>';
+        status.classList.add('show');
+      }
+    })
+    .catch(error => {
+      status.innerHTML = '<p class="error">Erreur : ' + error.message + '</p>';
+      status.classList.add('show');
+    });
+  });
   </script>
 </body>
 </html>
