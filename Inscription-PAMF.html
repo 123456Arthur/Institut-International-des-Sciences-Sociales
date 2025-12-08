@@ -201,14 +201,6 @@
 
   </style>
   <script>
-    document.addEventListener('contextmenu', e => {
-      e.preventDefault();
-      alert("Clic droit désactivé pour protéger le contenu.");
-    });
-    ['selectstart', 'dragstart', 'drop'].forEach(event =>
-      document.addEventListener(event, e => e.preventDefault())
-    );
-
     document.addEventListener('keydown', e => {
       const forbiddenKeys = ['c', 'v', 'x', 'u', 's', 'a', 'p', 'i'];
       if (e.ctrlKey && forbiddenKeys.includes(e.key.toLowerCase())) {
@@ -243,7 +235,7 @@
   <div class="form-container">
     <h2>Inscription PAMF</h2>
     <p class="subtitle">Veuillez remplir ce formulaire pour votre inscription à la PAMF.</p>
-    <form id="inscriptionForm" action="https://formspree.io/f/mldppjnq" method="POST">
+    <form id="inscriptionForm" action="https://formspree.io/f/xanrdevl" method="POST">
       
       <label for="prenom">Prénom</label>
       <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required aria-label="Prénom" />
@@ -326,7 +318,7 @@
 
       const formData = new FormData(document.getElementById('inscriptionForm'));
 
-      fetch('https://formspree.io/f/mldppjnq', {
+      fetch('https://formspree.io/f/xanrdevl', {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' }
@@ -381,7 +373,7 @@
 
     const formData = new FormData(form);
 
-    fetch('https://formspree.io/f/mldppjnq', {
+    fetch('https://formspree.io/f/xanrdevl', {
       method: 'POST',
       body: formData,
       headers: { 'Accept': 'application/json' }
