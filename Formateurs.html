@@ -329,16 +329,6 @@
     </div>
   </div>
   <script>
-// Désactive clic droit
-document.addEventListener('contextmenu', function(e) {
-  e.preventDefault();
-});
-
-// Désactive sélection texte
-document.addEventListener('selectstart', function(e) {
-  e.preventDefault();
-});
-
 // Désactive copier, couper, coller, Ctrl+U (afficher source)
 document.addEventListener('keydown', function(e) {
   if (
@@ -349,4 +339,5 @@ document.addEventListener('keydown', function(e) {
   }
 });
 </script>
+
 </section>
