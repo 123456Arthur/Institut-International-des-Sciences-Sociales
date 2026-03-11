@@ -453,7 +453,7 @@ body.iiss-preloading {
   </div>
   <nav>
     <ul id="menu">
-       <li><a href="https://forms.gle/QoVFFacQQXoPYgrk9">Startup weekend Women </a></li>
+       <li><a href="#edt-section">Emploi du temps</a></li>
        <li><a href="#mentions">Nos 5 Mentions</a></li>
        <li><a href="#ecosystem">Notre écosystème</a></li>
        <li><a href="#valeurs">Nos Valeurs</a></li>
@@ -1212,18 +1212,6 @@ body.iiss-preloading {
   overlay.style.pointerEvents = 'none';
   overlay.style.backgroundColor = 'transparent';
   document.body.appendChild(overlay);
-
-  // Politique CSP à configurer côté serveur (exemple)
-  /*
-  Content-Security-Policy:
-    default-src 'self';
-    script-src 'self';
-    style-src 'self' 'unsafe-inline';
-    img-src 'self' data:;
-    media-src 'self';
-    object-src 'none';
-  */
-
   // Empêche l'accès iframe (clickjacking)
   if (window.top !== window.self) {
     window.top.location = window.self.location;
@@ -1233,7 +1221,7 @@ body.iiss-preloading {
 <body>
   <header class="hero">
   <!-- Image de fond premium -->
-  <div class="hero-bg" style="background-image: url(' Groupe photo .jpg');" aria-hidden="true">
+  <div class="hero-bg" style="background-image: url(' NOUVEAU PHOTO IISS.jpg');" aria-hidden="true">
     <div class="hero-overlay"></div>
     <div class="hero-glow"></div>
   </div>
@@ -1400,6 +1388,7 @@ body.iiss-preloading {
       </div>
     </a>
   </section>
+  <section id="edt-section">
   <style>
   .promotion-section {
     max-width: 1100px;
@@ -1764,187 +1753,239 @@ tbody tr:hover { background: #ebf4ff; }
     evt.currentTarget.classList.add("active");
   }
 </script>
-<!-- SECTION UES - TITRE H1 CLAIR & PREMIUM -->
-<section class="ues-premium-section">
-  <div class="ues-premium-container">
+</section>
+ <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&display=swap" rel="stylesheet">
 
-    <!-- TITRE H1 SIMPLE & IMPACTANT -->
-    <h1 class="ues-h1-title">Nos Unités d'Enseignement</h1>
-    <p class="ues-subtitle">Cliquez sur une UE pour découvrir son programme détaillé</p>
+<section class="ue-modern-wrapper">
+  <div class="ue-header-minimal">
+    <h2 class="ue-main-title">Nos Unités d'Enseignement</h2>
+    <p class="ue-main-subtitle">Cliquez sur une UE pour découvrir son programme détaillé</p>
+  </div>
 
-    <!-- GRILLE UEs -->
-    <div class="ues-grid">
-      <a href="ue1.html" class="ue-card">
-        <div class="ue-code">UE1</div>
-        <div class="ue-name">Langues, Cultures et Communications</div>
-        <div class="ue-credits">16 crédits</div>
-      </a>
+  <div class="ue-modern-grid">
+    <a href="ue1.html" class="ue-modern-card" style="--card-blue: #4a90e2;">
+      <div class="ue-card-glass"></div>
+      <div class="ue-content-top">
+        <span class="ue-id-badge">01</span>
+        <span class="ue-label">UE1</span>
+      </div>
+      <h3 class="ue-card-title">Langues, Cultures et Communications</h3>
+      <div class="ue-card-footer">
+        <span class="ue-credit-pill">16 crédits</span>
+        <div class="ue-arrow-circle">→</div>
+      </div>
+    </a>
 
-      <a href="ue2.html" class="ue-card">
-        <div class="ue-code">UE2</div>
-        <div class="ue-name">Soft skills et Développement Humain</div>
-        <div class="ue-credits">11 crédits</div>
-      </a>
+    <a href="ue2.html" class="ue-modern-card" style="--card-blue: #72c3e6;">
+      <div class="ue-card-glass"></div>
+      <div class="ue-content-top">
+        <span class="ue-id-badge">02</span>
+        <span class="ue-label">UE2</span>
+      </div>
+      <h3 class="ue-card-title">Soft skills et Développement Humain</h3>
+      <div class="ue-card-footer">
+        <span class="ue-credit-pill">11 crédits</span>
+        <div class="ue-arrow-circle">→</div>
+      </div>
+    </a>
 
-      <a href="ue3.html" class="ue-card">
-        <div class="ue-code">UE3</div>
-        <div class="ue-name">Sciences humaines, Sociales et Éthiques</div>
-        <div class="ue-credits">18 crédits</div>
-      </a>
+    <a href="ue3.html" class="ue-modern-card" style="--card-blue: #a0c4ff;">
+      <div class="ue-card-glass"></div>
+      <div class="ue-content-top">
+        <span class="ue-id-badge">03</span>
+        <span class="ue-label">UE3</span>
+      </div>
+      <h3 class="ue-card-title">Sciences humaines, Sociales et Éthiques</h3>
+      <div class="ue-card-footer">
+        <span class="ue-credit-pill">18 crédits</span>
+        <div class="ue-arrow-circle">→</div>
+      </div>
+    </a>
 
-      <a href="ue4.html" class="ue-card">
-        <div class="ue-code">UE4</div>
-        <div class="ue-name">Économie, Finance et Gestion</div>
-        <div class="ue-credits">32 crédits</div>
-      </a>
+    <a href="ue4.html" class="ue-modern-card ue-featured" style="--card-blue: #4a90e2;">
+      <div class="ue-card-glass"></div>
+      <div class="ue-content-top">
+        <span class="ue-id-badge">04</span>
+        <span class="ue-label">UE4</span>
+      </div>
+      <h3 class="ue-card-title">Économie, Finance et Gestion</h3>
+      <div class="ue-card-footer">
+        <span class="ue-credit-pill gold">32 crédits</span>
+        <div class="ue-arrow-circle">→</div>
+      </div>
+    </a>
 
-      <a href="ue5.html" class="ue-card">
-        <div class="ue-code">UE5</div>
-        <div class="ue-name">Management, Stratégie et Entrepreneuriat</div>
-        <div class="ue-credits">18 crédits</div>
-      </a>
+    <a href="ue5.html" class="ue-modern-card" style="--card-blue: #72c3e6;">
+      <div class="ue-card-glass"></div>
+      <div class="ue-content-top">
+        <span class="ue-id-badge">05</span>
+        <span class="ue-label">UE5</span>
+      </div>
+      <h3 class="ue-card-title">Management, Stratégie et Entrepreneuriat</h3>
+      <div class="ue-card-footer">
+        <span class="ue-credit-pill">18 crédits</span>
+        <div class="ue-arrow-circle">→</div>
+      </div>
+    </a>
 
-      <a href="ue6.html" class="ue-card">
-        <div class="ue-code">UE6</div>
-        <div class="ue-name">Développement durable, Environnement et Sécurité</div>
-        <div class="ue-credits">15 crédits</div>
-      </a>
+    <a href="ue6.html" class="ue-modern-card" style="--card-blue: #a0c4ff;">
+      <div class="ue-card-glass"></div>
+      <div class="ue-content-top">
+        <span class="ue-id-badge">06</span>
+        <span class="ue-label">UE6</span>
+      </div>
+      <h3 class="ue-card-title">Dév. durable, Environnement et Sécurité</h3>
+      <div class="ue-card-footer">
+        <span class="ue-credit-pill">15 crédits</span>
+        <div class="ue-arrow-circle">→</div>
+      </div>
+    </a>
 
-      <a href="ue7.html" class="ue-card">
-        <div class="ue-code">UE7</div>
-        <div class="ue-name">Compétence numérique et Gestion de Projet</div>
-        <div class="ue-credits">18 crédits</div>
-      </a>
-    </div>
+    <a href="ue7.html" class="ue-modern-card" style="--card-blue: #4a90e2;">
+      <div class="ue-card-glass"></div>
+      <div class="ue-content-top">
+        <span class="ue-id-badge">07</span>
+        <span class="ue-label">UE7</span>
+      </div>
+      <h3 class="ue-card-title">Compétence numérique et Gestion de Projet</h3>
+      <div class="ue-card-footer">
+        <span class="ue-credit-pill">18 crédits</span>
+        <div class="ue-arrow-circle">→</div>
+      </div>
+    </a>
   </div>
 </section>
+
 <style>
-  .ues-premium-section {
-    padding: 5rem 1rem;
-    background: #0a1828;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ues-premium-section::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: 
-      radial-gradient(circle at 20% 80%, rgba(74, 144, 226, 0.08), transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(114, 195, 230, 0.06), transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .ues-premium-container {
-    position: relative;
-    z-index: 1;
-    max-width: 1400px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .ues-h1-title {
-    font-size: 3rem;
-    font-weight: 800;
+  .ue-modern-wrapper {
+    background: #0a1828; /* Ta couleur de fond */
+    padding: 60px 20px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     color: #e6f1ff;
-    margin: 0 0 1rem;
-    letter-spacing: 0.5px;
-    text-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
   }
 
-  .ues-subtitle {
-    color: #a0c4ff;
-    font-size: 1.15rem;
-    margin-bottom: 3rem;
-    font-weight: 500;
+  .ue-header-minimal {
+    text-align: center;
+    margin-bottom: 50px;
   }
 
+  .ue-main-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #fff, #a0c4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-  /* GRILLE */
-  .ues-grid {
+  .ue-main-subtitle { color: #a0c4ff; font-size: 1.1rem; opacity: 0.8; }
+
+  .ue-modern-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.8rem;
+    gap: 25px;
+    max-width: 1300px;
+    margin: 0 auto;
   }
-  .ue-card {
-    background: linear-gradient(135deg, #0f1f33 0%, #1a2a44 100%);
-    padding: 1.8rem 1.5rem;
-    border-radius: 18px;
+
+  .ue-modern-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    border-radius: 24px;
+    padding: 30px;
     text-decoration: none;
-    color: #e6f1ff;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 150px;
-    border: 1.5px solid rgba(74, 144, 226, 0.25);
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
+    min-height: 200px;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   }
 
-  .ue-card::before {
-    content: '';
+  .ue-card-glass {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(74, 144, 226, 0.12), transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    border-radius: 18px;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at top right, var(--card-blue), transparent 70%);
+    opacity: 0.05;
+    transition: opacity 0.4s;
   }
 
-  .ue-card:hover::before {
-    opacity: 1;
+  .ue-modern-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--card-blue);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(74, 144, 226, 0.1);
   }
 
-  .ue-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-color: #4a90e2;
-    box-shadow: 
-      0 20px 50px rgba(74, 144, 226, 0.25),
-      0 0 35px rgba(74, 144, 226, 0.2);
-    z-index: 5;
+  .ue-modern-card:hover .ue-card-glass { opacity: 0.15; }
+
+  .ue-content-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
   }
 
-  .ue-code {
-    font-size: 1.4rem;
-    font-weight: 900;
-    color: #4a90e2;
-    margin-bottom: 0.6rem;
-    text-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+  .ue-id-badge {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--card-blue);
+    opacity: 0.6;
   }
 
-  .ue-name {
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-align: center;
-    line-height: 1.5;
-    color: #d0e4ff;
-    margin: 0.5rem 0;
-  }
-
-  .ue-credits {
-    font-size: 0.95rem;
+  .ue-label {
+    background: rgba(74, 144, 226, 0.1);
+    color: var(--card-blue);
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.75rem;
     font-weight: 700;
-    color: #72c3e6;
-    background: rgba(74, 144, 226, 0.15);
-    padding: 0.4rem 1rem;
-    border-radius: 30px;
-    margin-top: 0.8rem;
-    border: 1px solid rgba(74, 144, 226, 0.3);
   }
 
-  /* Responsive */
-  @media (max-width: 992px) {
-    .ues-grid { grid-template-columns: repeat(2, 1fr); }
-    .ues-h1-title { font-size: 2.5rem; }
+  .ue-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin: 0;
+    position: relative;
+    flex-grow: 1;
   }
+
+  .ue-card-footer {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  .ue-credit-pill {
+    font-size: 0.85rem;
+    color: #a0c4ff;
+    font-weight: 600;
+  }
+
+  .ue-credit-pill.gold { color: #ffd700; }
+
+  .ue-arrow-circle {
+    width: 35px; height: 35px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    transition: all 0.3s;
+  }
+
+  .ue-modern-card:hover .ue-arrow-circle {
+    background: var(--card-blue);
+    border-color: var(--card-blue);
+    transform: rotate(-45deg);
+  }
+
   @media (max-width: 600px) {
-    .ues-grid { grid-template-columns: 1fr; }
-    .ues-h1-title { font-size: 2.2rem; }
-    .ue-card { padding: 1.5rem; }
+    .ue-main-title { font-size: 2rem; }
+    .ue-modern-grid { grid-template-columns: 1fr; }
   }
 </style>
  <section id="ecosystem" class="section-light" data-visible="false" aria-label="Notre Écosystème">
@@ -3397,7 +3438,7 @@ window.addEventListener('DOMContentLoaded', function() {
   const PRELOADER_ID = 'iiss-preloader';
   const PRELOADER_SHOWN_KEY = 'iiss_preloader_shown_v1';
 
-  // If the preloader was already shown before, remove it immediately and skip initialization
+ 
   try{
     if (localStorage && localStorage.getItem && localStorage.getItem(PRELOADER_SHOWN_KEY)){
       const rootEl = document.getElementById(PRELOADER_ID);
@@ -3405,7 +3446,7 @@ window.addEventListener('DOMContentLoaded', function() {
       document.body.classList.remove('iiss-preloading');
       return;
     }
-  }catch(e){ /* ignore storage errors */ }
+  }catch(e){ }
   const CANVAS_ID = 'iiss-preloader-canvas';
   const MIN_SHOW = 3000, MAX_SHOW = 4000, SAFETY = 6000;
   const AREA_PER_PARTICLE = 16000;
@@ -3439,7 +3480,7 @@ window.addEventListener('DOMContentLoaded', function() {
     for(let i=0;i<count;i++) particles.push(makeParticle(w,h));
   }
 
-  // Entrance animation: stagger letters and reveal logo for a premium effect
+  
   function playEntranceAnimation(){
     try{
       const title = document.querySelector('.iiss-title');
@@ -3458,7 +3499,6 @@ window.addEventListener('DOMContentLoaded', function() {
         logo.style.transform = 'scale(0.4)';
         logo.style.transition = 'transform 900ms cubic-bezier(.2,.9,.3,1), opacity 900ms ease';
         setTimeout(()=>{ logo.style.opacity = '1'; logo.style.transform = 'scale(1)'; }, 300);
-        // subtle glow pulse
         setTimeout(()=>{ logo.classList.add('iiss-logo-glow'); setTimeout(()=> logo.classList.remove('iiss-logo-glow'), 2200); }, 900);
       }
     }catch(e){}
@@ -3512,7 +3552,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
   setSize(true); createParticles(); running = true; loop(performance.now()); window.addEventListener('resize', onResize, { passive:true }); document.addEventListener('visibilitychange', ()=>{ if(document.hidden){ if(rafId) { cancelAnimationFrame(rafId); rafId=null; } } else { if(!rafId) loop(performance.now()); } });
-  // play the entrance animation once at the start
   try{ playEntranceAnimation(); }catch(e){}
 
   const displayTime = Math.floor(Math.random()*(MAX_SHOW-MIN_SHOW+1))+MIN_SHOW;
@@ -3541,6 +3580,7 @@ window.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
