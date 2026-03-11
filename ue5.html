@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>UE5 | Management & Stratégie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030712;
+            --accent: #10b981; /* Vert Émeraude pour la croissance */
+            --secondary: #06b6d4; /* Cyan pour l'innovation */
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            background: var(--bg);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: env(safe-area-inset-top) 1.25rem 6rem 1.25rem;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.1), transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(6, 182, 212, 0.1), transparent 40%);
+            background-attachment: fixed;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        .nav-header { display: flex; align-items: center; margin-bottom: 2rem; padding-top: 1rem; }
+        .btn-back {
+            display: flex; align-items: center; gap: 0.5rem; color: var(--text-dim);
+            text-decoration: none; font-family: 'Space Grotesk'; font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 0.1em; padding: 0.6rem 1.2rem;
+            border-radius: 50px; background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border); transition: var(--transition);
+        }
+        .btn-back:hover { color: #fff; background: var(--accent); border-color: var(--accent); transform: translateX(-5px); }
+
+        header { margin: 1rem 0 3rem 0; padding-left: 1rem; border-left: 4px solid var(--accent); }
+        h1 { 
+            font-size: clamp(1.8rem, 7vw, 3.5rem); font-weight: 800; letter-spacing: -0.04em; 
+            line-height: 1.1; margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        .stats { 
+            display: flex; gap: 1.5rem; flex-wrap: wrap;
+            color: var(--text-dim); font-family: 'Space Grotesk'; font-size: 0.75rem; 
+            text-transform: uppercase; letter-spacing: 0.1em; 
+        }
+        .stats b { color: var(--accent); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1.8rem;
+            border-radius: 24px;
+            transition: var(--transition);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .card.active, .card:hover {
+            border-color: var(--accent);
+            background: rgba(16, 185, 129, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .card-num { 
+            font-family: 'Space Grotesk'; font-size: 0.6rem; color: var(--accent); 
+            margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem;
+        }
+        .card-num::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+        
+        .card-title { font-size: 1.05rem; font-weight: 700; color: #fff; line-height: 1.4; }
+
+        .card-desc {
+            max-height: 0; opacity: 0; margin-top: 0; font-size: 0.85rem;
+            color: var(--text-dim); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            line-height: 1.5; overflow: hidden;
+        }
+
+        .card.active .card-desc { max-height: 200px; opacity: 1; margin-top: 1.2rem; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.9rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-header">
+            <a href="index.html" class="btn-back">← Accueil</a>
+        </nav>
+
+        <header>
+            <h1>Management, Stratégie <br>& Entrepreneuriat</h1>
+            <div class="stats">
+                <span>Ref: <b>UE5</b></span>
+                <span>Poids: <b>18 Crédits</b></span>
+                <span>Modules: <b>18</b></span>
+            </div>
+        </header>
+
+        <main class="grid" id="main-grid"></main>
+    </div>
+
+    <script>
+        const modules = [
+            { t: "Administration du personnel", d: "Gestion administrative des contrats, de la paie et suivi des obligations légales des salariés." },
+            { t: "Business plan et BMC", d: "Conception de modèles économiques via le Business Model Canva et rédaction de plans d'affaires complets." },
+            { t: "Gestion axée sur les résultats", d: "Méthodologie de pilotage de projet privilégiant l'atteinte d'objectifs mesurables et d'impacts réels." },
+            { t: "Gestion des Ressources Humaines", d: "Stratégies de recrutement, gestion des carrières, formation et développement des talents." },
+            { t: "Initiation au Marketing", d: "Compréhension des besoins clients, segmentation du marché et positionnement de marque." },
+            { t: "Management d'entreprises", d: "Coordination des ressources humaines, matérielles et financières pour atteindre les buts de l'organisation." },
+            { t: "Management des équipes", d: "Techniques d'animation, de motivation et de gestion des conflits au sein de groupes de projet." },
+            { t: "Marketing d'affaires", d: "Stratégies B2B visant à construire des relations durables avec des partenaires professionnels." },
+            { t: "Marketing et publicité", d: "Conception de campagnes de communication et choix des canaux médiatiques pour promouvoir une offre." },
+            { t: "Marketing et technique de vente", d: "Maîtrise de l'argumentaire commercial, de la négociation et de la psychologie de l'acheteur." },
+            { t: "Organisation de conférences", d: "Logistique, programmation et gestion événementielle pour des événements professionnels de grande envergure." },
+            { t: "Principes de management", d: "Fondements historiques et théoriques du management : de Taylor aux approches collaboratives modernes." },
+            { t: "Projet en équipe", d: "Mise en pratique de la synergie collective pour résoudre une problématique complexe en entreprise." },
+            { t: "Projet individuel", d: "Conception d'un dossier d'expertise ou d'un projet personnel de création d'activité." },
+            { t: "Projet entrepreneurial", d: "Immersion dans la création d'une start-up ou d'une entreprise sociale à fort impact." },
+            { t: "Croissance et diversification", d: "Analyse des vecteurs de développement : extension de gamme, nouveaux marchés et intégration." },
+            { t: "Stratégie de développement", d: "Planification à long terme pour assurer la pérennité et l'avantage concurrentiel de l'organisation." },
+            { t: "Théorie du changement", d: "Modélisation des étapes logiques nécessaires pour transformer une vision sociale en résultats concrets." }
+        ];
+
+        const grid = document.getElementById('main-grid');
+
+        modules.forEach((mod, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-num">STRAT ${(index + 1).toString().padStart(2, '0')}</div>
+                <div class="card-title">${mod.t}</div>
+                <div class="card-desc">${mod.d}</div>
+            `;
+            
+            card.addEventListener('click', function(e) {
+                const isActive = this.classList.contains('active');
+                document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+                if (!isActive) this.classList.add('active');
+                e.stopPropagation();
+            });
+
+            grid.appendChild(card);
+        });
+
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+        });
+    </script>
+</body>
+</html>

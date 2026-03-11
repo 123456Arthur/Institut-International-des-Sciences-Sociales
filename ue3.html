@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>UE3 | Sciences Humaines & Éthiques</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #020205;
+            --accent: #10b981; /* Vert Émeraude pour l'éthique et les sciences sociales */
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            background: var(--bg);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: env(safe-area-inset-top) 1.25rem 6rem 1.25rem;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 80% 0%, rgba(16, 185, 129, 0.12), transparent 50%),
+                radial-gradient(circle at 20% 100%, rgba(59, 130, 246, 0.05), transparent 40%);
+            background-attachment: fixed;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        /* Navigation */
+        .nav-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-top: 1rem;
+        }
+
+        .btn-back {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-family: 'Space Grotesk';
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .btn-back:hover {
+            color: #fff;
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateX(-5px);
+        }
+
+        header { margin: 1rem 0 4rem 0; padding-left: 1rem; border-left: 4px solid var(--accent); }
+        h1 { 
+            font-size: clamp(1.8rem, 7vw, 3.5rem); 
+            font-weight: 800; 
+            letter-spacing: -0.04em; 
+            line-height: 1.1; 
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stats { 
+            display: flex; 
+            gap: 1.5rem; 
+            flex-wrap: wrap;
+            color: var(--text-dim); 
+            font-family: 'Space Grotesk'; 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+        }
+        .stats b { color: var(--accent); }
+
+        /* Grid - Plus dense pour 18 modules */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 24px;
+            position: relative;
+            transition: var(--transition);
+            cursor: pointer;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .card.active, .card:hover {
+            border-color: var(--accent);
+            background: rgba(16, 185, 129, 0.05);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .card-num { 
+            font-family: 'Space Grotesk'; 
+            font-size: 0.6rem; 
+            color: var(--accent); 
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .card-num::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+        
+        .card-title { font-size: 1.1rem; font-weight: 700; color: #fff; line-height: 1.4; }
+
+        .card-desc {
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            line-height: 1.5;
+            overflow: hidden;
+        }
+
+        .card.active .card-desc, .card:hover .card-desc {
+            max-height: 150px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
+            .card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-header">
+            <a href="index.html" class="btn-back">← Accueil</a>
+        </nav>
+
+        <header>
+            <h1>Sciences Humaines, <br>Sociales & Éthiques</h1>
+            <div class="stats">
+                <span>Ref: <b>UE3</b></span>
+                <span>Poids: <b>18 Crédits</b></span>
+                <span>Modules: <b>18</b></span>
+            </div>
+        </header>
+
+        <main class="grid" id="main-grid"></main>
+    </div>
+
+    <script>
+        const modules = [
+            { title: "Analyse et synthèse SSE", desc: "Méthodologie d'analyse transversale des faits sociaux et humains." },
+            { title: "Droit de la communication", desc: "Cadre légal de la liberté d'expression, droit à l'image et propriété intellectuelle." },
+            { title: "Droit des relations int.", desc: "Principes juridiques régissant les rapports entre États et organisations mondiales." },
+            { title: "Droit éco. international", desc: "Règles du commerce mondial, de l'OMC et des investissements étrangers." },
+            { title: "Droit du travail", desc: "Réglementation des relations entre employeurs et salariés et protection sociale." },
+            { title: "Efficacité professionnelle", desc: "Outils de performance et gestion de carrière en environnement complexe." },
+            { title: "Épistémologie des sciences", desc: "Étude critique des fondements et de la validité des connaissances scientifiques." },
+            { title: "Éthique et Déontologie", desc: "Principes moraux et règles de conduite régissant les professions de la com." },
+            { title: "Éthique professionnelle", desc: "Réflexion sur la responsabilité et les valeurs au sein de l'environnement de travail." },
+            { title: "Études quanti & quali", desc: "Méthodes de sondages, statistiques et entretiens pour la recherche sociale." },
+            { title: "Grands courants de pensées", desc: "Histoire des idées philosophiques et sociologiques qui ont façonné le monde." },
+            { title: "Vie Universitaire", desc: "Méthodologie de recherche et orientation dans le parcours académique." },
+            { title: "Santé et Sécurité au travail", desc: "Prévention des risques professionnels et gestion du bien-être en entreprise." },
+            { title: "Démarche environnementale", desc: "Enjeux du développement durable et responsabilité écologique des organisations." },
+            { title: "Sociétés commerciales", desc: "Cadre juridique des structures d'entreprises (SARL, SA, etc.) et leur gouvernance." },
+            { title: "Philosophie du langage", desc: "Étude de la relation entre le langage, la pensée et la structure sociale." },
+            { title: "Sociologie", desc: "Introduction aux mécanismes de fonctionnement de la société et des groupes." },
+            { title: "Sociologie du travail", desc: "Analyse des transformations du travail et des rapports sociaux en entreprise." }
+        ];
+
+        const grid = document.getElementById('main-grid');
+
+        modules.forEach((mod, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-num">SCIENCE ${(index + 1).toString().padStart(2, '0')}</div>
+                <div class="card-title">${mod.title}</div>
+                <div class="card-desc">${mod.desc}</div>
+            `;
+            
+            card.addEventListener('click', function(e) {
+                const isActive = this.classList.contains('active');
+                document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+                if (!isActive) this.classList.add('active');
+                e.stopPropagation();
+            });
+
+            grid.appendChild(card);
+        });
+
+        document.addEventListener('click', function() {
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+        });
+    </script>
+</body>
+</html>

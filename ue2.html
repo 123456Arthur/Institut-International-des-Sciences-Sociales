@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>UE2 | Soft Skills & Développement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #020205;
+            --accent: #7c3aed; 
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            background: var(--bg);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: env(safe-area-inset-top) 1.25rem 6rem 1.25rem;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 80% 0%, rgba(124, 58, 237, 0.12), transparent 50%),
+                radial-gradient(circle at 20% 100%, rgba(0, 212, 255, 0.05), transparent 40%);
+            background-attachment: fixed;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        /* Navigation de retour */
+        .nav-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-top: 1rem;
+        }
+
+        .btn-back {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-family: 'Space Grotesk';
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .btn-back:hover {
+            color: #fff;
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateX(-5px);
+        }
+
+        header { margin: 1rem 0 4rem 0; padding-left: 1rem; border-left: 4px solid var(--accent); }
+        h1 { 
+            font-size: clamp(2rem, 8vw, 3.5rem); 
+            font-weight: 800; 
+            letter-spacing: -0.04em; 
+            line-height: 1.1; 
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stats { 
+            display: flex; 
+            gap: 1.5rem; 
+            color: var(--text-dim); 
+            font-family: 'Space Grotesk'; 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+        }
+        .stats b { color: var(--accent); }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 2.2rem;
+            border-radius: 30px;
+            position: relative;
+            transition: var(--transition);
+            cursor: pointer;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .card.active, .card:hover {
+            border-color: var(--accent);
+            background: rgba(124, 58, 237, 0.05);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(124, 58, 237, 0.1);
+        }
+
+        .card-num { 
+            font-family: 'Space Grotesk'; 
+            font-size: 0.65rem; 
+            color: var(--accent); 
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .card-num::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+        
+        .card-title { font-size: 1.2rem; font-weight: 700; color: #fff; line-height: 1.3; }
+
+        .card-desc {
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            line-height: 1.6;
+            overflow: hidden;
+        }
+
+        .card.active .card-desc, .card:hover .card-desc {
+            max-height: 180px;
+            opacity: 1;
+            margin-top: 1.2rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .grid { grid-template-columns: 1fr; }
+            .btn-back { font-size: 0.7rem; padding: 0.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-header">
+            <a href="index.html" class="btn-back">← Accueil</a>
+        </nav>
+
+        <header>
+            <h1>Soft Skills & <br>Développement Humain</h1>
+            <div class="stats">
+                <span>Ref: <b>UE2</b></span>
+                <span>Poids: <b>11 Crédits</b></span>
+                <span>Modules: <b>11</b></span>
+            </div>
+        </header>
+
+        <main class="grid" id="main-grid"></main>
+    </div>
+
+    <script>
+        const modules = [
+            { title: "Communication d'Entreprise", desc: "Optimisation de l'image de marque interne et externe à travers une stratégie de flux d'information cohérente." },
+            { title: "Comportement organisationnel", desc: "Étude systémique des interactions humaines pour améliorer la productivité et le climat de travail." },
+            { title: "Développement personnel", desc: "Techniques d'introspection et de croissance pour affirmer son leadership et sa créativité." },
+            { title: "Efficacité professionnelle", desc: "Méthodologie de travail avancée et gestion des outils numériques pour une performance optimale." },
+            { title: "Gestion des conflits", desc: "Médiation, négociation et psychologie appliquée pour transformer les tensions en opportunités de progrès." },
+            { title: "Gestion du temps", desc: "Stratégies de priorisation et respect de l'équilibre vie pro/perso via des outils concrets." },
+            { title: "Approche systématique", desc: "Comprendre l'entreprise comme un tout interconnecté pour anticiper l'impact de chaque décision." },
+            { title: "Leadership - Teamwork", desc: "Fédérer les talents individuels autour d'un objectif commun pour créer une synergie d'équipe." },
+            { title: "Leadership et Management", desc: "Postures managériales, délégation éthique et inspiration des collaborateurs au quotidien." },
+            { title: "Psychologie de la communication", desc: "Déchiffrer le langage non-verbal et les biais cognitifs pour une écoute active et empathique." },
+            { title: "Psychologie sociale", desc: "Analyse de l'influence du groupe sur l'individu et des mécanismes d'intégration sociale." }
+        ];
+
+        const grid = document.getElementById('main-grid');
+
+        modules.forEach((mod, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-num">UNIT ${(index + 1).toString().padStart(2, '0')}</div>
+                <div class="card-title">${mod.title}</div>
+                <div class="card-desc">${mod.desc}</div>
+            `;
+            
+            card.addEventListener('click', function(e) {
+                const isActive = this.classList.contains('active');
+                document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+                if (!isActive) this.classList.add('active');
+                e.stopPropagation();
+            });
+
+            grid.appendChild(card);
+        });
+
+        document.addEventListener('click', function() {
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+        });
+    </script>
+</body>
+</html>

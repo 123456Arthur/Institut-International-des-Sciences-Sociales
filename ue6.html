@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>UE6 | Développement Durable & Sécurité</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #020617;
+            --accent: #34d399; /* Vert menthe pour l'écologie */
+            --secondary: #10b981; /* Émeraude pour la sécurité */
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            background: var(--bg);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: env(safe-area-inset-top) 1.25rem 6rem 1.25rem;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(52, 211, 153, 0.08), transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.05), transparent 40%);
+            background-attachment: fixed;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        .nav-header { display: flex; align-items: center; margin-bottom: 2rem; padding-top: 1rem; }
+        .btn-back {
+            display: flex; align-items: center; gap: 0.5rem; color: var(--text-dim);
+            text-decoration: none; font-family: 'Space Grotesk'; font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 0.1em; padding: 0.6rem 1.2rem;
+            border-radius: 50px; background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border); transition: var(--transition);
+        }
+        .btn-back:hover { color: #fff; background: var(--accent); border-color: var(--accent); transform: translateX(-5px); }
+
+        header { margin: 1rem 0 3rem 0; padding-left: 1rem; border-left: 4px solid var(--accent); }
+        h1 { 
+            font-size: clamp(1.8rem, 7vw, 3.5rem); font-weight: 800; letter-spacing: -0.04em; 
+            line-height: 1.1; margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        .stats { 
+            display: flex; gap: 1.5rem; flex-wrap: wrap;
+            color: var(--text-dim); font-family: 'Space Grotesk'; font-size: 0.75rem; 
+            text-transform: uppercase; letter-spacing: 0.1em; 
+        }
+        .stats b { color: var(--accent); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1.8rem;
+            border-radius: 24px;
+            transition: var(--transition);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .card.active, .card:hover {
+            border-color: var(--accent);
+            background: rgba(52, 211, 153, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .card-num { 
+            font-family: 'Space Grotesk'; font-size: 0.6rem; color: var(--accent); 
+            margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem;
+        }
+        .card-num::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+        
+        .card-title { font-size: 1.05rem; font-weight: 700; color: #fff; line-height: 1.4; }
+
+        .card-desc {
+            max-height: 0; opacity: 0; margin-top: 0; font-size: 0.85rem;
+            color: var(--text-dim); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            line-height: 1.5; overflow: hidden;
+        }
+
+        .card.active .card-desc { max-height: 200px; opacity: 1; margin-top: 1.2rem; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.9rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-header">
+            <a href="index.html" class="btn-back">← Accueil</a>
+        </nav>
+
+        <header>
+            <h1>DD, Environnement <br>& Sécurité</h1>
+            <div class="stats">
+                <span>Ref: <b>UE6</b></span>
+                <span>Poids: <b>15 Crédits</b></span>
+                <span>Modules: <b>15</b></span>
+            </div>
+        </header>
+
+        <main class="grid" id="main-grid"></main>
+    </div>
+
+    <script>
+        const modules = [
+            { t: "Bonne gouvernance", d: "Principes de transparence, d'éthique et de responsabilité dans la gestion des institutions et des entreprises." },
+            { t: "Com. et développement durable", d: "Apprendre à valoriser les actions éco-responsables sans tomber dans le greenwashing." },
+            { t: "Développement durable", d: "Étude des piliers économique, social et environnemental pour un futur viable." },
+            { t: "Ecologie et DD", d: "Compréhension des écosystèmes et de l'impact des activités humaines sur la biodiversité." },
+            { t: "Gestion de chantier et risques", d: "Sécurisation des sites de construction et prévention des accidents de travail." },
+            { t: "Gestion des risques naturels", d: "Anticipation et gestion des catastrophes : inondations, séismes et risques climatiques." },
+            { t: "Risques technologiques et ICPE", d: "Réglementation des installations classées pour la protection de l'environnement." },
+            { t: "Hygiène et Santé au Travail", d: "Mise en œuvre des normes de sécurité pour protéger l'intégrité physique des salariés." },
+            { t: "Intro à la gestion de risque", d: "Concepts fondamentaux d'identification, d'analyse et de traitement des menaces." },
+            { t: "La démarche environnementale", d: "Mise en place de stratégies de réduction de l'empreinte carbone en entreprise." },
+            { t: "Système Management Qualité", d: "Maîtrise des référentiels ISO 9001 pour l'amélioration continue des processus." },
+            { t: "Economie verte / bleue", d: "Exploration des nouveaux modèles basés sur les énergies renouvelables et les ressources marines." },
+            { t: "Risques technos et env.", d: "Prévention des pollutions industrielles et gestion des impacts écologiques majeurs." },
+            { t: "Sécurité incendie", d: "Règles de prévention, d'évacuation et manipulation des équipements d'extinction." },
+            { t: "Management Environnemental", d: "Application de la norme ISO 14001 pour piloter la performance écologique." }
+        ];
+
+        const grid = document.getElementById('main-grid');
+
+        modules.forEach((mod, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-num">ECO-SAFE ${(index + 1).toString().padStart(2, '0')}</div>
+                <div class="card-title">${mod.t}</div>
+                <div class="card-desc">${mod.d}</div>
+            `;
+            
+            card.addEventListener('click', function(e) {
+                const isActive = this.classList.contains('active');
+                document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+                if (!isActive) this.classList.add('active');
+                e.stopPropagation();
+            });
+
+            grid.appendChild(card);
+        });
+
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>UE4 | Économie, Finance & Gestion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #020205;
+            --accent: #f59e0b; 
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            background: var(--bg);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: env(safe-area-inset-top) 1.25rem 6rem 1.25rem;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 80% 0%, rgba(245, 158, 11, 0.1), transparent 50%),
+                radial-gradient(circle at 20% 100%, rgba(59, 130, 246, 0.05), transparent 40%);
+            background-attachment: fixed;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        .nav-header { display: flex; align-items: center; margin-bottom: 2rem; padding-top: 1rem; }
+        .btn-back {
+            display: flex; align-items: center; gap: 0.5rem; color: var(--text-dim);
+            text-decoration: none; font-family: 'Space Grotesk'; font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 0.1em; padding: 0.6rem 1.2rem;
+            border-radius: 50px; background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border); transition: var(--transition);
+        }
+        .btn-back:hover { color: #fff; background: var(--accent); border-color: var(--accent); transform: translateX(-5px); }
+
+        header { margin: 1rem 0 3rem 0; padding-left: 1rem; border-left: 4px solid var(--accent); }
+        h1 { 
+            font-size: clamp(1.8rem, 7vw, 3.5rem); font-weight: 800; letter-spacing: -0.04em; 
+            line-height: 1.1; margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        .stats { 
+            display: flex; gap: 1.5rem; flex-wrap: wrap;
+            color: var(--text-dim); font-family: 'Space Grotesk'; font-size: 0.75rem; 
+            text-transform: uppercase; letter-spacing: 0.1em; 
+        }
+        .stats b { color: var(--accent); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1.8rem;
+            border-radius: 24px;
+            transition: var(--transition);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .card.active, .card:hover {
+            border-color: var(--accent);
+            background: rgba(245, 158, 11, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .card-num { 
+            font-family: 'Space Grotesk'; font-size: 0.6rem; color: var(--accent); 
+            margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem;
+        }
+        .card-num::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+        
+        .card-title { font-size: 1.05rem; font-weight: 700; color: #fff; line-height: 1.4; }
+
+        .card-desc {
+            max-height: 0; opacity: 0; margin-top: 0; font-size: 0.85rem;
+            color: var(--text-dim); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            line-height: 1.5; overflow: hidden;
+        }
+
+        .card.active .card-desc { max-height: 200px; opacity: 1; margin-top: 1.2rem; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.9rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-header">
+            <a href="index.html" class="btn-back">← Accueil</a>
+        </nav>
+
+        <header>
+            <h1>Économie, Finance <br>& Gestion</h1>
+            <div class="stats">
+                <span>Ref: <b>UE4</b></span>
+                <span>Poids: <b>32 Crédits</b></span>
+                <span>Modules: <b>31</b></span>
+            </div>
+        </header>
+
+        <main class="grid" id="main-grid"></main>
+    </div>
+
+    <script>
+        const modules = [
+            { t: "Analyse de données", d: "Exploitation statistique des données de l'entreprise pour l'aide à la décision stratégique." },
+            { t: "Analyse des coûts", d: "Méthodes de calcul (complet, partiel) pour optimiser la rentabilité des produits et services." },
+            { t: "Analyse financière", d: "Étude des bilans et comptes de résultat pour évaluer la santé et la solvabilité de l'entreprise." },
+            { t: "Banque et Microfinance", d: "Mécanismes du crédit, gestion des dépôts et inclusion financière via la microfinance." },
+            { t: "Bases de la comptabilité", d: "Apprentissage des flux, de la partie double et des enregistrements comptables de base." },
+            { t: "Comptabilité analytique", d: "Mesure de la performance interne par centres de profits et analyse des marges." },
+            { t: "Comptabilité des sociétés", d: "Opérations spécifiques : constitution, augmentation de capital et liquidation." },
+            { t: "Comptabilité Générale II", d: "Approfondissement des travaux d'inventaire, amortissements et provisions." },
+            { t: "Droit administratif", d: "Règles régissant l'organisation de l'État et ses rapports avec les citoyens." },
+            { t: "Droit commercial", d: "Statut du commerçant, actes de commerce et fonctionnement du fonds de commerce." },
+            { t: "Droit des affaires", d: "Régulation de la vie économique : contrats, concurrence et protection du consommateur." },
+            { t: "Droit des sociétés", d: "Cadre juridique de création et de gestion des différentes formes d'entreprises." },
+            { t: "Econométrie", d: "Modélisation mathématique des relations économiques pour la prévision." },
+            { t: "Economie d'entreprise", d: "Analyse de l'organisation, de ses objectifs et de son insertion dans le marché." },
+            { t: "Économie de développement", d: "Étude des stratégies de croissance et de réduction de la pauvreté dans le monde." },
+            { t: "Education financière", d: "Compréhension de la gestion du budget, de l'épargne et des risques financiers." },
+            { t: "Finance d'entreprise", d: "Gestion des investissements, des besoins de financement et de la trésorerie." },
+            { t: "Finances publiques", d: "Gestion des recettes et dépenses de l'État (Loi de finances, impôts)." },
+            { t: "Fiscalité appliquée", d: "Calcul et déclaration de l'impôt sur le revenu, de l'IS et de la TVA." },
+            { t: "Gestion commerciale", d: "Optimisation du cycle de vente, de la facturation et du suivi client." },
+            { t: "Gestion budgétaire", d: "Élaboration, suivi et contrôle des budgets pour piloter la performance." },
+            { t: "Économie internationale", d: "Théories du commerce mondial, taux de change et mondialisation." },
+            { t: "La comptabilité française", d: "Application spécifique des normes du Plan Comptable Général (PCG)." },
+            { t: "Les bases de l'économie", d: "Introduction à l'offre, la demande, la production et les circuits économiques." },
+            { t: "Logique", d: "Structure du raisonnement appliqué à la résolution de problèmes complexes." },
+            { t: "Mathématique Financière", d: "Calcul d'intérêts, d'annuités et évaluation de projets d'investissement." },
+            { t: "Micro Economie", d: "Analyse des comportements individuels des agents (consommateurs, firmes)." },
+            { t: "Statistiques et probabilités", d: "Outils mathématiques de mesure du risque et d'analyse des tendances." },
+            { t: "Stratégie commerciale", d: "Définition du mix-marketing et des avantages concurrentiels sur le long terme." },
+            { t: "Stratégie organisationnelle", d: "Choix de structure et d'allocation des ressources pour atteindre les buts fixés." },
+            { t: "Theorie fiscale", d: "Fondements doctrinaux de l'impôt et principes de justice fiscale." }
+        ];
+
+        const grid = document.getElementById('main-grid');
+
+        modules.forEach((mod, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-num">FINANCE ${(index + 1).toString().padStart(2, '0')}</div>
+                <div class="card-title">${mod.t}</div>
+                <div class="card-desc">${mod.d}</div>
+            `;
+            
+            card.addEventListener('click', function(e) {
+                const isActive = this.classList.contains('active');
+                document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+                if (!isActive) this.classList.add('active');
+                e.stopPropagation();
+            });
+
+            grid.appendChild(card);
+        });
+
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+        });
+    </script>
+</body>
+</html>
