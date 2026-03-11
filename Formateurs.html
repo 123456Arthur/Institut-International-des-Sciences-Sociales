@@ -1,343 +1,347 @@
-<style>
-  /* Reset & font */
-  body, html {
-    margin: 0; padding: 0;
-    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0a2342, #154580);
-    color: #e6f0ff;
-    min-height: 100vh;
-  }
-  a {
-    text-decoration: none;
-  }
-  .page-wrapper {
-    padding: 3rem 2rem 5rem 2rem;
-    max-width: 1300px;
-    margin: 0 auto;
-  }
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 3rem;
-  }
-  h1 {
-    font-size: 3.8rem;
-    font-weight: 900;
-    letter-spacing: 2px;
-    color: #a8dbff;
-    text-shadow: 0 0 15px #3390ff;
-  }
-  /* Bouton retour haut de gamme */
-  .btn-return {
-    background: linear-gradient(135deg, #4dd0ff, #1470e3);
-    padding: 1rem 3rem;
-    border-radius: 40px;
-    box-shadow: 0 10px 35px #1a87ff99;
-    font-weight: 700;
-    font-size: 1.25rem;
-    color: white;
-    letter-spacing: 1.1px;
-    cursor: pointer;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-  }
-  .btn-return:hover, .btn-return:focus {
-    box-shadow: 0 16px 48px #54a8ffee;
-    transform: scale(1.05);
-    outline: none;
-  }
-  
-  /* Container formateurs */
-  .ecosystem-items {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 3rem;
-    background: linear-gradient(145deg, #1c3b72, #163162);
-    padding: 3rem;
-    border-radius: 36px;
-    box-shadow: 0 0 100px #0d255c;
-    backdrop-filter: saturate(180%) blur(12px);
-  }
-  
-  /* Chaque carte formateur */
-  .ecosystem-items > div {
-    background: rgba(255 255 255 / 0.13);
-    border-radius: 32px;
-    padding: 2.5rem 2rem 3rem 2rem;
-    box-shadow:
-      0 12px 25px rgba(0,0,0,0.18),
-      inset 0 0 12px rgba(255,255,255,0.07);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: default;
-  }
-  .ecosystem-items > div:hover {
-    transform: scale(1.15);
-    box-shadow:
-      0 22px 50px #54a9ffbb,
-      inset 0 0 24px #a3d0ffaa;
-    z-index: 15;
-  }
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Elite Formateurs - Ultra HD 4K</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #010409;
+            --accent: #38bdf8;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
 
-  /* Photos haut de gamme */
-  .ecosystem-items img {
-    height: 200px;
-    width: auto;
-    border-radius: 26px;
-    margin-bottom: 1.6rem;
-    object-fit: cover;
-    border: 6px solid #3699ff;
-    box-shadow: 0 0 25px #54a9ffcc;
-    transition: box-shadow 0.3s ease;
-  }
-  .ecosystem-items > div:hover img {
-    box-shadow: 0 0 50px #a4cfffdd;
-  }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-  /* Titres */
-  .ecosystem-items h4 {
-    margin-bottom: 0.8rem;
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: #d0e8ff;
-    letter-spacing: 0.05em;
-    text-shadow: 0 0 12px #5ea1ffaa;
-    user-select: none;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-  }
-  .ecosystem-items > div:hover h4 {
-    color: #a7d3ff;
-    text-shadow: 0 0 22px #77aaffcc;
-  }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: #f1f5f9;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-  /* Description */
-  .ecosystem-items p {
-    font-style: italic;
-    font-weight: 600;
-    color: #cbdcff;
-    font-size: 1.1rem;
-    user-select: none;
-    margin: 0;
-    line-height: 1.53;
-    transition: color 0.3s ease;
-  }
-  .ecosystem-items > div:hover p {
-    color: #e2f0ff;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 2.8rem;
+        body.no-scroll { overflow: hidden; }
+
+        .page-wrapper {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            transition: filter 0.8s ease;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            font-weight: 800;
+            background: linear-gradient(to bottom, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-return {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .btn-return:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+
+        /* Grille Haute Définition */
+        .trainer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .trainer-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        }
+
+        .trainer-card {
+            position: relative;
+            background: #000;
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+
+        .trainer-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+
+        .trainer-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            image-rendering: -webkit-optimize-contrast; /* Améliore la netteté */
+        }
+
+        /* Overlay Zoom 4K */
+        #focus-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.98);
+            backdrop-filter: blur(20px);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            padding: 10px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        #focus-overlay.active { display: flex; opacity: 1; }
+
+        .focus-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: scale(0.9);
+            transition: var(--transition);
+        }
+
+        #focus-overlay.active .focus-content { transform: scale(1); }
+
+        .focus-img {
+            max-width: 95%; /* Zoom encore plus grand */
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 0 100px rgba(56, 189, 248, 0.2);
+        }
+
+        .focus-bio-bar {
+            text-align: center;
+            margin-top: 20px;
+            padding: 0 15px;
+        }
+
+        .focus-role-badge {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+
+        .focus-name { font-size: clamp(1.5rem, 5vw, 2.5rem); font-weight: 800; margin-bottom: 5px; }
+        .focus-title { font-size: 1rem; color: #94a3b8; margin-bottom: 10px; }
+        .focus-desc { font-size: 0.9rem; color: #64748b; max-width: 500px; font-style: italic; }
+
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: #fff;
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 100001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 480px) {
+            .focus-img { max-width: 100%; max-height: 60vh; }
+            .close-btn { top: auto; bottom: 40px; right: calc(50% - 25px); }
+            .focus-bio-bar { margin-bottom: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper" id="main-content">
+    <header>
+        <h1>Elite Formateurs</h1>
+        <a href="index.html" class="btn-return"><span>←</span> Retour</a>
+    </header>
+
+    <div class="trainer-grid">
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RANDRIANARISOA Tahianarinaly" data-title="General Manager" data-role="Direction Stratégique" data-desc="Expert en pilotage d'entreprise et vision globale du management.">
+            <img src="Mr tahiana.jpg" alt="Tahianarinaly">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RATOMPOARINOSY Harinoro" data-title="Business Management Specialist" data-role="Expertise Business" data-desc="Spécialiste de l'optimisation des processus et de la gestion de performance.">
+            <img src="Md Harinoro.jpg" alt="Harinoro">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RABENJA José Tiana" data-title="Consultant Formateur" data-role="Master Mentor" data-desc="Dédié à la transmission des savoir-faire et au coaching professionnel.">
+            <img src="Mr Rabenja.jpg" alt="José Tiana">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="ANDRIANIAINA Sitraka Fanantenana" data-title="Consultant Formatrice" data-role="Ingénierie Formation" data-desc="Experte en conception de modules pédagogiques innovants.">
+            <img src="Md Sitraka F.jpg" alt="Sitraka F.">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RABEMANORINTSOA H. Sitraka" data-title="Consultant & Trainer" data-role="Stratégie & Conseil" data-desc="Analyse et conseil stratégique pour le développement des compétences.">
+            <img src="Mr sitraka.jpg" alt="H. Sitraka">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="MANDINY Ursulla" data-title="Formatrice & Consultant" data-role="Facilitatrice" data-desc="Accompagnement personnalisé et conseil en gestion de projet.">
+            <img src="Md Ursulla.jpg" alt="Ursulla">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="ANDRIANAMBININA Mamy Arilala" data-title="Formateur & Consultant" data-role="Conseil RH" data-desc="Expert en relations humaines et développement des talents.">
+            <img src="Mr Arilala.jpg" alt="Mamy Arilala">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RAHAJARIZAFY Ny Raitra" data-title="Psychologue Clinicienne" data-role="Santé & Travail" data-desc="Spécialiste du bien-être psychologique et de l'équilibre en milieu pro.">
+            <img src="Md Ny Raitra.jpg" alt="Ny Raitra">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RANDRIAMANARINA Patriarck" data-title="Formateur & Consultant" data-role="Expert Métier" data-desc="Spécialiste de la formation technique et opérationnelle.">
+            <img src="Md Patriarck.jpg" alt="Patriarck">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="ANDRIANAHAGA Mbolatiana" data-title="Formatrice & Consultant" data-role="Audit & Conseil" data-desc="Évaluation des besoins et mise en place de stratégies de formation.">
+            <img src="Md Mbolatiana.jpg" alt="Mbolatiana">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RAKOTOVOLOLONA Finaritra" data-title="Formatrice & Consultant" data-role="Pédagogie Positive" data-desc="Engagement pour une formation dynamique et centrée sur l'humain.">
+            <img src="Md Finaritra.jpg" alt="Finaritra">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="TEFY NIRINA Ignace Olivier" data-title="Formateur & Consultant" data-role="Expert Leadership" data-desc="Dédié au renforcement des capacités de leadership et de gestion d'équipe.">
+            <img src="Mr TEFY.jpg" alt="Ignace Olivier">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RABENJA Lova Anthony" data-title="Formateur & Consultant" data-role="Conseil Impact" data-desc="Focus sur l'amélioration continue et les résultats tangibles.">
+            <img src="Mr Anthony.jpg" alt="Lova Anthony">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RABEHAJA Tanya" data-title="Responsable Communication" data-role="Image & Branding" data-desc="Gestion de la visibilité et de la stratégie de communication globale.">
+            <img src="Md Tanya.jpg" alt="Tanya">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="INDRENJAFIMORA Aaronne" data-title="Formatrice Consultant" data-role="Expertise Conseil" data-desc="Conseil opérationnel et accompagnement stratégique.">
+            <img src="Md Aaronne.jpg" alt="Aaronne">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RASATARIMANA Andy" data-title="Business Management" data-role="Gestion de Flux" data-desc="Expertise en gestion administrative et management de données.">
+            <img src="Mr Andy.jpg" alt="Andy">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RIMA Manankasina" data-title="Communication Culturelle" data-role="Expert Médias" data-desc="Spécialiste de l'interaction culturelle et de la communication média.">
+            <img src="Mr RIMA.jpg" alt="Manankasina">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RAJAONARISOA Tahina" data-title="Experte en Stratégie" data-role="Visionnaire" data-desc="Conseil de haut niveau pour les transformations organisationnelles.">
+            <img src="Md Tahina.jpg" alt="Tahina">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RAMILISION Andréa" data-title="Formatrice" data-role="Savoir-Faire" data-desc="Transmission des compétences clés pour le succès professionnel.">
+            <img src="Md Andréa.jpg" alt="Andréa">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="MENJANAHARY Michel Jean" data-title="Trainer" data-role="Coaching Pro" data-desc="Focus sur la performance et le développement individuel.">
+            <img src="Mr Michel.jpg" alt="Michel Jean">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RALAIMIHOATRA Cédric" data-title="Consultant / Formateur" data-role="Expert Innovation" data-desc="Conseil en innovation et transformation digitale.">
+            <img src="Mr Cédric.jpg" alt="Cédric">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="NOSIMIANGOLA Sarah" data-title="Juriste" data-role="Conformité Légale" data-desc="Garante du cadre juridique et de la conformité réglementaire.">
+            <img src="Md Sarah.jpg" alt="Sarah">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RAKOTONDRADRIA Alferie" data-title="Formateur & Consultant" data-role="Efficacité Pro" data-desc="Spécialiste du renforcement des capacités opérationnelles.">
+            <img src="Mr Alferie.jpg" alt="Alferie">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="BAO Tohin'Ny Aina" data-title="Business Management" data-role="Optimisation" data-desc="Gestion agile et pilotage des résultats business.">
+            <img src="Md Bao.jpg" alt="Tohin'Ny Aina">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="RABARITIANA Arthur Ulrich" data-title="Junior Alternant" data-role="Support & Innovation" data-desc="Appui opérationnel et force de proposition junior.">
+            <img src="Mr Arthur.jpg" alt="Arthur Ulrich">
+        </div>
+
+        <div class="trainer-card" onclick="zoomTrainer(this)" data-name="HANITRINIAINA Cynthia" data-title="Quality Manager" data-role="Excellence Qualité" data-desc="Garante des standards de qualité et de la satisfaction client.">
+            <img src="Md Cynthia.jpg" alt="Cynthia">
+        </div>
+    </div>
+</div>
+
+<div id="focus-overlay">
+    <button class="close-btn" onclick="closeZoom()">&times;</button>
+    <div class="focus-content">
+        <img src="" alt="" id="target-img" class="focus-img">
+        <div class="focus-bio-bar">
+            <div id="target-role" class="focus-role-badge"></div>
+            <h2 id="target-name" class="focus-name"></h2>
+            <p id="target-title" class="focus-title"></p>
+            <p id="target-desc" class="focus-desc"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Sécurité Anti-Vol
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+        if (e.key === "F12" || (e.ctrlKey && ['c','u','s','i'].includes(e.key.toLowerCase()))) e.preventDefault();
+    });
+
+    const overlay = document.getElementById('focus-overlay');
+    const mainContent = document.getElementById('main-content');
+
+    function zoomTrainer(card) {
+        document.getElementById('target-img').src = card.querySelector('img').src;
+        document.getElementById('target-name').innerText = card.getAttribute('data-name');
+        document.getElementById('target-title').innerText = card.getAttribute('data-title');
+        document.getElementById('target-role').innerText = card.getAttribute('data-role');
+        document.getElementById('target-desc').innerText = card.getAttribute('data-desc');
+
+        overlay.style.display = 'flex';
+        document.body.classList.add('no-scroll');
+        setTimeout(() => {
+            overlay.classList.add('active');
+            mainContent.style.filter = 'blur(20px) brightness(0.3)';
+        }, 10);
     }
-    .ecosystem-items {
-      padding: 2rem 1rem;
-      gap: 2rem;
+
+    function closeZoom() {
+        overlay.classList.remove('active');
+        mainContent.style.filter = 'none';
+        setTimeout(() => {
+            overlay.style.display = 'none';
+            document.body.classList.remove('no-scroll');
+        }, 500);
     }
-    .ecosystem-items > div {
-      padding: 1.8rem 1.2rem 2.2rem 1.2rem;
-    }
-  }
-</style>
-<div class="page-wrapper">
-  <header>
-    <h1>Nos Formateurs Exclusifs 🎓</h1>
-    <button class="btn-return" aria-label="Retour à la page principale" onclick="history.back()">← Retour au site principal</button>
-  </header>
-  <div class="ecosystem-items">
-    <div>
-      <h4><strong>RANDRIANARISOA Tahianarinaly</strong></h4>
-      <p>GENERAL MANAGER</p>
-      <div style="text-align:center;">
-        <img src="Mr tahiana.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RATOMPOARINOSY Harinoro</strong></h4>
-      <p>SPECILIST IN BUSINESS MANAGEMENT AND DEVELOPMENT.</p>
-      <div style="text-align:center;">
-        <img src="Md Harinoro.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RABENJA José Tiana</strong></h4>
-      <p>CONSULTANT FORMATEUR.</p>
-      <div style="text-align:center;">
-        <img src="Mr Rabenja.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>ANDRIANIAINA Sitraka Fanantenana</strong></h4>
-      <p>CONSULTANT FORMATRICE.</p>
-      <div style="text-align:center;">
-        <img src="Md Sitraka F.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RABEMANORINTSOA Hanitrinirina Sitraka</strong></h4>
-      <p>CONSULTANT AND TRAINER.</p>
-      <div style="text-align:center;">
-        <img src="Mr sitraka.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>MANDINY Ursulla</strong></h4>
-      <p>FORMATRICE & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Md Ursulla.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>ANDRIANAMBININA Mamy Arilala</strong></h4>
-      <p>FORMATEUR & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Mr Arilala.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RAHAJARIZAFY Ny Raitra Maeva Iriana</strong></h4>
-      <p>FORMATRICE / PSYCHOLOGUE CLINICIENNE.</p>
-      <div style="text-align:center;">
-        <img src="Md Ny Raitra.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RANDRIAMANARINA Patriarck</strong></h4>
-      <p>FORMATEUR & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Md Patriarck.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>ANDRIANAHAGA Mbolatiana Andriatsiresisoa Nathalie</strong></h4>
-      <p>FORMATRICE & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Md Mbolatiana.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RAKOTOVOLOLONA Finaritra</strong></h4>
-      <p>FORMATRICE & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Md Finaritra.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>TEFY NIRINA Ignace Olivier</strong></h4>
-      <p>FORMATEUR & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Mr TEFY.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RABENJA Lova Anthony</strong></h4>
-      <p>FORMATEUR & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Mr Anthony.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RABEHAJA Tanya</strong></h4>
-      <p>RESPONSABLE COMMUNICATION.</p>
-      <div style="text-align:center;">
-        <img src="Md Tanya.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>INDRENJAFIMORA Aaronne</strong></h4>
-      <p>FORMATRICE CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Md Aaronne.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RASATARIMANA Andy</strong></h4>
-      <p>JUNIOR ENTREPRISE / BUSINESS MANAGEMENT.</p>
-      <div style="text-align:center;">
-        <img src="Mr Andy.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RIMA Manankasina</strong></h4>
-      <p>CONSULTANT-FORMATEUR-en PATRIMOINE CULTUREL & COMMUNICATION.</p>
-      <div style="text-align:center;">
-        <img src="Mr RIMA.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RAJAONARISOA Tahina</strong></h4>
-      <p>CONSULTANTE INTERNATIONALE & EXPERTE EN STRATEGIE.</p>
-      <div style="text-align:center;">
-        <img src="Md Tahina.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RAMILISION Andréa</strong></h4>
-      <p>Formatrice.</p>
-      <div style="text-align:center;">
-        <img src="Md Andréa.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>MENJANAHARY Michel Jean</strong></h4>
-      <p>Trainer.</p>
-      <div style="text-align:center;">
-        <img src="Mr Michel.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RALAIMIHOATRA Cédric</strong></h4>
-      <p>CONSULTANT / FORMATEUR.</p>
-      <div style="text-align:center;">
-        <img src="Mr Cédric.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>NOSIMIANGOLA Sarah</strong></h4>
-      <p>JUNIOR ENTREPRISE / JURIST.</p>
-      <div style="text-align:center;">
-        <img src="Md Sarah.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RAKOTONDRADRIA Alferie</strong></h4>
-      <p>FORMATEUR & CONSULTANT.</p>
-      <div style="text-align:center;">
-        <img src="Mr Alferie.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>BAO Tohin'Ny Aina</strong></h4>
-      <p>JUNIOR ENTREPRISE / BUSINESS MANAGEMENT.</p>
-      <div style="text-align:center;">
-        <img src="Md Bao.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>RABARITIANA Arthur Ulrich</strong></h4>
-      <p>JUNIOR ALTERNANT.</p>
-      <div style="text-align:center;">
-        <img src="Mr Arthur.jpg" alt="is studio" />
-      </div>
-    </div>
-    <div>
-      <h4><strong>HANITRINIAINA Cynthia</strong></h4>
-      <p>JUNIOR ENTREPRISE / QUALITY MANAGER.</p>
-      <div style="text-align:center;">
-        <img src="Md Cynthia.jpg" alt="is studio" />
-      </div>
-    </div>
-  </div>
-  <script>
-// Désactive copier, couper, coller, Ctrl+U (afficher source)
-document.addEventListener('keydown', function(e) {
-  if (
-    (e.ctrlKey && (e.key === 'c' || e.key === 'x' || e.key === 'v' || e.key === 'u')) ||
-    e.key === 'F12' // désactive aussi F12 (DevTools)
-  ) {
-    e.preventDefault();
-  }
-});
+
+    overlay.onclick = e => { if (e.target === overlay || e.target.className === 'focus-content') closeZoom(); };
 </script>
 
-</section>
+</body>
+</html>
