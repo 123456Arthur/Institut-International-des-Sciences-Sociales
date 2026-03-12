@@ -459,7 +459,7 @@ body.iiss-preloading {
        <li><a href="#valeurs">Nos Valeurs</a></li>
        <li><a href="Formateurs.html">Nos Formateurs</a></li>
        <li><a href="#student-life">Frais de scolarité</a></li>
-       <li><a href="#conferences">Conférences Hebdomadaires</a></li>
+       <li><a href="#conf-2026-container">Conférences Hebdomadaires</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -2608,138 +2608,430 @@ tbody tr:hover { background: #ebf4ff; }
   .credits-gold, .fee-module .credits-highlight { font-size: 1.15rem; }
 }
 </style>
+
+
+
 <style>
-  .section-thematic {
-  padding: 3rem 2rem;
-  border-radius: 12px;
-  max-width: 900px;
-  margin: 3rem auto;
-  background: linear-gradient(135deg, #0a2342 0%, #155d63 100%);
-  box-shadow: 0 6px 20px rgba(10,35,66,0.15);
-  color: #f9c51c;
-  box-sizing: border-box;
-}
-.section-thematic h2 {
-  font-weight: 900;
-  font-size: 2.6rem;
-  text-align: center;
-  margin-bottom: 2rem;
-  text-shadow: 0 0 5px #f9c51c;
-}
-.section-thematic div {
-  text-align: center;
-  font-size: 1.4rem;
-  font-weight: 600;
-  line-height: 1.5;
-}
-@media (max-width: 768px) {
-  .section-thematic {
-    padding: 2rem 1rem;
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+  :root {
+    --bg-black: #020617;
+    --accent-blue: #38bdf8;
+    --accent-gold: #f59e0b;
+    --accent-rose: #f43f5e;
+    --accent-emerald: #10b981;
+    --accent-purple: #a855f7;
+    --glass-card: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
   }
-  .section-thematic h2 {
-    font-size: 2rem;
+
+  body { 
+    background-color: var(--bg-black); 
+    color: #fff; 
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
   }
-  .section-thematic div {
-    font-size: 1.15rem;
+
+  .main-hub { padding: 80px 5%; max-width: 1300px; margin: 0 auto; }
+
+  .hub-header { text-align: center; margin-bottom: 70px; }
+  .hub-header h2 { 
+    font-size: clamp(2rem, 5vw, 3.5rem); 
+    font-weight: 800; 
+    letter-spacing: -2px;
+    background: linear-gradient(to right, #fff, rgba(255,255,255,0.3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-}
+
+  /* --- STYLE 2026 POUR LES CLUBS : "3D FLOATING GLASS" --- */
+  .clubs-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-bottom: 120px;
+  }
+
+  .club-3d-card {
+    position: relative;
+    background: var(--glass-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 40px;
+    padding: 35px;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  /* Effet de lumière diffuse derrière la carte */
+  .club-3d-card::before {
+    content: "";
+    position: absolute;
+    top: -20%; left: -20%;
+    width: 60%; height: 60%;
+    background: var(--club-color);
+    filter: blur(100px);
+    opacity: 0.1;
+    transition: 0.6s ease;
+  }
+
+  .club-3d-card:hover {
+    transform: translateY(-15px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--club-color);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+  }
+
+  .club-3d-card:hover::before { opacity: 0.4; }
+
+  .club-3d-card .image-box {
+    width: 100%;
+    height: 220px;
+    border-radius: 25px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    transform: perspective(1000px) rotateX(5deg);
+    transition: 0.6s ease;
+  }
+
+  .club-3d-card:hover .image-box {
+    transform: perspective(1000px) rotateX(0deg) scale(1.05);
+  }
+
+  .club-3d-card img { width: 100%; height: 100%; object-fit: cover; }
+
+  .club-3d-card h3 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 15px 0;
+    color: #fff;
+  }
+
+  .club-3d-card p {
+    color: #94a3b8;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  .club-tag {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.05);
+    color: var(--club-color);
+    font-weight: 700;
+    font-size: 0.8rem;
+    border: 1px solid var(--club-color);
+  }
+
+  /* --- STYLE CONFÉRENCES (TON PRÉFÉRÉ REPRIS ICI) --- */
+  .conf-list { display: flex; flex-direction: column; gap: 20px; }
+
+  .conf-pill {
+    display: grid;
+    grid-template-columns: 100px 1fr 250px;
+    align-items: center;
+    background: var(--glass-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 100px;
+    padding: 15px 40px;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+  }
+
+  .conf-pill:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(30px);
+    border-color: var(--pill-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+
+  .day-text { font-weight: 800; color: var(--pill-color); text-transform: uppercase; letter-spacing: 2px; }
+  .conf-pill h3 { margin: 0 0 4px 0; font-size: 1.5rem; color: #fff; }
+  .conf-pill p { margin: 0; color: #94a3b8; font-size: 0.9rem; }
+  .conf-img { width: 100%; height: 75px; border-radius: 50px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); }
+
+  @media (max-width: 900px) {
+    .conf-pill { grid-template-columns: 1fr; border-radius: 30px; text-align: center; padding: 30px; }
+    .conf-pill:hover { transform: translateY(-10px); }
+    .conf-img { height: 180px; margin-top: 15px; border-radius: 20px; }
+  }
 </style>
-  <section id="clubs" class="section-light" data-visible="false">
-    <h2 class="animated-zoom">Clubs Étudiants 🏆</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Club Art 🎨</h3>
-        <p>Ateliers de peinture, dessin, sculpture et expositions régulières.</p>
-         <div style="text-align:center;">
-          <img src="peinture.jpg" alt="is studio" style="height: 200px;  margin: bottom 0.7em;" />
-        </div>
-      </div>
-      <div class="card">
-        <h3>Club Langues 🌍</h3>
-        <p>Pratique de l'anglais, du français, et d'autres langues avec des natifs.</p>
-         <div style="text-align:center;">
- <img src="langue.jpg" alt="is studio" style="height: 150px;  margin: bottom 0.7em;" />
-      </div>
+
+<div class="main-hub">
+
+  <div class="hub-header">
+    <p style="color: var(--accent-blue); letter-spacing: 5px; font-weight: 700; margin-bottom: 10px;">LIFESTYLE & PASSION</p>
+    <h2>Clubs Étudiants</h2>
+  </div>
+
+  <div class="clubs-container">
+    <div class="club-3d-card" style="--club-color: var(--accent-blue);">
+      <div class="image-box"><img src="Math.jpg" alt="Euler Math"></div>
+      <span class="club-tag">Mardi 17:15 | Vendredi 17:00</span>
+      <h3>Euler Math Group</h3>
+      <p>Un espace de partage entre jeunes talents en Math-financière et Comptabilité. Brisez la glace et apprenez ensemble.</p>
     </div>
-      <div class="card">
-        <h3>Club Musique 🎶</h3>
-        <p>Groupes de musique, initiation à divers instruments(guitare).</p>
-        <div style="text-align:center;">
- <img src="CLUB MUSIQUE .jpg" alt="is studio" style="height: 200px;  margin: bottom 0.7em;" />
-        </div>
-        </div>
-      <div class="card">
-        <h3>Club Sport ⚽</h3>
-        <p>Football, basketball, et organisation de tournois inter-institut.</p>
-        <div style="text-align:center;">
-  <img src="BASKET.jpg" alt="is studio" style="height: 200px;  margin: bottom 0.7em;" />
-      </div>
-        </div>
-       <div class="card">
-        <h3>Euler Math Groupe 👨‍🏫 (Mardi 17h-15 à 18h 00) et Vendredi (17h-18h)</h3>
-        <p> Club entre jeune,brise glâce et conctact entre étudiant Math-financière,comptabilité,cours, apprentissage .</p>
-         <div style="text-align:center;">
- <img src="Math.jpg" alt="is studio" style="height: 200px;  margin: bottom 0.7em;" />
+
+    <div class="club-3d-card" style="--club-color: var(--accent-gold);">
+      <div class="image-box"><img src="ECHEC CLUB.jpg" alt="Chess"></div>
+      <span class="club-tag">Chaque Samedi</span>
+      <h3>Malagasy Chess Game</h3>
+      <p>Maîtrisez vos ouvertures et tactiques de sacrifice. Un rendez-vous stratégique incontournable pour les passionnés.</p>
     </div>
-      </div>
-       <div class="card">
-        <h3>Malagasy chess game ♟ (Samedi) </h3>
-       <p>Chaque <strong>samedi</strong>, maîtrisez vos ouvertures, tactiques et sacrifices avec Malagasy Chess Game Officiel.
-Un rendez-vous stratégique et convivial pour tous les passionnés.</p>
-        <div style="text-align:center;">
-          <img src="ECHEC CLUB.jpg" alt="is studio" style="height: 200px;  margin: bottom 0.7em;" />
-        </div>
+
+    <div class="club-3d-card" style="--club-color: var(--accent-rose);">
+      <div class="image-box"><img src="peinture.jpg" alt="Art"></div>
+      <span class="club-tag">Créativité Illimitée</span>
+      <h3>Club Art</h3>
+      <p>Libérez votre imaginaire : peinture, dessin, sculpture. Participez à nos expositions et marquez votre passage.</p>
     </div>
-    <div class="gallery">
+
+    <div class="club-3d-card" style="--club-color: var(--accent-purple);">
+      <div class="image-box"><img src="CLUB MUSIQUE .jpg" alt="Musique"></div>
+      <span class="club-tag">Guitare & Initiation</span>
+      <h3>Club Musique</h3>
+      <p>Des groupes de musique aux sessions d'initiation instrumentale. L'harmonie parfaite pour s'évader.</p>
     </div>
-  </section>
-  <section id="conferences" class="section-white" data-visible="false">
-    <h2 class="animated-rotate">Conférences Hebdomadaires 📅</h2>
-    <div class="cards">
-      <div class="card">
+
+    <div class="club-3d-card" style="--club-color: var(--accent-emerald);">
+      <div class="image-box"><img src="BASKET.jpg" alt="Sport"></div>
+      <span class="club-tag">Football & Basketball</span>
+      <h3>Club Sport</h3>
+      <p>Dépassez-vous lors des tournois inter-instituts. L'esprit d'équipe et la gagne au cœur de l'action.</p>
+    </div>
+
+    <div class="club-3d-card" style="--club-color: var(--accent-blue);">
+      <div class="image-box"><img src="langue.jpg" alt="Langues"></div>
+      <span class="club-tag">Anglais | Français</span>
+      <h3>Club Langues</h3>
+      <p>Pratiquez avec des natifs et développez votre aisance internationale dans une ambiance conviviale.</p>
+    </div>
+  </div>
+
+
+
+  <style>
+  :root {
+    --day-lundi: #38bdf8;
+    --day-mardi: #10b981;
+    --day-mercredi: #f9c51c;
+    --day-jeudi: #a855f7;
+    --day-vendredi: #f43f5e;
+    --glass-panel: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+  }
+
+  .conf-2026-container {
+    padding: 100px 5%;
+    background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+    overflow: hidden;
+  }
+
+  .conf-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .conf-header h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    letter-spacing: -3px;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #fff, rgba(255,255,255,0.2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* --- LE FLUX DYNAMIQUE --- */
+  .conf-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .conf-card-2026 {
+    display: grid;
+    grid-template-columns: 120px 1fr 300px;
+    align-items: center;
+    background: var(--glass-panel);
+    border: 1px solid var(--glass-border);
+    border-radius: 40px;
+    padding: 20px 40px;
+    backdrop-filter: blur(20px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    cursor: pointer;
+  }
+
+  /* Glow de fond spécifique au jour */
+  .conf-card-2026::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 40px;
+    background: radial-gradient(circle at 10% 50%, var(--day-color), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: -1;
+  }
+
+  .conf-card-2026:hover {
+    transform: scale(1.02) translateX(20px);
+    border-color: var(--day-color);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .conf-card-2026:hover::before {
+    opacity: 0.15;
+  }
+
+  /* Styling des éléments internes */
+  .day-digit {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--day-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transform: rotate(-90deg);
+  }
+
+  .conf-body h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+
+  .conf-body p {
+    font-size: 1rem;
+    color: #94a3b8;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  .conf-visual-4k {
+    width: 100%;
+    height: 160px;
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .conf-visual-4k img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+  }
+
+  .conf-card-2026:hover .conf-visual-4k img {
+    transform: scale(1.2);
+  }
+
+  /* Badge de catégorie flottant */
+  .cat-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px 15px;
+    background: var(--day-color);
+    color: #000;
+    font-size: 0.7rem;
+    font-weight: 900;
+    border-radius: 10px;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    .conf-card-2026 {
+      grid-template-columns: 1fr;
+      padding: 30px;
+      text-align: center;
+      gap: 20px;
+    }
+    .day-digit { transform: rotate(0); margin-bottom: 10px; }
+    .conf-card-2026:hover { transform: translateY(-10px); }
+  }
+</style>
+
+<section class="conf-2026-container">
+  
+  <div class="conf-header">
+    <p style="color: var(--day-mercredi); letter-spacing: 5px; font-weight: 700;">CALENDRIER HEBDOMADAIRE</p>
+    <h2>Conférences</h2>
+  </div>
+
+  <div class="conf-flow">
+    
+    <div class="conf-card-2026" style="--day-color: var(--day-lundi);">
+      <div class="day-digit">Lundi</div>
+      <div class="conf-body">
+        <span class="cat-badge">Leadership</span>
         <h3>Lundi Management</h3>
-        <p>Conférences sur le leadership, la gestion de projet et l'entrepreneuriat.
-Un rendez-vous essentiel pour développer vos compétences, inspirer votre équipe et réussir vos projets avec assurance.</p>
-        <div style="text-align:center;">
-          <img src="Lundi.jpg" alt="is studio" style="height: 130px; margin: bottom 1%;" />
-        </div>
+        <p>Maîtrisez l'art de diriger. Focus sur la gestion de projet agile et l'entrepreneuriat visionnaire.</p>
       </div>
-      <div class="card">
-        <h3>Mardi de l'entreprise 💼💡</h3>
-        <p> Séance de partage sur entrepreneuriat, startup et PME.
-Un moment unique pour s’inspirer, échanger des idées et booster la croissance de votre projet entrepreneurial. </p>
-        <div style="text-align:center;">
-          <img src="Mardi.jpg" alt="is studio" style="height: 130px; margin: bottom 1%;" />
-        </div>
+      <div class="conf-visual-4k">
+        <img src="Lundi.jpg" alt="Management 4K">
       </div>
-       <div class="card">
-        <h3>Alarobia KAFE SERA ☕💬</h3>
-        <p> Bien plus qu’un café, un moment de partage,
-           d’intelligence collective et de rencontres authentiques pour dynamiser votre réseau professionnel. </p>
-           <div style="text-align:center;">
-          <img src="KAFE SERA.jpg" alt="is studio" style="height: 130px; margin: bottom 1%;" />
-        </div>
+    </div>
+
+    <div class="conf-card-2026" style="--day-color: var(--day-mardi);">
+      <div class="day-digit">Mardi</div>
+      <div class="conf-body">
+        <span class="cat-badge">Startup</span>
+        <h3>Mardi de l'Entreprise</h3>
+        <p>Immersion dans le monde des PME et Startups. Stratégies de croissance et retours d'expérience concrets.</p>
       </div>
-      <div class="card">
+      <div class="conf-visual-4k">
+        <img src="Mardi.jpg" alt="Business 4K">
+      </div>
+    </div>
+
+    <div class="conf-card-2026" style="--day-color: var(--day-mercredi);">
+      <div class="day-digit">Alarobia</div>
+      <div class="conf-body">
+        <span class="cat-badge">Networking</span>
+        <h3>Kafe Sera</h3>
+        <p>L'intelligence collective en action. Échanges informels et rencontres stratégiques pour votre avenir.</p>
+      </div>
+      <div class="conf-visual-4k">
+        <img src="KAFE SERA.jpg" alt="Social 4K">
+      </div>
+    </div>
+
+    <div class="conf-card-2026" style="--day-color: var(--day-jeudi);">
+      <div class="day-digit">Jeudi</div>
+      <div class="conf-body">
+        <span class="cat-badge">Innovation</span>
         <h3>Thursday Roundtable</h3>
-        <p>Tables rondes sur l'actualité, l'innovation et les enjeux sociétaux.
-Un espace d’échanges enrichissants pour décrypter les défis d’aujourd’hui et imaginer les solutions de demain.</p>
-        <div style="text-align:center;">
-          <img src="Jeudi.jpg" alt="is studio" style="height: 130px; margin: bottom 1%;" />
-        </div>
+        <p>Analyses profondes de l'actualité et des innovations technologiques qui façonnent notre société.</p>
       </div>
-      <div class="card">
+      <div class="conf-visual-4k">
+        <img src="Jeudi.jpg" alt="Innovation 4K">
+      </div>
+    </div>
+
+    <div class="conf-card-2026" style="--day-color: var(--day-vendredi);">
+      <div class="day-digit">Vendredi</div>
+      <div class="conf-body">
+        <span class="cat-badge">Inspiration</span>
         <h3>Friday Talk</h3>
-        <p> Invités inspirants, débats et échanges sur les parcours professionnels.
-Un moment pour s’inspirer, apprendre et nourrir ses ambitions grâce à des témoignages authentiques et riches d’expériences.</p>
-        <div style="text-align:center;">
-          <img src="Vendredi.jpg" alt="is studio" style="height: 130px; margin: bottom 1%;" />
-        </div>
+        <p>Clôturez la semaine avec des récits de vie puissants et des débats sur l'excellence professionnelle.</p>
+      </div>
+      <div class="conf-visual-4k">
+        <img src="Vendredi.jpg" alt="Talk 4K">
       </div>
     </div>
-    <div class="gallery">
-    </div>
-  </section>
+
+  </div>
+</section>
   <section>
    <div class="btn-premium-emploi-temps-glow-container" style="margin-top: 4rem; text-align: center;">
   <a href="Emploie de temps.html"
